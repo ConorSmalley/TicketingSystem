@@ -27,8 +27,4 @@ public class Transaction {
     public int getId(){
         return Id;
     }
-    @Override
-    public String toString(){
-        return "Hello: " + Id;
-    }
 }
