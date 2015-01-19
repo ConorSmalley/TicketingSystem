@@ -5,8 +5,6 @@
  */
 package ticketing.system;
 
-import java.util.Date;
-
 /**
  *
  * @author Curtis
@@ -15,21 +13,21 @@ public class Discount {
     private int id;
     private String name;
     private double discountPercentage;
-    private Date validUntil;
+    private int validLenth;
     
-    public Discount(int id, String name, double discountPercentage, Date validUntil) {
+    public Discount(int id, String name, double discountPercentage, int validUntil) {
         this.id = id;
         this.name = name;
         this.discountPercentage = discountPercentage;
-        this.validUntil = validUntil;
+        this.validLenth = validUntil;
     }
     
     public String getName(){
         return name;
     }
     
-    public Date getValidUntil (){
-        return validUntil;
+    public int getValidUntil (){
+        return validLenth;
     }
     
     public double getDiscountPercentage(){
