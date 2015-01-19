@@ -9,7 +9,6 @@ package ticketing.system;
  *
  * @author Conor
  */
-public class UserAccount {
+public class UserAcountManager {
     
-    //Changes here
 }
