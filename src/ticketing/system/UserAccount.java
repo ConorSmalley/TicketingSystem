@@ -24,6 +24,8 @@ public class UserAccount {
     private TransactionList transactionList;
     private Date deleted;
     UserAccount() {
-
+    }
+    public Person getPersonData(){
+        return person;
     }
 }
