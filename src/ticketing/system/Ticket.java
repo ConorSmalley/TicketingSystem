@@ -9,6 +9,6 @@ package ticketing.system;
  *
  * @author Conor
  */
-class ActiveTicket {
+class Ticket {
     
 }

@@ -17,7 +17,7 @@ public class UserAccount {
     private Person person;
     private double balance;
     private boolean availableBlance;
-    private ActiveTicket activeTicket;
+    private Ticket activeTicket;
     private List<Token> tokens;
     private Date deleted;
     UserAccount() {
