@@ -12,4 +12,5 @@ package ticketing.system;
  */
 public class Infringement {
     
+    
 }
