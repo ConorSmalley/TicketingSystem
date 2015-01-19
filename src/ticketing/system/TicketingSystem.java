@@ -5,6 +5,9 @@
  */
 package ticketing.system;
 
+import java.util.Date;
+import static ticketing.system.TransactionType.Cash;
+
 /**
  *
  * @author Conor
@@ -16,14 +19,12 @@ public class TicketingSystem {
      */
     public static void main(String[] args) {
         
+        TransactionList tl = new TransactionList();
+        tl.addtransaction(new Transaction(Cash, 10.50, new Date()));
         
-        
-        // TODO code application logic here
-        
-        //Woo hoo
-        
-        
-        //There should be some changes
+        for(Transaction t : tl.getAllTransactions()){
+            System.out.println(t);
+        }
     }
     
 }

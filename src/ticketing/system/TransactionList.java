@@ -5,6 +5,7 @@
  */
 package ticketing.system;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -14,7 +15,7 @@ import java.util.List;
  */
 public class TransactionList {
 
-    public List<Transaction> transactions;
+    public List<Transaction> transactions = new ArrayList<>() ;
 
     TransactionList() {
 
