@@ -11,12 +11,10 @@ import java.util.List;
  *
  * @author Conor
  */
-class Route {
+class Vehicle {
     private int Id;
-    private String name;
-    private List<TravelPoint> travelPoints;
-    private double price;
-    private int shortJourneyMaxStops;
-    private double shortJourneyDiscount;
-    private List<Vehicle> assignedVehicles;
+    private List<Gateway> gates;
+    private Route assignedRoute;
+    private PaymentHub paymentHub;
+    private TravelPoint currentTravelPoint;
 }
