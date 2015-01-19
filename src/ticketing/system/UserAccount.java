@@ -18,7 +18,10 @@ public class UserAccount {
     private double balance;
     private boolean availableBlance;
     private Ticket activeTicket;
+    private List<Pass> passes;
+    private ActiveDiscount currentActiveDiscount;
     private List<Token> tokens;
+    private TransactionList transactionList;
     private Date deleted;
     UserAccount() {
 
