@@ -5,10 +5,43 @@
  */
 package ticketing.system;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 /**
  *
  * @author Conor
  */
 public class TransactionList {
-    
+
+    public List<Transaction> transactions = new ArrayList<>() ;
+
+    TransactionList() {
+
+    }
+
+    public void addtransaction(Transaction t) {
+        transactions.add(t);
+    }
+
+    public void removeTransaction(Transaction t) {
+        transactions.remove(t);
+    }
+
+    public void removeTransactionById(int Id) {
+        for (Transaction t : transactions) {
+            if (t.getId() == Id) {
+                transactions.remove(t);
+            }
+        }
+    }
+
+    public List<Transaction> getAllTransactions() {
+        return transactions;
+    }
+
+    public List<Transaction> getTransactionRange(Date start, Date finish) {
+        return transactions;
+    }
 }

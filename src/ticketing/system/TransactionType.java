@@ -9,12 +9,6 @@ package ticketing.system;
  *
  * @author Conor
  */
-public class Token {
-    private int Id;
-    Token(int Id){
-        this.Id = Id;
-    }
-    public int GetId(){
-        return Id;
-    }
+public enum TransactionType {
+    Card,Cash
 }
