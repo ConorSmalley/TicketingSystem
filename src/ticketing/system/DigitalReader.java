@@ -10,5 +10,13 @@ package ticketing.system;
  * @author Conor
  */
 public class DigitalReader {
-    
+    DigitalReader(){
+        
+    }
+    public int scanToken(){
+        return 0;
+    }
+    public String initialize(){
+        return null;
+    }
 }
