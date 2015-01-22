@@ -14,4 +14,20 @@ import java.util.List;
 public class TicketPassPool {
     private List<Ticket> tickets;
     private List<Pass> passes;
+
+    void addTicket(Ticket t) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    void addPass(Pass p) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    void removeTicket(Ticket t) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    void removePass(Pass p) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

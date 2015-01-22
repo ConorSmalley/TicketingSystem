@@ -1,5 +1,7 @@
 package ticketing.system;
 
+import java.util.Date;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -11,6 +13,10 @@ package ticketing.system;
  * @author Conor
  */
 public class Infringement {
+
+    Infringement(Date d, Route r, TravelPoint tp, int employeeNumber) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
 }
