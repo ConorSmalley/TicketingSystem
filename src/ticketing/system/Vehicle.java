@@ -12,9 +12,29 @@ import java.util.List;
  * @author Conor
  */
 class Vehicle {
+
     private int Id;
     private List<Gateway> gates;
     private Route assignedRoute;
     private PaymentHub paymentHub;
     private TravelPoint currentTravelPoint;
+    private static int vehicleId = 0;
+    Vehicle() {
+        Id = ++vehicleId;
+        gates = null;
+        assignedRoute = null;
+        currentTravelPoint = null;
+    }
+
+    public void setRoute(Route r) {
+        assignedRoute = r;
+    }
+
+    public Route getCurrentRoute() {
+        return assignedRoute;
+    }
+
+    public TravelPoint getTravelPoint() {
+        return currentTravelPoint;
+    }
 }
