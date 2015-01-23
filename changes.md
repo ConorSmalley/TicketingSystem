@@ -5,3 +5,6 @@ This is a log of where we have had to differ from the class diagram, storyboards
 
 *   The Person class has the constructor Customer(String name) in the class diagram, this won't work so it has been changed to Person(String name)
 *   In the class Transaction there is an enum TransactionType which is used to store the type of transaction, this is stored in a separate file to keep it separate from transaction as it may be required in other classes
+*   Function int getId() added to UserAccount so that UserAccountManager can run deleteUserAccountById(int Id)
+*   Function List<Token> getTokens() added to UserAccount so that tokens can be matched to a user.
+*   Function String getName() added to Person so that a UserAccount can be fount by name using UserAccountManager.

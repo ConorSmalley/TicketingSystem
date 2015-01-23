@@ -28,4 +28,10 @@ public class UserAccount {
     public Person getPersonData(){
         return person;
     }
+    public int getId(){
+        return Id;
+    }
+    public List<Token> getTokens(){
+        return tokens;
+    }
 }
