@@ -56,12 +56,27 @@ public class UserAccountManager {
         return null;
     }
 
-    public UserAccount getUserAccountByName(String name) {
+    public List<UserAccount> getUserAccountsByName(String name) {
+        List<UserAccount> temp = new ArrayList<>();
         for (UserAccount u : userAccounts) {
             if (u.getPersonData().getName() == name) {
-                return u;
+                temp.add(u);
             }
         }
-        return null;
+        return temp;
+    }
+
+    public void deactivateInvalidDiscounts() {
+
+    }
+
+    public void deactivateInvalidPasses() {
+        for (UserAccount u : userAccounts) {
+            for (Pass p : u.getAllPasses()) {
+                if (!p.getPassPlan().isValid()) {
+                    
+                }
+            }
+        }
     }
 }

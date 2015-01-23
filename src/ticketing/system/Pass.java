@@ -10,5 +10,13 @@ package ticketing.system;
  * @author Conor
  */
 class Pass {
-    
+
+    private PassPlan passPlan;
+
+    Pass() {
+
+    }
+    public PassPlan getPassPlan(){
+        return passPlan;
+    }
 }
