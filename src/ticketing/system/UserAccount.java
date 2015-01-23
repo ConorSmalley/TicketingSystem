@@ -16,7 +16,7 @@ public class UserAccount {
     private int Id;
     private Person person;
     private double balance;
-    private boolean availableBlance;
+    private double availableBalance;
     private Ticket activeTicket;
     private List<Pass> passes;
     private ActiveDiscount currentActiveDiscount;
@@ -37,4 +37,14 @@ public class UserAccount {
     public List<Pass> getAllPasses(){
         return passes;
     }
+    public void savePersonData(Person p){
+        person = p;
+    }
+    public void updateBalance (double b){
+        balance = b;
+    }
+    public void updateAvailableBalance(double b){
+        availableBalance = b;
+    }
+    
 }
