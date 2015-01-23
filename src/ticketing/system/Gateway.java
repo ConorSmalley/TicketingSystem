@@ -14,9 +14,11 @@ public class Gateway {
     private int id;
     private DigitalReader reader;
     private GatewayGUI gui;
+    private static int nextId = 0;
     
     public Gateway(DigitalReader reader){
         this.reader = reader;
+        this.id = ++nextId;
     }
     
     public int getId(){
