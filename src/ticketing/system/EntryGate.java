@@ -9,6 +9,14 @@ package ticketing.system;
  *
  * @author Conor
  */
-public class EntryGate {
+public class EntryGate extends Gateway {
+    String memberName;
+    PaymentHub paymentHub;
+    EntryGate(){
+        
+    }
+    public void handleTokenOnEntry(int tokenId){
+        
+    }
     
 }

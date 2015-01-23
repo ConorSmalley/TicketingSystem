@@ -70,4 +70,8 @@ public class Person {
     public void SetPostcode(String Postcode) {
         this.Postcode = Postcode;
     }
+
+    public String getName() {
+        return Name;
+    }
 }
