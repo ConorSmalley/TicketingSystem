@@ -10,5 +10,9 @@ package ticketing.system;
  * @author Conor
  */
 class PaymentHub {
+
+    boolean canUserTravel(int tokenId) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

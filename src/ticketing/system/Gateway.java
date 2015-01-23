@@ -12,9 +12,10 @@ package ticketing.system;
  */
 public class Gateway {
     private int id;
-    private DigitalReader reader;
+    DigitalReader reader;
     private GatewayGUI gui;
     private static int nextId = 0;
+    static PaymentHub paymentHub = new PaymentHub();
     
     public Gateway(DigitalReader reader){
         this.reader = reader;

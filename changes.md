@@ -11,3 +11,4 @@ This is a log of where we have had to differ from the class diagram, storyboards
 *   Function List<Pass> getAllPasses added to UserAccount so that UserAccountManager can deactivate invalid passes.
 *   Function boolean isValid() added to PassPlan so that it can check weather the PassPlan is valid;
 *   Function PassPlan getPassPlan() added to Pass as to check it is valid you need to access the PassPlan
+*   In Gateway instance variable paymentHub added.
