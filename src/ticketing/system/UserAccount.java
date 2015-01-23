@@ -34,4 +34,7 @@ public class UserAccount {
     public List<Token> getTokens(){
         return tokens;
     }
+    public List<Pass> getAllPasses(){
+        return passes;
+    }
 }
