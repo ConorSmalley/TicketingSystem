@@ -13,11 +13,13 @@ public class EntryGate extends Gateway {
     String memberName;
     PaymentHub paymentHub;
 
-    public void handleTokenOnEntry(int tokenId){
-        
-    }
     
     public EntryGate(DigitalReader reader){
         super(reader);
+    }
+    
+    
+    public void handleTokenOnEntry(int tokenId){
+        
     }
 }
