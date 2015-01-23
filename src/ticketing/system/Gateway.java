@@ -8,8 +8,26 @@ package ticketing.system;
 
 /**
  *
- * @author B2045995
+ * @author Andrew
  */
 public class Gateway {
+    private int id;
+    private DigitalReader reader;
+    private GatewayGUI gui;
     
+    public Gateway(DigitalReader reader){
+        this.reader = reader;
+    }
+    
+    public int getId(){
+        return this.id;
+    }
+    
+    public void openGate(){
+        System.out.println("Gate " + id + " opened");
+    }
+    
+    public void closeGate(){
+        System.out.println("Gate " + id + " close");
+    }
 }

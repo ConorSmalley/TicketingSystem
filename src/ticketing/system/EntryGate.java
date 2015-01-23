@@ -9,6 +9,9 @@ package ticketing.system;
  *
  * @author Conor
  */
-public class EntryGate {
+public class EntryGate extends Gateway {
     
+    public EntryGate(DigitalReader reader){
+        super(reader);
+    }
 }
