@@ -32,5 +32,5 @@ public class Discount {
     
     public double getDiscountPercentage(){
         return discountPercentage;
-    }
+    }  
 }
