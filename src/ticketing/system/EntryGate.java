@@ -10,6 +10,7 @@ package ticketing.system;
  * @author Conor
  */
 public class EntryGate extends Gateway {
+<<<<<<< HEAD
     String memberName;
     PaymentHub paymentHub;
     EntryGate(){
@@ -18,5 +19,10 @@ public class EntryGate extends Gateway {
     public void handleTokenOnEntry(int tokenId){
         
     }
+=======
+>>>>>>> Curtis
     
+    public EntryGate(DigitalReader reader){
+        super(reader);
+    }
 }
