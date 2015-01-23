@@ -14,7 +14,7 @@ public class Token {
     Token(int Id){
         this.Id = Id;
     }
-    public int GetId(){
+    public int getId(){
         return Id;
     }
 }
