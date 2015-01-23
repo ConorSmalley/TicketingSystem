@@ -212,10 +212,6 @@ public class TicketingSystem extends javax.swing.JFrame {
             }
         });
         
-        DigitalReader dr = new DigitalReader();
-        int tokenId = dr.scanToken();
-        EntryGate eg = new EntryGate();
-        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
