@@ -1,5 +1,5 @@
 # The Ticketing System
 
-**By Andrew, Curtis and Conor**
+>By Andrew, Curtis and Conor
 
->Insert program description here
+Insert program description here
