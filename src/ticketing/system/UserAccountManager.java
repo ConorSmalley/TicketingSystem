@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author Conor
  */
-public class UserAccountManager {
+public class UserAccountManager implements Serializable {
     private UserAccountManager usrAccMgr = null;
     private List<UserAccount> userAccounts;
 
