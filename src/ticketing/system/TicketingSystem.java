@@ -20,24 +20,9 @@ import java.util.logging.Logger;
 public class TicketingSystem extends javax.swing.JFrame {
 
     static UserAccountManager uam = new UserAccountManager();
-    /**
-     * Creates new form TicketingSystem
-     */
     public TicketingSystem() {
         initComponents();
-//        UserAccount ua1 = new UserAccount();
-//        ua1.savePersonData(new Person("Conor"));
-//
-//        UserAccount ua2 = new UserAccount();
-//        ua2.savePersonData(new Person("Curtis"));
-//
-//        UserAccount ua3 = new UserAccount();
-//        ua3.savePersonData(new Person("Andrew"));
-//
-//        uam.addUserAccount(ua1);
-//        uam.addUserAccount(ua2);
-//        uam.addUserAccount(ua3);
-//        System.out.println(uam);
+        
         try {
             Deserialize();
 
