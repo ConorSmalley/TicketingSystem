@@ -1,6 +1,6 @@
 # The Ticketing System
 
-** By Andrew, Curtis and Conor**
+**By Andrew, Curtis and Conor**
 
 Some of our Ideas
 =================
