@@ -13,3 +13,4 @@ This is a log of where we have had to differ from the class diagram, storyboards
 *   Function PassPlan getPassPlan() added to Pass as to check it is valid you need to access the PassPlan.
 *   In Gateway instance variable paymentHub added.
 *   Token change to be a base class for Ticket and Pass classes. TicketPassPool therefore will be change to TokenPool.
+*   UserAccountManager class change to a singleton class.

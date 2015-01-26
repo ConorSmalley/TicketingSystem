@@ -19,7 +19,7 @@ import java.util.logging.Logger;
  */
 public class TicketingSystem extends javax.swing.JFrame {
 
-    static UserAccountManager uam = new UserAccountManager();
+    static UserAccountManager uam;
     public TicketingSystem() {
         initComponents();
         
