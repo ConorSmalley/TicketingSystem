@@ -17,8 +17,7 @@ public class EntryGate extends Gateway {
     public EntryGate(DigitalReader reader){
         super(reader);
     }
-    
-    
+     
     public void handleTokenOnEntry(){
         int tokenId = reader.scanToken();
         if (paymentHub.canUserTravel(tokenId)){

@@ -5,18 +5,34 @@
  */
 package ticketing.system;
 
+import java.util.List;
+
 /**
  *
  * @author Conor
  */
-class Pass {
+public class Pass extends Token{
 
     private PassPlan passPlan;
 
-    Pass() {
-
+    public Pass(int id, PassPlan passPlan) {
+        super(id);
+        this.passPlan = passPlan;
     }
+    
     public PassPlan getPassPlan(){
         return passPlan;
+    }
+    
+    public List<TravelPoint> getTravelPoints(){
+        return passPlan.getTravelPoints();
+    }
+    
+    public String getPassName(){
+        return passPlan.getName();
+    }
+    
+    public int getValidLength(){
+        return passPlan.getValidLength();
     }
 }

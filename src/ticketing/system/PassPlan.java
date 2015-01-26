@@ -27,4 +27,16 @@ public class PassPlan {
         //This will check if the passplan is within the expiry date.
         return false;
     }
+
+    public List<TravelPoint> getTravelPoints() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    String getName() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    int getValidLength() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
