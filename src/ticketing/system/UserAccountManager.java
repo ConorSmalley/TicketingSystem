@@ -14,11 +14,18 @@ import java.util.List;
  * @author Conor
  */
 public class UserAccountManager implements Serializable {
+    private UserAccountManager usrAccMgr = null;
+    private List<UserAccount> userAccounts;
 
-    private List<UserAccount> userAccounts = new ArrayList<>();
-
-    UserAccountManager() {
-
+    private UserAccountManager() {
+        userAccounts = new ArrayList<>();
+    }
+    
+    public UserAccountManager getInstance(){
+        if(usrAccMgr == null){
+            usrAccMgr = new UserAccountManager();
+        }
+        return usrAccMgr;
     }
 
     public void addUserAccount(UserAccount u) {
