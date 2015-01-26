@@ -14,14 +14,14 @@ import java.util.List;
  * @author Conor
  */
 public class UserAccountManager implements Serializable {
-    private UserAccountManager usrAccMgr = null;
+    private static UserAccountManager usrAccMgr = null;
     private List<UserAccount> userAccounts;
 
     private UserAccountManager() {
         userAccounts = new ArrayList<>();
     }
     
-    public UserAccountManager getInstance(){
+    public static UserAccountManager getInstance(){
         if(usrAccMgr == null){
             usrAccMgr = new UserAccountManager();
         }
@@ -91,7 +91,7 @@ public class UserAccountManager implements Serializable {
     public String toString(){
         StringBuilder sb = new StringBuilder();
         for(UserAccount ua : userAccounts){
-            sb.append(ua.getPersonData()).append('\n');
+            sb.append(ua).append('\n');
         }
         return sb.toString();
     }
