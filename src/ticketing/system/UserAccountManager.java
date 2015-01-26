@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class UserAccountManager implements Serializable {
     private static UserAccountManager usrAccMgr = null;
-    private List<UserAccount> userAccounts;
+    private static List<UserAccount> userAccounts;
 
     private UserAccountManager() {
         userAccounts = new ArrayList<>();
@@ -26,6 +26,10 @@ public class UserAccountManager implements Serializable {
             usrAccMgr = new UserAccountManager();
         }
         return usrAccMgr;
+    }
+    
+    static int getNumberOfUsers() {
+        return userAccounts.size();
     }
 
     public void addUserAccount(UserAccount u) {

@@ -6,6 +6,7 @@
 package ticketing.system;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -25,10 +26,14 @@ public class UserAccount implements Serializable {
     private List<Token> tokens;
     private TransactionList transactionList;
     private Date deleted;
-    private static int idCount = 0;
+    private static int idCount = UserAccountManager.getNumberOfUsers();
+    
     UserAccount() {
         activeTicket = null;
-        id = ++idCount;
+        passes = new ArrayList();
+        tokens = new ArrayList();
+        id = idCount++;
+        balance = 0;
     }
 
     public Person getPersonData() {
