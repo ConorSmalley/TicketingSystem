@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author Conor
  */
-public class TicketPassPool {
+public class ToeknPool {
     private List<Ticket> tickets;
     private List<Pass> passes;
 

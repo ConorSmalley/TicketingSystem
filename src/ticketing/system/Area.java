@@ -20,7 +20,7 @@ public class Area {
     private List<TravelPoint> travelPoints = new ArrayList<>();
     private List<Route> routes = new ArrayList<>();
     private List<PassPlan> passPlans = new ArrayList<>();
-    private TicketPassPool ticketPassPool;
+    private ToeknPool ticketPassPool;
     private List<Vehicle> vehicles = new ArrayList<>();
     private List<Infringement> infringements = new ArrayList<>();
     private List<InspectionDevice> inspectionDevices = new ArrayList<>();

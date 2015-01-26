@@ -9,9 +9,10 @@ package ticketing.system;
  *
  * @author Conor
  */
-public class Token {
+public class Token{
     private int Id;
-    Token(int Id){
+    
+    public Token(int Id){
         this.Id = Id;
     }
     public int getId(){
