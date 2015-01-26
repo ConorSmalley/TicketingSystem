@@ -1,19 +1,21 @@
 
 package ticketing.system;
 
+import java.io.Serializable;
+
 /**
 * Discounts are definitions for the reduction in the costs of travelling
 * Discounts are added and removed by the administration of the system
 * When applied, they are referred to through ActiveDiscount`s
 *   after the active date has been validated, to get the discount percentage
  */
-public class Discount {
+public class Discount implements Serializable {
     private int id;
     private String name;
     private double discountPercentage;  //within the range 0 to 100
     private int validLenth;         //A number of hours for which the discount shall be valid
 
-    
+    //the percentage 
     public Discount(int id, String name, double discountPercentage, int validUntil) {
         this.id = id;
         this.name = name;
