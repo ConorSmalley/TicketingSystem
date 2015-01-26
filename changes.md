@@ -10,5 +10,6 @@ This is a log of where we have had to differ from the class diagram, storyboards
 *   Function String getName() added to Person so that a UserAccount can be fount by name using UserAccountManager.
 *   Function List<Pass> getAllPasses added to UserAccount so that UserAccountManager can deactivate invalid passes.
 *   Function boolean isValid() added to PassPlan so that it can check weather the PassPlan is valid;
-*   Function PassPlan getPassPlan() added to Pass as to check it is valid you need to access the PassPlan
+*   Function PassPlan getPassPlan() added to Pass as to check it is valid you need to access the PassPlan.
 *   In Gateway instance variable paymentHub added.
+*   Token change to be a base class for Ticket and Pass classes. TicketPassPool therefore will be change to TokenPool.
