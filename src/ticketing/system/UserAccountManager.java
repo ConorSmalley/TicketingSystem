@@ -5,6 +5,7 @@
  */
 package ticketing.system;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import java.util.List;
  *
  * @author Conor
  */
-public class UserAccountManager {
+public class UserAccountManager implements Serializable {
 
     private List<UserAccount> userAccounts = new ArrayList<>();
 
@@ -78,5 +79,13 @@ public class UserAccountManager {
                 }
             }
         }
+    }
+    @Override
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        for(UserAccount ua : userAccounts){
+            sb.append(ua.getPersonData()).append('\n');
+        }
+        return sb.toString();
     }
 }

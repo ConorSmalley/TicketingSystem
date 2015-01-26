@@ -5,6 +5,7 @@
  */
 package ticketing.system;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import java.util.List;
  *
  * @author Conor
  */
-public class UserAccount {
+public class UserAccount implements Serializable {
 
     private int Id;
     private Person person;

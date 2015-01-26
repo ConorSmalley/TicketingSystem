@@ -5,17 +5,33 @@
  */
 package ticketing.system;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Conor
  */
 public class TicketingSystem extends javax.swing.JFrame {
 
-    /**
-     * Creates new form TicketingSystem
-     */
+    static UserAccountManager uam = new UserAccountManager();
     public TicketingSystem() {
         initComponents();
+        
+        try {
+            Deserialize();
+
+        } catch (IOException ex) {
+            Logger.getLogger(TicketingSystem.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(TicketingSystem.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        System.out.println(uam);
     }
 
     /**
@@ -211,9 +227,21 @@ public class TicketingSystem extends javax.swing.JFrame {
                 new TicketingSystem().setVisible(true);
             }
         });
-        
     }
 
+    private void Serialize() throws IOException {
+        FileOutputStream out = new FileOutputStream("data.ser");
+        ObjectOutputStream oos = new ObjectOutputStream(out);
+        oos.writeObject(uam);
+        out.close();
+    }
+
+    private void Deserialize() throws IOException, ClassNotFoundException {
+        FileInputStream in = new FileInputStream("data.ser");
+        ObjectInputStream ois = new ObjectInputStream(in);
+        uam = (UserAccountManager) ois.readObject();
+        in.close();
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAccount;
     private javax.swing.JButton jButtonEdit;
