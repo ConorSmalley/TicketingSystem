@@ -19,19 +19,28 @@ import java.util.logging.Logger;
  */
 public class TicketingSystem extends javax.swing.JFrame {
 
-    static UserAccountManager uam;
+    UserAccountManager uam;
+
     public TicketingSystem() {
-        initComponents();
-        
+        //uam = UserAccountManager.getInstance();
         try {
             Deserialize();
-
         } catch (IOException ex) {
             Logger.getLogger(TicketingSystem.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(TicketingSystem.class.getName()).log(Level.SEVERE, null, ex);
         }
+        initComponents();
+
+//        UserAccount ua = new UserAccount();
+//        ua.savePersonData(new Person("Conor"));
+//        uam.addUserAccount(ua);
         System.out.println(uam);
+//        try {
+//            Serialize();
+//        } catch (IOException ex) {
+//            Logger.getLogger(TicketingSystem.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }
 
     /**
