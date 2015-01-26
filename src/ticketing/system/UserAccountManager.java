@@ -28,7 +28,7 @@ public class UserAccountManager implements Serializable {
         return usrAccMgr;
     }
     
-    static int getNumberOfUsers() {
+    public static int getNumberOfUsers() {
         return userAccounts.size();
     }
 
