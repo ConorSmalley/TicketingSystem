@@ -22,7 +22,7 @@ public class TicketingSystem extends javax.swing.JFrame {
     UserAccountManager uam;
 
     public TicketingSystem() {
-        //uam = UserAccountManager.getInstance();
+        uam = UserAccountManager.getInstance();
         try {
             Deserialize();
         } catch (IOException ex) {
@@ -31,16 +31,16 @@ public class TicketingSystem extends javax.swing.JFrame {
             Logger.getLogger(TicketingSystem.class.getName()).log(Level.SEVERE, null, ex);
         }
         initComponents();
-
+        
 //        UserAccount ua = new UserAccount();
 //        ua.savePersonData(new Person("Conor"));
 //        uam.addUserAccount(ua);
-        System.out.println(uam);
 //        try {
 //            Serialize();
 //        } catch (IOException ex) {
 //            Logger.getLogger(TicketingSystem.class.getName()).log(Level.SEVERE, null, ex);
 //        }
+        System.out.println(uam);
     }
 
     /**
@@ -72,6 +72,11 @@ public class TicketingSystem extends javax.swing.JFrame {
         jComboBoxRoute = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -202,6 +207,14 @@ public class TicketingSystem extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        try {
+            Serialize();
+        } catch (IOException ex) {
+            Logger.getLogger(TicketingSystem.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments

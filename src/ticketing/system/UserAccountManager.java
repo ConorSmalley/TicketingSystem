@@ -91,7 +91,7 @@ public class UserAccountManager implements Serializable {
     public String toString(){
         StringBuilder sb = new StringBuilder();
         for(UserAccount ua : userAccounts){
-            sb.append(ua.getPersonData()).append('\n');
+            sb.append(ua).append('\n');
         }
         return sb.toString();
     }
