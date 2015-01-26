@@ -5,11 +5,13 @@
  */
 package ticketing.system;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Conor
  */
-public class Person {
+public class Person implements Serializable {
 
     private String Name;
     private String AddressLine1;
@@ -72,6 +74,10 @@ public class Person {
     }
 
     public String getName() {
+        return Name;
+    }
+    @Override
+    public String toString(){
         return Name;
     }
 }
