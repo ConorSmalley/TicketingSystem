@@ -44,18 +44,17 @@ public class SystemSupervisor {
     Iterator<Discount> it = discounts.iterator();
     if (!discounts.isEmpty())
         {   
-            Discount temp = null;
-
-            while(it.hasNext())
+            boolean found = false;
+            while(it.hasNext() && !found)
                 {
-                    if ( it.next().getId() == Id)
+                    Discount temp = it.next();
+                    if ( temp.getId() == Id)
                     {
                         System.out.println("found");
-                        discounts.remove(it);
-                        //temp = it.next();
+                        discounts.remove(temp);
+                        found = true;
                     }
                 }
-            //discounts.remove(temp);
         }
     } 
     
