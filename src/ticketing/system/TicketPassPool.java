@@ -5,6 +5,7 @@
  */
 package ticketing.system;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,19 +16,24 @@ public class TicketPassPool {
     private List<Ticket> tickets;
     private List<Pass> passes;
 
+    public TicketPassPool(){
+        tickets = new ArrayList();
+        passes = new ArrayList();
+    }
+    
     void addTicket(Ticket t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        tickets.add(t);
     }
 
     void addPass(Pass p) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        passes.add(p);
     }
 
     void removeTicket(Ticket t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        tickets.remove(t);
     }
 
     void removePass(Pass p) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        passes.remove(p);
     }
 }
