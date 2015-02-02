@@ -9,12 +9,19 @@ package ticketing.system;
  *
  * @author Conor
  */
-public class DigitalReader {
-    DigitalReader(){
-        
+public class DigitalReader{
+    private Object parentDevice;
+    
+    DigitalReader(Object parent){
+        if(parent.getClass() == Gateway.class){
+            parentDevice = (Gateway) parent;
+        } else if(parent.getClass() == InspectionDevice.class){
+            parentDevice = (InspectionDevice) parent;
+        }
     }
-    public int scanToken(){
-        return 0;
+    public void scanToken(){
+        int tokenId = 123;
+        parentDevice.handleToken(tokenId);
     }
     public String initialize(){
         return null;

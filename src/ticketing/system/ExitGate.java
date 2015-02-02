@@ -14,4 +14,11 @@ public class ExitGate extends Gateway{
     public ExitGate(DigitalReader reader){
         super(reader);
     }
+
+    @Override
+    public void handleToken(int tokenId) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
 }
