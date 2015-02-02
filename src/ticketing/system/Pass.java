@@ -11,12 +11,13 @@ import java.util.List;
  *
  * @author Conor
  */
-public class Pass extends Token{
+public class Pass {
 
     private PassPlan passPlan;
+    private int id;
 
     public Pass(int id, PassPlan passPlan) {
-        super(id);
+        this.id = id;
         this.passPlan = passPlan;
     }
     
