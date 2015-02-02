@@ -31,7 +31,7 @@ public class TicketingSystem extends javax.swing.JFrame {
             Logger.getLogger(TicketingSystem.class.getName()).log(Level.SEVERE, null, ex);
         }
         initComponents();
-        
+
 //        UserAccount ua = new UserAccount();
 //        ua.savePersonData(new Person("Conor"));
 //        uam.addUserAccount(ua);
