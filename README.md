@@ -1,4 +1,5 @@
-Some of our Ideas
-=================
+# The Ticketing System
 
-1   Join an early learning degree so save our sanity.
+>By Andrew Wilkinson, [Curtis Baily](https://github.com/CurtisBaily) and [Conor Smalley](https://github.com/ConorSmalley)
+
+Insert program description here
