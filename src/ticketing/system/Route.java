@@ -5,7 +5,7 @@
  */
 package ticketing.system;
 
-import java.util.Collection;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,7 +13,7 @@ import java.util.List;
  * @author Conor
  */
 class Route {
-    private int Id;
+    private int id;
     private String name;
     private List<TravelPoint> travelPoints;
     private double price;
@@ -21,7 +21,61 @@ class Route {
     private double shortJourneyDiscount;
     private List<Vehicle> assignedVehicles;
 
+    public Route(int id, String name, double price, int shortJourneyMaxStops,
+            double shortJourneyDiscount){
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.shortJourneyMaxStops = shortJourneyMaxStops;
+        this.shortJourneyDiscount = shortJourneyDiscount;
+        travelPoints = new ArrayList();
+        assignedVehicles = new ArrayList();
+    }
+    
+    public int getId(){
+        return id;
+    }
     public List<TravelPoint> getTravelPoints() {
         return travelPoints;
+    }
+    
+    public String getName(){
+        return name;
+    }
+    
+    public double getPrice(){
+        return price;
+    }
+    
+    public void setPrice(double price){
+        this.price = price;
+    }
+    
+    public int getShortJourneyMaxStops(){
+        return shortJourneyMaxStops;
+    }
+    
+    public double getShortJourneyDiscount(){
+        return shortJourneyDiscount;
+    }
+    
+    public List<Vehicle> getAssignedVihicles(){
+        return assignedVehicles;
+    }
+    
+    public void addVehicle(Vehicle v){
+        assignedVehicles.add(v);
+    }
+    
+    public void addTravelPoint(TravelPoint t){
+        travelPoints.add(t);
+    }
+    
+    public void removeVehicle(Vehicle v){
+        assignedVehicles.remove(v);
+    }
+    
+    public void removeTravelPoint(TravelPoint t){
+        travelPoints.remove(t);
     }
 }
