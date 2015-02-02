@@ -15,10 +15,12 @@ import java.util.List;
  */
 public class TransactionList {
 
-    public List<Transaction> transactions;
-
+    private List<Transaction> transactions;
+    public static int idCount;
+    
     TransactionList() {
         transactions = new ArrayList<>();
+        idCount = transactions.size();
     }
 
     public void addtransaction(Transaction t) {
@@ -35,6 +37,10 @@ public class TransactionList {
                 transactions.remove(t);
             }
         }
+    }
+
+    public static int getNextId(){
+        return idCount++;
     }
 
     public List<Transaction> getAllTransactions() {
