@@ -1,5 +1,6 @@
 package ticketing.system;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -14,29 +15,44 @@ import java.util.List;
  */
 public class PassPlan {
 
-    private int Id;
+    private int id;
     private String name;
     private double price;
-    //private TimeSpan ExpiryTime;
+    private Date expiryDate;
+    private int lengthInDays;
     private Date validStartTime;
     private Date validEndTime;
     private List<Route> routes;
     private Date deleted;
 
+    public PassPlan(int id, String name, double price, int length, Date expirydDate, Date startTime, Date endTime){
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.lengthInDays = length;
+        this.expiryDate = expiryDate;
+        routes = new ArrayList();
+        this.validStartTime = startTime;
+        this.validEndTime = endTime;
+    }
+    
     public boolean isValid() {
-        //This will check if the passplan is within the expiry date.
-        return false;
+        return (expiryDate.after(new Date()));
     }
 
     public List<TravelPoint> getTravelPoints() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<TravelPoint> tp = new ArrayList();
+        for (Route i : routes){
+            tp.addAll(i.getTravelPoints());
+        }
+        return tp;
     }
 
-    String getName() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String getName() {
+        return name;
     }
 
     int getValidLength() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return lengthInDays;
     }
 }
