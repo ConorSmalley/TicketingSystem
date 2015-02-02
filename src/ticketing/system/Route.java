@@ -5,6 +5,7 @@
  */
 package ticketing.system;
 
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -19,4 +20,8 @@ class Route {
     private int shortJourneyMaxStops;
     private double shortJourneyDiscount;
     private List<Vehicle> assignedVehicles;
+
+    public List<TravelPoint> getTravelPoints() {
+        return travelPoints;
+    }
 }
