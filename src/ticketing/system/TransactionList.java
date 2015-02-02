@@ -15,10 +15,10 @@ import java.util.List;
  */
 public class TransactionList {
 
-    public List<Transaction> transactions = new ArrayList<>() ;
+    public List<Transaction> transactions;
 
     TransactionList() {
-
+        transactions = new ArrayList<>();
     }
 
     public void addtransaction(Transaction t) {
