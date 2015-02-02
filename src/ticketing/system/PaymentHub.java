@@ -11,8 +11,9 @@ package ticketing.system;
  */
 class PaymentHub {
 
-    boolean canUserTravel(int tokenId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean canUserTravel(int tokenId) {
+        UserAccount user = UserAccountManager.getUserAccountByToken(tokenId);
+        if(canUserAffordPayment())
     }
     
 }
