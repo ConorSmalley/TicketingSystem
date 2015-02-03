@@ -3,12 +3,12 @@ package ticketing.system;
  *
  * @author Andrew
  */
-public abstract class Gateway {
+public abstract class Gateway{
     private int id;
     DigitalReader reader;
     private GatewayGUI gui;
     private static int nextId = 0;
-    static PaymentHub paymentHub = new PaymentHub();
+    PaymentHub paymentHub = new PaymentHub();
     
     public Gateway(DigitalReader reader){
         this.reader = reader;

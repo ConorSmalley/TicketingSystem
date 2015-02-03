@@ -5,6 +5,8 @@
  */
 package ticketing.system;
 
+import java.util.Date;
+
 /**
  *
  * @author Conor
@@ -13,7 +15,15 @@ class PaymentHub {
 
     public boolean canUserTravel(int tokenId) {
         UserAccount user = UserAccountManager.getUserAccountByToken(tokenId);
-        if(canUserAffordPayment())
+        if (user == null)
+            return false;
+        else
+            return canUserAffordPayment(user);
+    }
+
+    private boolean canUserAffordPayment(UserAccount user) {
+        Ticket ticket = new Ticket(new Date());
+        return true;
     }
     
 }
