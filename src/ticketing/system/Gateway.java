@@ -3,7 +3,7 @@ package ticketing.system;
  *
  * @author Andrew
  */
-public class Gateway {
+public abstract class Gateway {
     private int id;
     DigitalReader reader;
     private GatewayGUI gui;
@@ -14,6 +14,8 @@ public class Gateway {
         this.reader = reader;
         this.id = ++nextId;
     }
+    
+    public abstract void handleToken(int tokenId);
     
     public int getId(){
         return this.id;
