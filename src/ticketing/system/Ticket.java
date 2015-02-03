@@ -26,6 +26,10 @@ public class Ticket {
         this.validTo = validTo;
     }
     
+    public Ticket(Date purchaseDate){
+        this.purchaseDate = purchaseDate;
+    }
+    
     public Route getRoute(){
         return route;
     }
