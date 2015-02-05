@@ -45,4 +45,8 @@ public class Ticket {
     public TravelPoint getValidTo(){
         return validTo;
     }
+
+    public void setValidFrom(TravelPoint validFrom) {
+        this.validFrom = validFrom;
+    }
 }

@@ -11,8 +11,8 @@ package ticketing.system;
  */
 public class ExitGate extends Gateway{
     
-    public ExitGate(DigitalReader reader){
-        super(reader);
+    public ExitGate(DigitalReader reader, PaymentHub paymentHub){
+        super(reader, paymentHub);
     }
 
     @Override

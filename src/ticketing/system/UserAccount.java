@@ -105,4 +105,8 @@ public class UserAccount implements Serializable {
     public String toString(){
         return "Id: " + id + " Name: " + person.toString();
     }
+
+    boolean canAccountBeDebited(double price) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

@@ -5,14 +5,15 @@ package ticketing.system;
  */
 public abstract class Gateway{
     private int id;
-    DigitalReader reader;
+    private DigitalReader reader;
     private GatewayGUI gui;
     private static int nextId = 0;
-    PaymentHub paymentHub = new PaymentHub();
+    private PaymentHub paymentHub;
     
-    public Gateway(DigitalReader reader){
+    public Gateway(DigitalReader reader, PaymentHub paymenthub){
         this.reader = reader;
         this.id = ++nextId;
+        this.paymentHub = paymentHub;
     }
     
     public abstract void handleToken(int tokenId);
@@ -27,5 +28,13 @@ public abstract class Gateway{
     
     public void closeGate(){
         System.out.println("Gate " + id + " close");
+    }
+
+    public PaymentHub getPaymentHub() {
+        return paymentHub;
+    }
+
+    public DigitalReader getReader() {
+        return reader;
     }
 }

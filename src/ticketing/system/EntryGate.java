@@ -11,15 +11,14 @@ package ticketing.system;
  */
 public class EntryGate extends Gateway {
     String memberName;
-    PaymentHub paymentHub;
     
-    public EntryGate(DigitalReader reader){
-        super(reader);
+    public EntryGate(DigitalReader reader, PaymentHub paymenthub){
+        super(reader, paymenthub);
     }
  
     @Override
     public void handleToken(int tokenId){
-        if (paymentHub.canUserTravel(super.reader.scanToken())){
+        if (super.getPaymentHub().canUserTravel(super.getReader().scanToken())){
             super.openGate();
         }
     }
