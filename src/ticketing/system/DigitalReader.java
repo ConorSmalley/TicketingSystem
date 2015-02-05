@@ -11,7 +11,7 @@ package ticketing.system;
  */
 public class DigitalReader {
     
-    DigitalReader(Object parent){
+    DigitalReader(){
         initialize();
     }
     
