@@ -5,6 +5,7 @@
  */
 package ticketing.system;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -15,10 +16,12 @@ public class Pass {
 
     private PassPlan passPlan;
     private int id;
+    private Date startDate;
 
     public Pass(int id, PassPlan passPlan) {
         this.id = id;
         this.passPlan = passPlan;
+        startDate = new Date(); //"now" by default
     }
     
     public PassPlan getPassPlan(){

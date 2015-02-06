@@ -1,4 +1,7 @@
 package ticketing.system;
+
+import java.util.ArrayList;
+
 /**
  *
  * @author Andrew
@@ -24,10 +27,12 @@ public abstract class Gateway{
     
     public void openGate(){
         System.out.println("Gate " + id + " opened");
+        
     }
     
     public void closeGate(){
         System.out.println("Gate " + id + " close");
+        
     }
 
     public PaymentHub getPaymentHub() {
