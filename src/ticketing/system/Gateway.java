@@ -8,17 +8,7 @@ import java.util.ArrayList;
  */
 public abstract class Gateway{
     private int id;
-<<<<<<< HEAD
-    
     private DigitalReader reader;
-=======
-<<<<<<< HEAD
-    DigitalReader reader;
-    private Gate gate;
-=======
-    private DigitalReader reader;
->>>>>>> 286da8dd50434acf0a70e752962877486df808dd
->>>>>>> master
     private GatewayGUI gui;
     private static int nextId = 0;
     private PaymentHub paymentHub;
@@ -43,14 +33,6 @@ public abstract class Gateway{
     public void closeGate(){
         System.out.println("Gate " + id + " close");
         
-    }
-
-    public PaymentHub getPaymentHub() {
-        return paymentHub;
-    }
-
-    public DigitalReader getReader() {
-        return reader;
     }
 
     public PaymentHub getPaymentHub() {

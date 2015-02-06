@@ -11,41 +11,17 @@ import java.awt.event.ActionListener;
 /**
  *
  */
-<<<<<<< HEAD
 public class DigitalReader {
-=======
-<<<<<<< HEAD
-public class DigitalReader implements ActionListener{
-=======
-public class DigitalReader {
-    
->>>>>>> 286da8dd50434acf0a70e752962877486df808dd
->>>>>>> master
+
     DigitalReader(){
         initialize();
     }
     
     public int scanToken(){
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-        
-        
->>>>>>> master
         return 0;
     }
-    public String initialize(){
-        return null;
-    }
-
-    
-}
-=======
-        return 123;
-    }
-    
+   
     public void initialize(){
         System.out.println("initialized");
     }
 }
->>>>>>> 286da8dd50434acf0a70e752962877486df808dd

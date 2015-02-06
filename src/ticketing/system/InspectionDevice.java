@@ -26,8 +26,8 @@ public class InspectionDevice {
 
         //do not presume valid token
         int tokenId = (reader.scanToken());    //retrieves token id
-        // currentUserAccount = UserAccountManager.getUserAccountByToken(tempToken);
-        this.setCurrentUserAccount(UserAccountManager.getUserAccountByToken(tokenId));
+        // currentUserAccount = UserAccountManager.getUserAccountByTokenId(tempToken);
+        this.setCurrentUserAccount(UserAccountManager.getUserAccountByTokenId(tokenId));
 
         boolean validPass = false;
         boolean validTicket = false;
