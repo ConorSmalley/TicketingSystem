@@ -10,13 +10,15 @@ package ticketing.system;
  * @author Conor
  */
 class TravelPoint {
+    private Route route;
     private int id;
     private String name;
     private String type;
     private PaymentHub paymenthub;
     
-    public TravelPoint(String name){
+    public TravelPoint(String name, Route route){
         this.name = name;
+        this.route = route;
     }
     
     public String getName(){
@@ -29,6 +31,10 @@ class TravelPoint {
     
     public String getType(){
         return type;
+    }
+    
+    public double getPrice(){
+       return route.getPrice();
     }
     
     public void setType(String type){
