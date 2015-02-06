@@ -14,20 +14,21 @@ import java.util.List;
  * @author Conor
  */
 public class UserAccountManager implements Serializable {
+
     private static UserAccountManager usrAccMgr = null;
     private static List<UserAccount> userAccounts;
 
     private UserAccountManager() {
         userAccounts = new ArrayList<>();
     }
-    
-    public static UserAccountManager getInstance(){
-        if(usrAccMgr == null){
+
+    public static UserAccountManager getInstance() {
+        if (usrAccMgr == null) {
             usrAccMgr = new UserAccountManager();
         }
         return usrAccMgr;
     }
-    
+
     public static int getNumberOfUsers() {
         return userAccounts.size();
     }
@@ -48,10 +49,13 @@ public class UserAccountManager implements Serializable {
         }
     }
 
-    public static UserAccount getUserAccountByToken(Token t) {
+    public static UserAccount getUserAccountByToken(int tokenId) {
+
         for (UserAccount u : userAccounts) {
             for (Token to : u.getTokens()) {
-                if (to.getId() == t.getId()) {
+
+                if (to.getId() == tokenId) {
+
                     return u;
                 }
             }
@@ -86,15 +90,16 @@ public class UserAccountManager implements Serializable {
         for (UserAccount u : userAccounts) {
             for (Pass p : u.getAllPasses()) {
                 if (!p.getPassPlan().isValid()) {
-                    
+
                 }
             }
         }
     }
+
     @Override
-    public String toString(){
+    public String toString() {
         StringBuilder sb = new StringBuilder();
-        for(UserAccount ua : userAccounts){
+        for (UserAccount ua : userAccounts) {
             sb.append(ua).append('\n');
         }
         return sb.toString();

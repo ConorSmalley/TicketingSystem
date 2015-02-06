@@ -5,6 +5,7 @@
  */
 package ticketing.system;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -13,7 +14,7 @@ import java.util.List;
  *
  * @author Conor
  */
-public class Area {
+public class Area implements Serializable {
 
     private int Id;
     private String name;
@@ -26,10 +27,19 @@ public class Area {
     private List<InspectionDevice> inspectionDevices = new ArrayList<>();
     private static int IdCounter = 0;
 
+    private static Area systemArea = null;
+
     Area(String name) {
-        this.Id = ++IdCounter;
+
         this.name = name;
         ticketPassPool = null;
+    }
+
+    public static Area getInstance() {
+        if (systemArea == null) {
+            systemArea = new Area("Area System");
+        }
+        return systemArea;
     }
 
     public String getName() {
@@ -79,20 +89,26 @@ public class Area {
     public void removePassFromPool(Pass p) {
         ticketPassPool.removePass(p);
     }
-    public void addVehicle(Vehicle v){
+
+    public void addVehicle(Vehicle v) {
         vehicles.add(v);
     }
-    public void removeVehicle(Vehicle v){
+
+    public void removeVehicle(Vehicle v) {
         vehicles.remove(v);
     }
-    public List<Vehicle> getVehicles(){
+
+    public List<Vehicle> getVehicles() {
         return vehicles;
     }
-    public void logInfringement(Date d, Route r, TravelPoint tp, int employeeNumber){
-        Infringement temp = new Infringement(d,r,tp,employeeNumber);
+
+    public boolean logInfringement(Date d, Route r, TravelPoint tp, int employeeNumber) {
+        Infringement temp = new Infringement(d, r, tp, employeeNumber);
         infringements.add(temp);
+        return true;
     }
-    public void commitTransaction(Transaction tr){
-        
+
+    public void commitTransaction(Transaction tr) {
+
     }
 }
