@@ -11,27 +11,16 @@ import java.awt.event.ActionListener;
 /**
  *
  */
-public class DigitalReader implements ActionListener{
-
-    
+public class DigitalReader {
     DigitalReader(){
         initialize();
     }
-    
     public int scanToken(){
-        
-        
         return 0;
     }
+    public String initialize(){
+        return null;
+    }
+
     
-    public void initialize(){
-        System.out.println("initialized");
-    }
- 
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }
-
