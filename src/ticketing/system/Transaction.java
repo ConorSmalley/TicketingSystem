@@ -13,18 +13,22 @@ import java.util.Date;
  */
 public class Transaction {
 
-    private int Id;
+    private int id;
     private TransactionType type;
     private double Amount;
     private Date datePurchased;
-    private static int idCounter = 1;
+    
     Transaction(TransactionType type, double Amount, Date datePurchased) {
-        this.Id = idCounter++;
+        id = TransactionList.getNextId();
         this.type = type;
         this.Amount = Amount;
         this.datePurchased = datePurchased;
     }
     public int getId(){
-        return Id;
+        return id;
+    }
+
+    void setId(int id) {
+        this.id = id;
     }
 }
