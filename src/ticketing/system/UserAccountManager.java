@@ -48,10 +48,10 @@ public class UserAccountManager implements Serializable {
         }
     }
 
-    public UserAccount getUserAccountByToken(Token t) {
+    public static UserAccount getUserAccountByToken(Token t) {
         for (UserAccount u : userAccounts) {
             for (Token to : u.getTokens()) {
-                if (to == t) {
+                if (to.getId() == t.getId()) {
                     return u;
                 }
             }

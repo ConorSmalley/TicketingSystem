@@ -71,9 +71,17 @@ public class UserAccount implements Serializable {
     public void setActiveTicket(Ticket t) {
         activeTicket = t;
     }
+    
     public List<Pass> getPasses(){
         return passes;
     }
+    
+   
+    //requires logic programming
+    public List<Pass> getAllActivePasses(){
+       return passes;
+    }
+    
     public List<Pass> getPassesForDateRange(){
         //TODO: THis fucntion needs to be finished
         return null;
@@ -104,5 +112,20 @@ public class UserAccount implements Serializable {
     @Override
     public String toString(){
         return "Id: " + id + " Name: " + person.toString();
+    }
+
+    public boolean checkActivePasses(Route assignedRoute) {
+
+            for (Pass thisPass : this.getAllPasses()) {
+                if (thisPass.getTravelPoints().containsAll(assignedRoute.getTravelPoints())) //can be replaced with "isPartOf"
+                {
+                    return true;
+                }
+            }
+       return false;
+    }
+
+    boolean checkActiveTicket(Route assignedRoute, TravelPoint nextStop) {
+        return activeTicket.isValidTicket(assignedRoute, nextStop);
     }
 }

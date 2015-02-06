@@ -22,13 +22,33 @@ public class InspectionDevice {
 
     //incomplete untested
     public Boolean inspectToken() {
-        return false;       //I suppose this is actually called by digital reader
-        //determines vlidity based of accesibly current info, not passed info
+
+        //do not presume valid token
+        Token tempToken = new Token(reader.scanToken());    //retrieves token id
+        // currentUserAccount = UserAccountManager.getUserAccountByToken(tempToken);
+        this.setCurrentUserAccount(UserAccountManager.getUserAccountByToken(tempToken));
+
+        boolean validPass = false;
+        boolean validTicket = false;
+        boolean travelIsValid = false;
+
+        if (currentUserAccount != null) {
+            //search of valid pass so can return true or escapes
+            validPass = currentUserAccount.checkActivePasses(assignedRoute);
+
+            validTicket = currentUserAccount.checkActiveTicket(assignedRoute, nextStop);
+            //handle a ticket
+        }
+        
+        travelIsValid = anyValidTicketOrPass(validTicket, validPass);
+        return travelIsValid;
+        //I suppose this is actually called by digital reader   //old thought
+        //determines validity based of accesibly current info, not passed info
     }
 
     //incomplete untested   //User Account is a travelers account not a inspector
-    public String setCurrentUserAccount() {
-        return "Incomplete";
+    public void setCurrentUserAccount(UserAccount accountIn) {
+        currentUserAccount = accountIn;
     }
 
     //incomplete untested
@@ -57,4 +77,8 @@ public class InspectionDevice {
     }
 
     // public int inspectionToken
+
+    private boolean anyValidTicketOrPass(boolean validTicket, boolean validPass) {
+        return (validTicket || validPass);
+    }
 }
