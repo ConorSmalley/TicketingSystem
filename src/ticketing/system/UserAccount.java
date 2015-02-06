@@ -77,7 +77,7 @@ public class UserAccount implements Serializable {
     }
     
    
-    //requires logic programming
+    //requires logic programming    //shouldn't this be in UserAccountManager actually?
     public List<Pass> getAllActivePasses(){
        return passes;
     }
@@ -115,6 +115,10 @@ public class UserAccount implements Serializable {
     }
 
 <<<<<<< HEAD
+
+=======
+<<<<<<< HEAD
+>>>>>>> master
     public boolean checkActivePasses(Route assignedRoute) {
 
             for (Pass thisPass : this.getAllPasses()) {
@@ -132,5 +136,10 @@ public class UserAccount implements Serializable {
     public boolean canAccountBeDebited(double price) {
         return balance > price;
 >>>>>>> 286da8dd50434acf0a70e752962877486df808dd
+    }
+
+    public boolean canAccountBeDebited(double price) {
+        return balance > price;
+
     }
 }

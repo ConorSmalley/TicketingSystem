@@ -1,6 +1,7 @@
 package ticketing.system;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -24,9 +25,9 @@ public class InspectionDevice {
     public Boolean inspectToken() {
 
         //do not presume valid token
-        Token tempToken = new Token(reader.scanToken());    //retrieves token id
+        int tokenId = (reader.scanToken());    //retrieves token id
         // currentUserAccount = UserAccountManager.getUserAccountByToken(tempToken);
-        this.setCurrentUserAccount(UserAccountManager.getUserAccountByToken(tempToken));
+        this.setCurrentUserAccount(UserAccountManager.getUserAccountByToken(tokenId));
 
         boolean validPass = false;
         boolean validTicket = false;
@@ -67,8 +68,13 @@ public class InspectionDevice {
     }
 
     //incomplete untested
-    public boolean generateIfringement() {
-        return false;
+    public boolean generateInfringement() {
+
+        boolean LogSuccesful = false;
+        LogSuccesful = Area.getInstance().logInfringement(new Date(), assignedRoute, nextStop, Id);
+    if (LogSuccesful){clearCurrentUser();} 
+        return LogSuccesful;
+        
     }
 
     //incomplete untested

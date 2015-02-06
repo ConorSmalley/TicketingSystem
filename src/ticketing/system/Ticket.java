@@ -53,9 +53,16 @@ public class Ticket {
  
         //if the next stop is in the ticket's planned route returns true. If this is wrong, the programmer needs more knowledge on the valdity of tickets
         return ( route.getTravelPoints().contains(nextStop) || givenRoute.getTravelPoints().containsAll(route.getTravelPoints()) );
+<<<<<<< HEAD
+    }    
+        
+    public void setValidFrom(TravelPoint validFrom) {
+        this.validFrom = validFrom;
+=======
 =======
     public void setValidFrom(TravelPoint validFrom) {
         this.validFrom = validFrom;
 >>>>>>> 286da8dd50434acf0a70e752962877486df808dd
+>>>>>>> master
     }
 }
