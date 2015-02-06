@@ -114,6 +114,7 @@ public class UserAccount implements Serializable {
         return "Id: " + id + " Name: " + person.toString();
     }
 
+<<<<<<< HEAD
     public boolean checkActivePasses(Route assignedRoute) {
 
             for (Pass thisPass : this.getAllPasses()) {
@@ -127,5 +128,9 @@ public class UserAccount implements Serializable {
 
     boolean checkActiveTicket(Route assignedRoute, TravelPoint nextStop) {
         return activeTicket.isValidTicket(assignedRoute, nextStop);
+=======
+    public boolean canAccountBeDebited(double price) {
+        return balance > price;
+>>>>>>> 286da8dd50434acf0a70e752962877486df808dd
     }
 }
