@@ -8,6 +8,7 @@ package ticketing.system;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import static ticketing.system.TransactionType.*;
 
 /**
  *
@@ -28,6 +29,7 @@ class PaymentHub {
 
     public boolean canUserTravel(int tokenId) {
         Ticket ticket;
+        Transaction transaction;
         UserAccount user = UserAccountManager.getUserAccountByTokenId(tokenId);
         if (user == null)
             return false;
@@ -35,6 +37,7 @@ class PaymentHub {
             if (canUserAffordPayment(user)){
                 ticket = new Ticket(new Date());
                 ticket.setValidFrom(parent);
+                purchaseTicket(user, ticket);
                 user.setActiveTicket(ticket);
                 return true;
             } else 
@@ -49,5 +52,11 @@ class PaymentHub {
 
     private boolean canUserAffordPayment(UserAccount user) {
         return user.canAccountBeDebited(parent.getPrice());
+    }
+
+    private void purchaseTicket(UserAccount user, Ticket ticket) {
+        Transaction transaction = new Transaction(Cash, parent.getPrice(), new Date());
+        user.makePayment(parent.getPrice());
+        user.addTransaction(transaction);
     }
 }
