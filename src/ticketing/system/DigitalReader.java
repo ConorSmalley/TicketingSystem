@@ -5,20 +5,22 @@
  */
 package ticketing.system;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 /**
  *
- * @author Conor
  */
 public class DigitalReader {
-    
+
     DigitalReader(){
         initialize();
     }
     
     public int scanToken(){
-        return 123;
+        return 0;
     }
-    
+   
     public void initialize(){
         System.out.println("initialized");
     }

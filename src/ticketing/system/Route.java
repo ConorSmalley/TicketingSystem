@@ -32,6 +32,11 @@ class Route {
         assignedVehicles = new ArrayList();
     }
     
+    //incomplete and untested
+    public static boolean isPartOf(Route subRoute, Route aRoute){
+    return aRoute.travelPoints.containsAll(subRoute.travelPoints);
+    }
+    
     public int getId(){
         return id;
     }

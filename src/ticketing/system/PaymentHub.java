@@ -28,7 +28,7 @@ class PaymentHub {
 
     public boolean canUserTravel(int tokenId) {
         Ticket ticket;
-        UserAccount user = UserAccountManager.getUserAccountByToken(tokenId);
+        UserAccount user = UserAccountManager.getUserAccountByTokenId(tokenId);
         if (user == null)
             return false;
         else{
@@ -43,7 +43,7 @@ class PaymentHub {
     }
     
     public void applyTicketToAcount(Ticket ticket, int token){
-        UserAccount user = UserAccountManager.getUserAccountByToken(token);
+        UserAccount user = UserAccountManager.getUserAccountByTokenId(token);
         user.setActiveTicket(ticket);
     }
 

@@ -45,7 +45,14 @@ public class Ticket {
     public TravelPoint getValidTo(){
         return validTo;
     }
-
+    
+    //the valid duration of tickets is essentially defined here
+    // valid to and from unused.. but are they supposed to be places or times
+    public boolean isValidTicket(Route givenRoute, TravelPoint nextStop) {
+        //if the next stop is in the ticket's planned route returns true. If this is wrong, the programmer needs more knowledge on the valdity of tickets
+        return ( route.getTravelPoints().contains(nextStop) || givenRoute.getTravelPoints().containsAll(route.getTravelPoints()) );
+    }    
+        
     public void setValidFrom(TravelPoint validFrom) {
         this.validFrom = validFrom;
     }
