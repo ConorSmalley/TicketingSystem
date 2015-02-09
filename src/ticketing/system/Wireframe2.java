@@ -231,7 +231,6 @@ public class Wireframe2 extends javax.swing.JFrame {
             jLabelSignIn.setText("Ready for digital ticket");
             jButtonLogin.setText("Paper Tickets");
             jLabelActiveUser.setText(jTextFieldEmployeeId.getText() + ", " + jComboBoxRoute.getSelectedItem().toString());
-//          jLabelActiveUser.setText(jComboBoxRoute.getSelectedItem().toString());
             jLabelEmployeeId.setVisible(false);
             jLabelPassword.setVisible(false);
             jLabelRoute.setVisible(false);

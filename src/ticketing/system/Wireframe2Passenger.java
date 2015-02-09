@@ -18,8 +18,8 @@ public class Wireframe2Passenger extends javax.swing.JFrame {
         initComponents();
         jLabelLine1.setText("Please Scan Your Digital Ticket");
         jLabelLine2.setText("Line ticket bar code up with camera to scan, or alternativly hold digital ticket near device");
-        jLabelLine3.setText("1");
-        jLabelLine4.setText("1");
+        jLabelLine3.setText("");
+        jLabelLine4.setText("");
         hidePaperTicket();
     }
 
@@ -141,6 +141,10 @@ public class Wireframe2Passenger extends javax.swing.JFrame {
 
     private void jButtonConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfirmActionPerformed
         hidePaperTicket();
+        jLabelLine1.setText("Please Scan Your Digital Ticket");
+        jLabelLine2.setText("Line ticket bar code up with camera to scan, or alternativly hold digital ticket near device");
+        jLabelLine3.setText("");
+        jLabelLine4.setText("");
     }//GEN-LAST:event_jButtonConfirmActionPerformed
     public void hidePaperTicket() {
         jLabelCurrentStop.setVisible(false);
