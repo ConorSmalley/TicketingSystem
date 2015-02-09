@@ -57,6 +57,10 @@ public class Ticket {
     public void setValidFrom(TravelPoint validFrom) {
         this.validFrom = validFrom;
     }
+
+    void setRoute(Route route) {
+       this.route = route;
+    }
 }
 =======
 /*

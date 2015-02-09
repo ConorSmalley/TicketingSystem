@@ -134,6 +134,14 @@ public class UserAccount implements Serializable {
         return balance > price;
 
     }
+
+    void addTransaction(Transaction transaction) {
+        transactionList.addtransaction(transaction);
+    }
+    
+    void makePayment(double price){
+        balance -= price;
+    }
 }
 =======
 /*
