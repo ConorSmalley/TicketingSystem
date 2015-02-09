@@ -15,12 +15,16 @@ import static ticketing.system.TransactionType.*;
  * @author Conor
  */
 class PaymentHub {
-    private TravelPoint parent;
+    private TravelPoint parentTravel = null;
+    private Vehicle parentVehicle = null;
     private int numGateways;
     private List<Gateway> gateways;
     
-    public PaymentHub(TravelPoint parent, int numGateways){
-        this.parent = parent;
+    public PaymentHub(Object parent, int numGateways){
+        if(parent.getClass() == TravelPoint.class)
+            this.parentTravel = (TravelPoint) parent;
+        if(parent.getClass() == Vehicle.class)
+            this.parentVehicle = (Vehicle) parent;
         gateways = new ArrayList();
         this.numGateways = numGateways;
         for(int i = 0; i < numGateways; i++)
@@ -30,14 +34,24 @@ class PaymentHub {
     public boolean canUserTravel(int tokenId) {
         Ticket ticket;
         Transaction transaction;
+        boolean hasPass = false;
         UserAccount user = UserAccountManager.getUserAccountByTokenId(tokenId);
         if (user == null)
             return false;
         else{
             if (canUserAffordPayment(user)){
                 ticket = new Ticket(new Date());
-                ticket.setValidFrom(parent);
-                purchaseTicket(user, ticket);
+                if(parentTravel != null){
+                    ticket.setValidFrom(parentTravel);
+                }
+                if(parentVehicle != null){
+                    ticket.setRoute(parentVehicle.getCurrentRoute());
+                    ticket.setValidFrom(parentVehicle.getTravelPoint());
+                    hasPass = user.checkActivePasses(parentVehicle.getCurrentRoute());
+                }
+                if (!hasPass){
+                    purchaseTicket(user, ticket);
+                }
                 user.setActiveTicket(ticket);
                 return true;
             } else 
@@ -51,12 +65,17 @@ class PaymentHub {
     }
 
     private boolean canUserAffordPayment(UserAccount user) {
-        return user.canAccountBeDebited(parent.getPrice());
+        return  user.canAccountBeDebited(getParentTravelPoint().getPrice());
     }
 
     private void purchaseTicket(UserAccount user, Ticket ticket) {
-        Transaction transaction = new Transaction(Cash, parent.getPrice(), new Date());
-        user.makePayment(parent.getPrice());
+        Transaction transaction = new Transaction(Cash, getParentTravelPoint().getPrice(), new Date());
+        user.makePayment(getParentTravelPoint().getPrice());
         user.addTransaction(transaction);
+    }
+    
+    private TravelPoint getParentTravelPoint(){
+        return parentTravel != null? parentTravel:
+            parentVehicle.getTravelPoint();
     }
 }
