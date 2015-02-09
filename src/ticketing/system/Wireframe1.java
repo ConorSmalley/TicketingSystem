@@ -20,8 +20,10 @@ import java.util.logging.Logger;
 public class Wireframe1 extends javax.swing.JFrame {
 
     UserAccountManager uam;
+    private static SystemSupervisor s;
 
-    public Wireframe1() {
+    public Wireframe1(SystemSupervisor s) {
+        this.s = s;
 //        uam = UserAccountManager.getInstance();
 //        try {
 //            Deserialize();
@@ -32,6 +34,14 @@ public class Wireframe1 extends javax.swing.JFrame {
 //        }
 
         initComponents();
+        jComboBoxRoute.removeAllItems();
+        this.s = s;
+        for (Area a : s.getAreas()) {
+            for (Route r : a.getRoutes()) {
+                System.out.println(r);
+                jComboBoxRoute.addItem(r);
+            }
+        }
         jButtonScan.setVisible(false);
         jButtonLog.setVisible(false);
         jPanelLogInfringement.setVisible(false);
@@ -300,7 +310,7 @@ public class Wireframe1 extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelActiveUser, javax.swing.GroupLayout.DEFAULT_SIZE, 714, Short.MAX_VALUE))
+                        .addComponent(jLabelActiveUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -343,7 +353,8 @@ public class Wireframe1 extends javax.swing.JFrame {
 
     private void jButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoginActionPerformed
         // TODO add your handling code here:
-        jLabelActiveUser.setText(jTextFieldEmployeeId.getText() + ", " + jComboBoxRoute.getSelectedItem().toString());
+//            jLabelActiveUser.setText(jTextFieldEmployeeId.getText() + ", " + jComboBoxRoute.getSelectedItem().toString());
+        jLabelActiveUser.setText(jTextFieldEmployeeId.getText() + ", " + ((Route) jComboBoxRoute.getSelectedItem()).getRouteNo());
         jButtonScan.setVisible(true);
         jButtonLog.setVisible(true);
         jPanelSignIn.setVisible(false);
@@ -407,7 +418,7 @@ public class Wireframe1 extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Wireframe1().setVisible(true);
+                new Wireframe1(s).setVisible(true);
             }
         });
     }

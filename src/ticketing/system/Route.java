@@ -13,7 +13,9 @@ import java.util.List;
  * @author Conor
  */
 class Route {
+
     private int id;
+    private String routeNo;
     private String name;
     private List<TravelPoint> travelPoints;
     private double price;
@@ -21,9 +23,10 @@ class Route {
     private double shortJourneyDiscount;
     private List<Vehicle> assignedVehicles;
 
-    public Route(int id, String name, double price, int shortJourneyMaxStops,
-            double shortJourneyDiscount){
+    public Route(int id, String routeNo, String name, double price, int shortJourneyMaxStops,
+            double shortJourneyDiscount) {
         this.id = id;
+        this.routeNo = routeNo;
         this.name = name;
         this.price = price;
         this.shortJourneyMaxStops = shortJourneyMaxStops;
@@ -31,56 +34,66 @@ class Route {
         travelPoints = new ArrayList();
         assignedVehicles = new ArrayList();
     }
-    
+
     //incomplete and untested
-    public static boolean isPartOf(Route subRoute, Route aRoute){
-    return aRoute.travelPoints.containsAll(subRoute.travelPoints);
+    public static boolean isPartOf(Route subRoute, Route aRoute) {
+        return aRoute.travelPoints.containsAll(subRoute.travelPoints);
     }
-    
-    public int getId(){
+
+    public int getId() {
         return id;
     }
+
     public List<TravelPoint> getTravelPoints() {
         return travelPoints;
     }
-    
-    public String getName(){
+
+    public String getName() {
         return name;
     }
-    
-    public double getPrice(){
+
+    public double getPrice() {
         return price;
     }
-    
-    public void setPrice(double price){
+
+    public void setPrice(double price) {
         this.price = price;
     }
-    
-    public int getShortJourneyMaxStops(){
+
+    public int getShortJourneyMaxStops() {
         return shortJourneyMaxStops;
     }
-    
-    public double getShortJourneyDiscount(){
+
+    public double getShortJourneyDiscount() {
         return shortJourneyDiscount;
     }
-    
-    public List<Vehicle> getAssignedVihicles(){
+
+    public List<Vehicle> getAssignedVihicles() {
         return assignedVehicles;
     }
-    
-    public void addVehicle(Vehicle v){
+
+    public void addVehicle(Vehicle v) {
         assignedVehicles.add(v);
     }
-    
-    public void addTravelPoint(TravelPoint t){
+
+    public void addTravelPoint(TravelPoint t) {
         travelPoints.add(t);
     }
-    
-    public void removeVehicle(Vehicle v){
+
+    public void removeVehicle(Vehicle v) {
         assignedVehicles.remove(v);
     }
-    
-    public void removeTravelPoint(TravelPoint t){
+
+    public void removeTravelPoint(TravelPoint t) {
         travelPoints.remove(t);
+    }
+
+    public String getRouteNo() {
+        return routeNo;
+    }
+
+    @Override
+    public String toString() {
+        return routeNo + "," + name;
     }
 }

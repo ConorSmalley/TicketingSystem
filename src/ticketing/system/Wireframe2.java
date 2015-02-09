@@ -14,12 +14,22 @@ public class Wireframe2 extends javax.swing.JFrame {
     /**
      * Creates new form Wireframe2
      */
+    private static SystemSupervisor s;
     boolean loggedIn = false;
     boolean buttonPressed = false;
     Wireframe2Passenger wp;
-
-    public Wireframe2() {
+    
+    public Wireframe2(SystemSupervisor s) {
         initComponents();
+        jComboBoxRoute.removeAllItems();
+        this.s = s;
+        for (Area a : s.getAreas()) {
+            for (Route r : a.getRoutes()) {
+                System.out.println(r);
+                jComboBoxRoute.addItem(r);
+            }
+        }
+        
     }
 
     /**
@@ -230,7 +240,8 @@ public class Wireframe2 extends javax.swing.JFrame {
         if (!loggedIn) {
             jLabelSignIn.setText("Ready for digital ticket");
             jButtonLogin.setText("Paper Tickets");
-            jLabelActiveUser.setText(jTextFieldEmployeeId.getText() + ", " + jComboBoxRoute.getSelectedItem().toString());
+//            jLabelActiveUser.setText(jTextFieldEmployeeId.getText() + ", " + jComboBoxRoute.getSelectedItem().toString());
+            jLabelActiveUser.setText(jTextFieldEmployeeId.getText() + ", " + ((Route) jComboBoxRoute.getSelectedItem()).getRouteNo());
             jLabelEmployeeId.setVisible(false);
             jLabelPassword.setVisible(false);
             jLabelRoute.setVisible(false);
@@ -242,6 +253,7 @@ public class Wireframe2 extends javax.swing.JFrame {
             wp.setVisible(true);
             jButtonDT.setEnabled(true);
             jButtonBuyDT.setEnabled(true);
+            jButtonLogOut.setEnabled(true);
         } else {
             if (buttonPressed) {
                 jButtonLogin.setText("Paper Tickets");
@@ -312,7 +324,7 @@ public class Wireframe2 extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Wireframe2().setVisible(true);
+                new Wireframe2(s).setVisible(true);
             }
         });
     }
