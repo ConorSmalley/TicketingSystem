@@ -47,7 +47,25 @@ class PaymentHub {
         user.setActiveTicket(ticket);
     }
 
-    private boolean canUserAffordPayment(UserAccount user) {
+    public boolean canUserAffordPayment(UserAccount user) {
         return user.canAccountBeDebited(parent.getPrice());
+    }
+
+    public boolean canUserLeave(int tokenId) {
+         //Acquires a user and retrieves current ticket
+        UserAccount acct = (UserAccountManager.getUserAccountByToken(tokenId));
+        Ticket ticket = acct.getActiveTicket();
+        if (ticket == null)
+        {return false;}
+        ticket.setEndPoint(parent);
+        return true;
+    }
+
+    void sartAutomatedPayment() {
+        //List<Route> relevantRoutes;
+        //parent.getArea().getRoutes()
+        
+        
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

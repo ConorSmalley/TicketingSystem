@@ -64,8 +64,11 @@ public class UserAccount implements Serializable {
         availableBalance = b;
     }
 
-    public Ticket getActiveTicket() {
-        return activeTicket;
+    public Ticket getActiveTicket() {     
+        if (activeTicket.isValidTicket(null, null))
+        {return activeTicket;}
+        else 
+        {return null;}        
     }
 
     public void setActiveTicket(Ticket t) {

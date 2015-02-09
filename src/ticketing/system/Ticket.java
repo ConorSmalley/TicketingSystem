@@ -17,6 +17,7 @@ public class Ticket {
     private Date purchaseDate;
     private TravelPoint validFrom;
     private TravelPoint validTo;
+    //private static final Duration = ;   ////.before or .after
     
     public Ticket(int id, Route route, Date purchaseDate, TravelPoint validFrom, TravelPoint validTo){
         this.id = id;
@@ -49,12 +50,21 @@ public class Ticket {
     //the valid duration of tickets is essentially defined here
     // valid to and from unused.. but are they supposed to be places or times
     boolean isValidTicket(Route givenRoute, TravelPoint nextStop) {
- 
+        Date expiration = new Date();
+        expiration.setTime((expiration.getTime() + (1000 * 60 * 60 * 24)));    // fails for daylight saving technically
+        if (expiration.before(new Date()))
+        {return false;}
         //if the next stop is in the ticket's planned route returns true. If this is wrong, the programmer needs more knowledge on the valdity of tickets
-        return ( route.getTravelPoints().contains(nextStop) || givenRoute.getTravelPoints().containsAll(route.getTravelPoints()) );
+        if (givenRoute != null && nextStop != null)
+        {return ( route.getTravelPoints().contains(nextStop) || givenRoute.getTravelPoints().containsAll(route.getTravelPoints()) );}
+        else {return true;}
     }    
         
     public void setValidFrom(TravelPoint validFrom) {
         this.validFrom = validFrom;
+    }
+
+    void setEndPoint(TravelPoint parent) {
+        validTo = parent;
     }
 }
