@@ -15,6 +15,7 @@ class TravelPoint {
     private String name;
     private String type;
     private PaymentHub paymenthub;
+    public Area area;
     
     public TravelPoint(String name, Route route){
         this.name = name;
@@ -40,4 +41,15 @@ class TravelPoint {
     public void setType(String type){
         this.type = type;
     }
+    
+    public Area getArea(){
+        return area;
+    }
+    
+    public void setArea(Area areaIn){
+        area = areaIn;
+    }
+    
+    
+    
 }

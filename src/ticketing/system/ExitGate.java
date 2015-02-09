@@ -17,7 +17,18 @@ public class ExitGate extends Gateway{
 
     @Override
     public void handleToken(int tokenId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (super.paymentHub.canUserLeave(tokenId))
+        {
+        //call GUI success
+        super.openGate();
+
+        }
+        
+        super.paymentHub.sartAutomatedPayment();
+        
+        
+               
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.    
     }
     
     
