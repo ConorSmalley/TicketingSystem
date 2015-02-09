@@ -54,12 +54,17 @@ public class SystemSupervisor {
         }
     }
 
-    public void addArea(String areaNameIn) {
-        areas.add(new Area(areaNameIn));
+//    public void addArea(String areaNameIn) {
+//        areas.add(new Area(areaNameIn));
+//    }
+    public void addArea(Area a) {
+        areas.add(a);
     }
 
     public void removeArea(Area areaIn) {
         areas.remove(areaIn);
     }
-
+    public ArrayList<Area> getAreas(){
+        return areas;
+    }
 }

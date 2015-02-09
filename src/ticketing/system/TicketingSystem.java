@@ -11,11 +11,23 @@ package ticketing.system;
  */
 public class TicketingSystem extends javax.swing.JFrame {
 
-    /**
-     * Creates new form TicketingSystem
-     */
+    Area a;
+    Route r;
+    SystemSupervisor s;
+
+    public void loadData() {
+        s = new SystemSupervisor("Mr Boss", 1);
+        a = new Area("Sheffield");
+        r = new Route(1, "52", "Woodhouse - Crookes", 5.0, 5, 0.5);
+        a.addRoute(r);
+        r = new Route(2, "X78", "Sheffield - Doncaster", 4.0, 7, 0.6);
+        a.addRoute(r);
+        s.addArea(a);
+    }
+
     public TicketingSystem() {
         initComponents();
+        loadData();
     }
 
     /**
@@ -83,20 +95,20 @@ public class TicketingSystem extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-         Wireframe3 wf = new Wireframe3();
-         wf.setVisible(true);
+        Wireframe3 wf = new Wireframe3();
+        wf.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        Wireframe1 wf = new Wireframe1();
+        Wireframe1 wf = new Wireframe1(s);
         wf.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-         Wireframe2 wf = new Wireframe2();
-         wf.setVisible(true);
+        Wireframe2 wf = new Wireframe2(s);
+        wf.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
