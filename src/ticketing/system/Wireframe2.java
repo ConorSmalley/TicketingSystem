@@ -231,7 +231,6 @@ public class Wireframe2 extends javax.swing.JFrame {
             jLabelSignIn.setText("Ready for digital ticket");
             jButtonLogin.setText("Paper Tickets");
             jLabelActiveUser.setText(jTextFieldEmployeeId.getText() + ", " + jComboBoxRoute.getSelectedItem().toString());
-//          jLabelActiveUser.setText(jComboBoxRoute.getSelectedItem().toString());
             jLabelEmployeeId.setVisible(false);
             jLabelPassword.setVisible(false);
             jLabelRoute.setVisible(false);
@@ -251,8 +250,13 @@ public class Wireframe2 extends javax.swing.JFrame {
                 wp.changeLine3("");
                 wp.changeLine4("");
                 buttonPressed = false;
+                wp.hidePaperTicket();
             } else {
-                System.out.println("Paper Ticket");
+                wp.changeLine1("Paper Ticket Options");
+                wp.changeLine2("");
+                wp.changeLine3("");
+                wp.changeLine4("");
+                wp.showPaperTicket();
             }
         }
     }//GEN-LAST:event_jButtonLoginActionPerformed
@@ -272,8 +276,8 @@ public class Wireframe2 extends javax.swing.JFrame {
         buttonPressed = true;
         jButtonLogin.setText("Return");
         wp.changeLine1("Would You Like To Purchase A Digital Ticket?");
-        wp.changeLine2("Fare is £3.00");
-        wp.changeLine3("Half Fare discount will be applied if you scan off within two stops");
+        wp.changeLine3("Fare is £3.00");
+        wp.changeLine2("Half Fare discount will be applied if you scan off within two stops");
         wp.changeLine4("");
     }//GEN-LAST:event_jButtonBuyDTActionPerformed
 

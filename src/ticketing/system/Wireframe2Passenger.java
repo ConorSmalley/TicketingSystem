@@ -18,8 +18,9 @@ public class Wireframe2Passenger extends javax.swing.JFrame {
         initComponents();
         jLabelLine1.setText("Please Scan Your Digital Ticket");
         jLabelLine2.setText("Line ticket bar code up with camera to scan, or alternativly hold digital ticket near device");
-        jLabelLine3.setText("1");
-        jLabelLine4.setText("1");
+        jLabelLine3.setText("");
+        jLabelLine4.setText("");
+        hidePaperTicket();
     }
 
     /**
@@ -35,6 +36,13 @@ public class Wireframe2Passenger extends javax.swing.JFrame {
         jLabelLine2 = new javax.swing.JLabel();
         jLabelLine3 = new javax.swing.JLabel();
         jLabelLine4 = new javax.swing.JLabel();
+        jLabelCurrentStop = new javax.swing.JLabel();
+        jLabelEndStop = new javax.swing.JLabel();
+        jComboBoxCurrentStop = new javax.swing.JComboBox();
+        jComboBoxEndStop = new javax.swing.JComboBox();
+        jLabelCost = new javax.swing.JLabel();
+        jLabelPrice = new javax.swing.JLabel();
+        jButtonConfirm = new javax.swing.JButton();
 
         jLabelLine1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabelLine1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -52,6 +60,25 @@ public class Wireframe2Passenger extends javax.swing.JFrame {
         jLabelLine4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelLine4.setText("jLabel1");
 
+        jLabelCurrentStop.setText("Current Stop:");
+
+        jLabelEndStop.setText("End Stop:");
+
+        jComboBoxCurrentStop.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jComboBoxEndStop.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabelCost.setText("Cost:");
+
+        jLabelPrice.setText("£3.00");
+
+        jButtonConfirm.setText("Confirm");
+        jButtonConfirm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonConfirmActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -59,28 +86,85 @@ public class Wireframe2Passenger extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelLine1, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelLine2, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelLine3, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelLine4, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabelEndStop)
+                            .addComponent(jLabelCurrentStop)
+                            .addComponent(jLabelCost))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBoxEndStop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBoxCurrentStop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelPrice))
+                        .addGap(105, 105, 105))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelLine1, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelLine2, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelLine3, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelLine4, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(154, 154, 154)
+                                .addComponent(jButtonConfirm)))
+                        .addGap(12, 12, 12))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabelLine1)
-                .addGap(18, 18, 18)
-                .addComponent(jLabelLine2, javax.swing.GroupLayout.DEFAULT_SIZE, 15, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelLine2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelLine3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 195, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBoxCurrentStop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelCurrentStop))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelEndStop)
+                    .addComponent(jComboBoxEndStop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelCost)
+                    .addComponent(jLabelPrice))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addComponent(jButtonConfirm)
+                .addGap(18, 18, 18)
                 .addComponent(jLabelLine4)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfirmActionPerformed
+        hidePaperTicket();
+        jLabelLine1.setText("Please Scan Your Digital Ticket");
+        jLabelLine2.setText("Line ticket bar code up with camera to scan, or alternativly hold digital ticket near device");
+        jLabelLine3.setText("");
+        jLabelLine4.setText("");
+    }//GEN-LAST:event_jButtonConfirmActionPerformed
+    public void hidePaperTicket() {
+        jLabelCurrentStop.setVisible(false);
+        jLabelEndStop.setVisible(false);
+        jLabelCost.setVisible(false);
+        jLabelPrice.setVisible(false);
+        jComboBoxCurrentStop.setVisible(false);
+        jComboBoxEndStop.setVisible(false);
+        jButtonConfirm.setVisible(false);
+    }
+
+    public void showPaperTicket() {
+        jLabelCurrentStop.setVisible(true);
+        jLabelEndStop.setVisible(true);
+        jLabelCost.setVisible(true);
+        jLabelPrice.setVisible(true);
+        jComboBoxCurrentStop.setVisible(true);
+        jComboBoxEndStop.setVisible(true);
+        jButtonConfirm.setVisible(true);
+    }
 
     public void changeLine1(String text) {
         jLabelLine1.setText(text);
@@ -132,9 +216,17 @@ public class Wireframe2Passenger extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonConfirm;
+    private javax.swing.JComboBox jComboBoxCurrentStop;
+    private javax.swing.JComboBox jComboBoxEndStop;
+    private javax.swing.JLabel jLabelCost;
+    private javax.swing.JLabel jLabelCurrentStop;
+    private javax.swing.JLabel jLabelEndStop;
     private javax.swing.JLabel jLabelLine1;
     private javax.swing.JLabel jLabelLine2;
     private javax.swing.JLabel jLabelLine3;
     private javax.swing.JLabel jLabelLine4;
+    private javax.swing.JLabel jLabelPrice;
     // End of variables declaration//GEN-END:variables
+
 }
