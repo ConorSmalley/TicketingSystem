@@ -111,4 +111,8 @@ public class Area implements Serializable {
     public void commitTransaction(Transaction tr) {
 
     }
+
+    public List<Route> getRoutes() {
+        return routes;
+    }
 }
