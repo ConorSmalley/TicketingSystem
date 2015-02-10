@@ -14,7 +14,7 @@ Making sure that you're on your **own** branch, DO SOME WORK. If not revert the 
 
 #####Step 3 - Committing changes
 
-Once you have done some hard graft and you are ready to upload your work to Github, you need to ***add and commit** the changes to your **local repository** first (within Netbeans).
+Once you have done some hard graft and you are ready to upload your work to Github, you need to **add and commit** the changes to your **local repository** first (within Netbeans).
 
 1. Still making sure that you are on your **own branch**, first you want to use the **add** command to add the changed file ready to be committed.
 
