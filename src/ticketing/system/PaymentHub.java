@@ -39,7 +39,6 @@ class PaymentHub {
 
     public boolean canUserTravel(int tokenId) {
         Ticket ticket;
-        Transaction transaction;
         boolean hasPass = false;
         UserAccount user = UserAccountManager.getUserAccountByTokenId(tokenId);
         if (user == null) {
