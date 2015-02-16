@@ -120,4 +120,8 @@ public class Area implements Serializable {
     public String toString() {
         return name;
     }
+
+    public List<Infringement> getInfringements() {
+        return infringements;
+    }
 }
