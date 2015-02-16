@@ -7,16 +7,22 @@ import java.util.Date;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Conor
  */
 public class Infringement {
 
-    Infringement(Date d, Route r, TravelPoint tp, int employeeNumber) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    Date d;
+    Route r;
+    TravelPoint tp;
+    int en;
+
+    Infringement(Date d, Route r, TravelPoint tp, int en) {
+        this.d = d;
+        this.r = r;
+        this.tp = tp;
+        this.en = en;
     }
-    
-    
+
 }
