@@ -24,12 +24,16 @@ class Vehicle {
         Id = ++vehicleId;
         paymentHub = new PaymentHub(this, 1);
         this.gateway = new EntryGate(new DigitalReader(), paymentHub);
-        assignedRoute = null;
+        assignedRoute = route;
         currentTravelPoint = null;
     }
 
     public void setRoute(Route r) {
         assignedRoute = r;
+    }
+    
+    public Route getRoute(){
+        return assignedRoute;
     }
 
     public Route getCurrentRoute() {
