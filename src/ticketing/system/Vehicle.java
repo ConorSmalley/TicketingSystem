@@ -36,6 +36,10 @@ class Vehicle {
         return assignedRoute;
     }
 
+    public Gateway getGateway(){
+        return gateway;
+    }
+    
     public Route getCurrentRoute() {
         return assignedRoute;
     }
