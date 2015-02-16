@@ -23,12 +23,7 @@ public class ExitGate extends Gateway{
         super.openGate();
 
         }
-        
-        super.paymentHub.sartAutomatedPayment();
-        
-        
-               
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.    
+                
     }
     
     

@@ -18,6 +18,7 @@ import static ticketing.system.TransactionType.*;
 
 class PaymentHub {
 
+    // private      //this is the area location
     private TravelPoint parentTravel = null;
     private Vehicle parentVehicle = null;
     private int numGateways;
@@ -93,13 +94,13 @@ class PaymentHub {
             return false;
         }
         ticket.setEndPoint(getParentTravelPoint());
+        startAutomatedPayment(acct);
         return true;
     }
 
-    void sartAutomatedPayment() {
-        //List<Route> relevantRoutes;
+    void startAutomatedPayment(UserAccount acct) {
+        List<Route> relevantRoutes;     //temp routes
         //parent.getArea().getRoutes()
 
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
