@@ -247,7 +247,8 @@ public class Wireframe2 extends javax.swing.JFrame {
             if (jTextFieldEmployeeId.getText().equals(null) || jTextFieldPassword.getText().equals(null)) {
                 // inset message here
             } else {
-                if (jTextFieldEmployeeId.getText().equals(null) && jTextFieldPassword.getText().equals(null)) {
+                Employee employee = EmployeeAccountManager.getInstance().getEmployeeById(Integer.valueOf(jTextFieldEmployeeId.getText()));
+                if (employee != null && jTextFieldPassword.getText().equals(employee.getPassword())) {
                     jLabelSignIn.setText("Ready for digital ticket");
                     jButtonLogin.setText("Paper Tickets");
                     jLabelActiveUser.setText(jTextFieldEmployeeId.getText() + ", " + ((Route) jComboBoxRoute.getSelectedItem()).getRouteNo());
