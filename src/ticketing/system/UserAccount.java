@@ -140,4 +140,15 @@ public class UserAccount implements Serializable {
     void makePayment(double price){
         balance -= price;
     }
+
+    void clearActiveTicket() {
+        
+        //logic to calculate a ticket price not determined or implemented.
+        //should be calculable due to ticket.start and ticket.end
+        //using these to determine the route traveled possibly
+        //next discounts may be applied      
+        
+        
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

@@ -7,6 +7,7 @@ package ticketing.system;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import static ticketing.system.TransactionType.*;
 
@@ -18,7 +19,7 @@ import static ticketing.system.TransactionType.*;
 
 class PaymentHub {
 
-    // private      //this is the area location
+    private Area area;     //this is the area location
     private TravelPoint parentTravel = null;
     private Vehicle parentVehicle = null;
     private int numGateways;
@@ -97,10 +98,24 @@ class PaymentHub {
         startAutomatedPayment(acct);
         return true;
     }
+    
+    public void setArea(Area a)
+    {
+        area = a;
+    }
 
     void startAutomatedPayment(UserAccount acct) {
-        List<Route> relevantRoutes;     //temp routes
-        //parent.getArea().getRoutes()
+        List<Route> relevantRoutes = area.getRoutes();     //temp routes
+        for (Iterator<Route> it = relevantRoutes.iterator(); it.hasNext();) {
+            
+            if (acct.checkActivePasses( it.next() ) )   //implement
+            {
+                acct.clearActiveTicket();               //implement
+                break;
+            }
+              
+            
+        }
 
     }
 }
