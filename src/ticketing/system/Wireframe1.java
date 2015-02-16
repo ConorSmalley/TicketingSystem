@@ -10,6 +10,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -21,7 +26,9 @@ public class Wireframe1 extends javax.swing.JFrame {
 
     UserAccountManager uam;
     private static SystemSupervisor s;
-    Route currentRoute;
+    Route currentRoute = null;
+    Area currentArea = null;
+    Employee currentEmployee;
 
     public Wireframe1(SystemSupervisor s) {
         this.s = s;
@@ -80,9 +87,9 @@ public class Wireframe1 extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox();
         jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jTextFieldDate = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        jTextFieldTime = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
 
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -285,13 +292,18 @@ public class Wireframe1 extends javax.swing.JFrame {
 
         jLabel5.setText("Date");
 
-        jTextField1.setText("jTextField1");
+        jTextFieldDate.setText("jTextField1");
 
         jLabel6.setText("Time");
 
-        jTextField2.setText("jTextField2");
+        jTextFieldTime.setText("jTextField2");
 
         jButton1.setText("Confirm");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelLogInfringementLayout = new javax.swing.GroupLayout(jPanelLogInfringement);
         jPanelLogInfringement.setLayout(jPanelLogInfringementLayout);
@@ -304,9 +316,9 @@ public class Wireframe1 extends javax.swing.JFrame {
                     .addComponent(jComboBoxInfringementRoutes, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1)
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(121, 121, 121))
@@ -325,11 +337,11 @@ public class Wireframe1 extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextFieldDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextFieldTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
                 .addContainerGap(25, Short.MAX_VALUE))
@@ -389,7 +401,13 @@ public class Wireframe1 extends javax.swing.JFrame {
         if ((jTextFieldEmployeeId.getText().equals("") ? false
                 : EmployeeAccountManager.getInstance().getEmployeeById(Integer.valueOf(jTextFieldEmployeeId.getText())) != null)
                 && jTextFieldPassword.getText().equals(EmployeeAccountManager.getInstance().getEmployeeById(Integer.valueOf(jTextFieldEmployeeId.getText())).getPassword())) {
+            currentEmployee = EmployeeAccountManager.getInstance().getEmployeeById(Integer.valueOf(jTextFieldEmployeeId.getText()));
             currentRoute = (Route) jComboBoxRoute.getSelectedItem();
+            for (Area a : s.getAreas()) {
+                if (a.getRoutes().contains(currentRoute)) {
+                    currentArea = a;
+                }
+            }
             jLabelActiveUser.setText(jTextFieldEmployeeId.getText() + ", " + currentRoute.getRouteNo());
 
             jButtonScan.setVisible(true);
@@ -420,6 +438,11 @@ public class Wireframe1 extends javax.swing.JFrame {
         // TODO add your handling code here:
         jPanelScanTicket.setVisible(false);
         jPanelLogInfringement.setVisible(true);
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        DateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
+        Date date = new Date();
+        jTextFieldDate.setText(dateFormat.format(date));
+        jTextFieldTime.setText(timeFormat.format(date));
     }//GEN-LAST:event_jButtonLogActionPerformed
 
     private void jButtonLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLogOutActionPerformed
@@ -432,6 +455,18 @@ public class Wireframe1 extends javax.swing.JFrame {
         jButtonLogOut.setEnabled(false);
         jLabelActiveUser.setText("No Active User");
     }//GEN-LAST:event_jButtonLogOutActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            // TODO add your handling code here:
+            DateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.ENGLISH);
+            Date date = format.parse(jTextFieldDate.getText() + " " + jTextFieldTime.getText());
+//            System.out.println(date); // Sat Jan 02 00:00:00 GMT 2010
+            currentArea.logInfringement(date, currentRoute, null, currentEmployee.getId());
+        } catch (ParseException ex) {
+            Logger.getLogger(Wireframe1.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -515,10 +550,10 @@ public class Wireframe1 extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelScanTicket;
     private javax.swing.JPanel jPanelSignIn;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextFieldDate;
     private javax.swing.JTextField jTextFieldEmployeeId;
     private javax.swing.JTextField jTextFieldPassword;
+    private javax.swing.JTextField jTextFieldTime;
     private javax.swing.JToolBar jToolBar1;
     // End of variables declaration//GEN-END:variables
 }

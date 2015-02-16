@@ -115,4 +115,9 @@ public class Area implements Serializable {
     public List<Route> getRoutes() {
         return routes;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
