@@ -5,6 +5,9 @@
  */
 package ticketing.system;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author Conor
@@ -18,8 +21,12 @@ public class Wireframe2 extends javax.swing.JFrame {
     boolean loggedIn = false;
     boolean buttonPressed = false;
     Wireframe2Passenger wp;
+    List<Vehicle> vehicles;
+    Employee activeUser;
+    Route activeRoute;
 
     public Wireframe2(SystemSupervisor s) {
+        this.vehicles = new ArrayList();
         initComponents();
         jComboBoxRoute.removeAllItems();
         Wireframe2.s = s;
@@ -27,9 +34,45 @@ public class Wireframe2 extends javax.swing.JFrame {
             for (Route r : a.getRoutes()) {
                 System.out.println(r);
                 jComboBoxRoute.addItem(r);
+                vehicles.add(new Vehicle(r));
             }
         }
 
+    }
+
+    public void login() {
+        activeRoute = (Route) jComboBoxRoute.getSelectedItem();
+        jLabelSignIn.setText("Ready for digital ticket");
+        jButtonLogin.setText("Paper Tickets");
+        jLabelActiveUser.setText(activeUser.toString() + ", " + activeRoute.getRouteNo());
+        jLabelEmployeeId.setVisible(false);
+        jLabelPassword.setVisible(false);
+        jLabelRoute.setVisible(false);
+        jTextFieldEmployeeId.setVisible(false);
+        jTextFieldPassword.setVisible(false);
+        jComboBoxRoute.setVisible(false);
+        loggedIn = true;
+        wp = new Wireframe2Passenger();
+        wp.setVisible(true);
+        jButtonDT.setEnabled(true);
+        jButtonBuyDT.setEnabled(true);
+        jButtonLogOut.setEnabled(true);
+    }
+
+    public void logout() {
+        wp.setVisible(false);
+        jLabelActiveUser.setText("No Active User");
+        jLabelEmployeeId.setVisible(true);
+        jLabelPassword.setVisible(true);
+        jLabelRoute.setVisible(true);
+        jTextFieldEmployeeId.setVisible(true);
+        jTextFieldPassword.setVisible(true);
+        jComboBoxRoute.setVisible(true);
+        jButtonDT.setEnabled(false);
+        jButtonBuyDT.setEnabled(false);
+        jButtonLogOut.setEnabled(false);
+        loggedIn = false;
+        jLabelSignIn.setText("Sign in");
     }
 
     /**
@@ -95,6 +138,11 @@ public class Wireframe2 extends javax.swing.JFrame {
 
         jButtonLogOut.setText("Log Out");
         jButtonLogOut.setEnabled(false);
+        jButtonLogOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLogOutActionPerformed(evt);
+            }
+        });
 
         jButtonAccount.setText("Account");
 
@@ -244,27 +292,13 @@ public class Wireframe2 extends javax.swing.JFrame {
     private void jButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoginActionPerformed
         // TODO add your handling code here:
         if (!loggedIn) {
-            if (jTextFieldEmployeeId.getText().equals(null) || jTextFieldPassword.getText().equals(null)) {
+            if (jTextFieldEmployeeId.getText().isEmpty() || jTextFieldPassword.getText().isEmpty()) {
                 // inset message here
             } else {
-                Employee employee = EmployeeAccountManager.getInstance().getEmployeeById(Integer.valueOf(jTextFieldEmployeeId.getText()));
-                if (employee != null && jTextFieldPassword.getText().equals(employee.getPassword())) {
-                    jLabelSignIn.setText("Ready for digital ticket");
-                    jButtonLogin.setText("Paper Tickets");
-                    jLabelActiveUser.setText(jTextFieldEmployeeId.getText() + ", " + ((Route) jComboBoxRoute.getSelectedItem()).getRouteNo());
-                    jLabelEmployeeId.setVisible(false);
-                    jLabelPassword.setVisible(false);
-                    jLabelRoute.setVisible(false);
-                    jTextFieldEmployeeId.setVisible(false);
-                    jTextFieldPassword.setVisible(false);
-                    jComboBoxRoute.setVisible(false);
-                    loggedIn = true;
-                    wp = new Wireframe2Passenger();
-                    wp.setVisible(true);
-                    jButtonDT.setEnabled(true);
-                    jButtonBuyDT.setEnabled(true);
-                    jButtonLogOut.setEnabled(true);
-                }else {
+                activeUser = EmployeeAccountManager.getInstance().getEmployeeById(Integer.valueOf(jTextFieldEmployeeId.getText()));
+                if (activeUser != null && jTextFieldPassword.getText().equals(activeUser.getPassword())) {
+                    login();
+                } else {
                     //insert incorrect message here 
                 }
             }
@@ -310,6 +344,11 @@ public class Wireframe2 extends javax.swing.JFrame {
     private void jTextFieldEmployeeIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldEmployeeIdActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldEmployeeIdActionPerformed
+
+    private void jButtonLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLogOutActionPerformed
+        // TODO add your handling code here:
+        logout();
+    }//GEN-LAST:event_jButtonLogOutActionPerformed
 
     /**
      * @param args the command line arguments
