@@ -24,9 +24,9 @@ public class TicketingSystem extends javax.swing.JFrame {
         r = new Route(2, "X78", "Sheffield - Doncaster", 4.0, 7, 0.6);
         a.addRoute(r);
         s.addArea(a);
-        e = new Employee("Conor", 1);
+        e = new Employee("Conor", 1, "password1");
         EmployeeAccountManager.getInstance().addEmployee(e);
-        e = new Employee("Curtis", 2);
+        e = new Employee("Curtis", 2, "password2");
         EmployeeAccountManager.getInstance().addEmployee(e);
     }
 
