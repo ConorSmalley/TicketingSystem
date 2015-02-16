@@ -76,7 +76,6 @@ public class UserAccount implements Serializable {
         return passes;
     }
     
-   
     //requires logic programming    //shouldn't this be in UserAccountManager actually?
     public List<Pass> getAllActivePasses(){
        return passes;
@@ -132,5 +131,13 @@ public class UserAccount implements Serializable {
     public boolean canAccountBeDebited(double price) {
         return balance > price;
 
+    }
+
+    void addTransaction(Transaction transaction) {
+        transactionList.addtransaction(transaction);
+    }
+    
+    void makePayment(double price){
+        balance -= price;
     }
 }
