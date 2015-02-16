@@ -92,6 +92,7 @@ public class Wireframe1 extends javax.swing.JFrame {
         jTextFieldTime = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -389,11 +390,16 @@ public class Wireframe1 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        try {
-            Serialize();
-        } catch (IOException ex) {
-            Logger.getLogger(Wireframe1.class.getName()).log(Level.SEVERE, null, ex);
+        for (Area a : s.getAreas()) {
+            for (Infringement i : a.getInfringements()) {
+                System.out.println(i);
+            }
         }
+//        try {
+//            Serialize();
+//        } catch (IOException ex) {
+//            Logger.getLogger(Wireframe1.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }//GEN-LAST:event_formWindowClosing
 
     private void jButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoginActionPerformed
