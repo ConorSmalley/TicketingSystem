@@ -14,14 +14,16 @@ import java.util.List;
 class Vehicle {
 
     private int Id;
-    private List<Gateway> gates;
+    private Gateway gateway;
     private Route assignedRoute;
     private PaymentHub paymentHub;
     private TravelPoint currentTravelPoint;
     private static int vehicleId = 0;
-    Vehicle() {
+    
+    Vehicle(Route route) {
         Id = ++vehicleId;
-        gates = null;
+        paymentHub = new PaymentHub(this, 1);
+        this.gateway = new EntryGate(new DigitalReader(), paymentHub);
         assignedRoute = null;
         currentTravelPoint = null;
     }
