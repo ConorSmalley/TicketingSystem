@@ -34,7 +34,7 @@ class PaymentHub {
         gateways = new ArrayList();
         this.numGateways = numGateways;
         for (int i = 0; i < numGateways; i++) {
-            gateways.set(i, new EntryGate(new DigitalReader(), this));
+            gateways.add(new EntryGate(new DigitalReader(), this));
         }
     }
 

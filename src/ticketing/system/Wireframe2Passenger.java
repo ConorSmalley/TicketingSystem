@@ -46,19 +46,19 @@ public class Wireframe2Passenger extends javax.swing.JFrame {
 
         jLabelLine1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabelLine1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelLine1.setText("jLabel1");
+        jLabelLine1.setText("Line 1");
 
         jLabelLine2.setFont(new java.awt.Font("Lucida Grande", 0, 10)); // NOI18N
         jLabelLine2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelLine2.setText("jLabel1");
+        jLabelLine2.setText("Line 2");
         jLabelLine2.setAutoscrolls(true);
 
         jLabelLine3.setFont(new java.awt.Font("Lucida Grande", 2, 13)); // NOI18N
         jLabelLine3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelLine3.setText("jLabel1");
+        jLabelLine3.setText("Line 3");
 
         jLabelLine4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelLine4.setText("jLabel1");
+        jLabelLine4.setText("Line 4");
 
         jLabelCurrentStop.setText("Current Stop:");
 
