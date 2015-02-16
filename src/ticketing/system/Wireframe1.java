@@ -83,7 +83,7 @@ public class Wireframe1 extends javax.swing.JFrame {
         jComboBoxRoute = new javax.swing.JComboBox();
         jLabelRoute = new javax.swing.JLabel();
         jLabelPassword = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        jTextFieldPassword = new javax.swing.JTextField();
         jTextFieldEmployeeId = new javax.swing.JTextField();
         jLabelEmployeeID = new javax.swing.JLabel();
         jLabelSignIn = new javax.swing.JLabel();
@@ -135,13 +135,14 @@ public class Wireframe1 extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonSettings, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonLogOut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButtonLog, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jButtonScan, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonSettings, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonLog, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonScan, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -226,7 +227,7 @@ public class Wireframe1 extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanelSignInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jComboBoxRoute, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jTextField2)
+                                    .addComponent(jTextFieldPassword)
                                     .addComponent(jTextFieldEmployeeId, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -243,7 +244,7 @@ public class Wireframe1 extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanelSignInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelPassword)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanelSignInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelRoute)
@@ -263,13 +264,14 @@ public class Wireframe1 extends javax.swing.JFrame {
         jPanelScanTicketLayout.setHorizontalGroup(
             jPanelScanTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelScanTicketLayout.createSequentialGroup()
-                .addGap(76, 76, 76)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanelScanTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelScanTicketLayout.createSequentialGroup()
+                        .addGap(76, 76, 76)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelScanTicketLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanelScanTicketLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
         );
         jPanelScanTicketLayout.setVerticalGroup(
             jPanelScanTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -318,8 +320,7 @@ public class Wireframe1 extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanelScanTicket, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanelLogInfringement, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jPanelLogInfringement, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -353,12 +354,16 @@ public class Wireframe1 extends javax.swing.JFrame {
 
     private void jButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoginActionPerformed
         // TODO add your handling code here:
-//            jLabelActiveUser.setText(jTextFieldEmployeeId.getText() + ", " + jComboBoxRoute.getSelectedItem().toString());
-        jLabelActiveUser.setText(jTextFieldEmployeeId.getText() + ", " + ((Route) jComboBoxRoute.getSelectedItem()).getRouteNo());
-        jButtonScan.setVisible(true);
-        jButtonLog.setVisible(true);
-        jPanelSignIn.setVisible(false);
-        jButtonLogOut.setEnabled(true);
+        if (("".equals(jTextFieldEmployeeId.getText())) || ("".equals(jTextFieldPassword.getText()))) {
+
+        } else {
+            jLabelActiveUser.setText(jTextFieldEmployeeId.getText() + ", " + ((Route) jComboBoxRoute.getSelectedItem()).getRouteNo());
+            jButtonScan.setVisible(true);
+            jButtonLog.setVisible(true);
+            jPanelSignIn.setVisible(false);
+            jButtonLogOut.setEnabled(true);
+            System.out.println(EmployeeAccountManager.getInstance().getEmployeeById(Integer.valueOf(jTextFieldEmployeeId.getText())));
+        }
     }//GEN-LAST:event_jButtonLoginActionPerformed
 
     private void jButtonScanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScanActionPerformed
@@ -461,8 +466,8 @@ public class Wireframe1 extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelScanTicket;
     private javax.swing.JPanel jPanelSignIn;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextFieldEmployeeId;
+    private javax.swing.JTextField jTextFieldPassword;
     private javax.swing.JToolBar jToolBar1;
     // End of variables declaration//GEN-END:variables
 }
