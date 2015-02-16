@@ -354,9 +354,7 @@ public class Wireframe1 extends javax.swing.JFrame {
 
     private void jButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoginActionPerformed
         // TODO add your handling code here:
-        if (("".equals(jTextFieldEmployeeId.getText())) || ("".equals(jTextFieldPassword.getText()))) {
-
-        } else {
+        if ((!"".equals(jTextFieldPassword.getText())) && EmployeeAccountManager.getInstance().getEmployeeById(Integer.valueOf(jTextFieldEmployeeId.getText())) != null) {
             jLabelActiveUser.setText(jTextFieldEmployeeId.getText() + ", " + ((Route) jComboBoxRoute.getSelectedItem()).getRouteNo());
             jButtonScan.setVisible(true);
             jButtonLog.setVisible(true);
