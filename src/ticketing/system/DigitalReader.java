@@ -13,32 +13,29 @@ import java.awt.event.ActionListener;
  */
 public class DigitalReader {
 
-    DigitalReader(){
+    private InspectionDevice inspectionDevice;
+    private PaymentHub paymentHub;
+    
+    DigitalReader() {
         initialize();
     }
-    
-    private InspectionDevice inspectionDevice;
-    protected PaymentHub paymentHub;
-    
-    public int scanToken(){
+
+    public int scanToken() {
         return 0;
-         //presumably this should be a listener which passes a token to handleToken
+        //presumably this should be a listener which passes a token to handleToken
 
     }
-    
-    public void setPaymentHub(PaymentHub paymentHubIn)
-    {
+
+    public void setPaymentHub(PaymentHub paymentHubIn) {
         paymentHub = paymentHubIn;
     }
-    
-    public void setInspectionDevice(InspectionDevice inspectionDeviceIn)
-    {
+
+    public void setInspectionDevice(InspectionDevice inspectionDeviceIn) {
         inspectionDevice = inspectionDeviceIn;
     }
-   
-    public void initialize(){
+
+    public void initialize() {
         System.out.println("initialized");
     }
-    
 
 }

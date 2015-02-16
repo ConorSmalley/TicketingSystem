@@ -18,7 +18,7 @@ public class EntryGate extends Gateway {
  
     @Override
     public void handleToken(int tokenId){
-        if (super.getPaymentHub().canUserTravel(super.getReader().scanToken())){
+        if (super.getPaymentHub().canUserTravel(tokenId)){
             super.openGate();
         }
     }
