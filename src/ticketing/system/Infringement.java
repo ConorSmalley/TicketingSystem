@@ -13,10 +13,10 @@ import java.util.Date;
  */
 public class Infringement {
 
-    private Date d;
-    private Route r;
-    private TravelPoint tp;
-    private int en;
+    private final Date d;
+    private final Route r;
+    private final TravelPoint tp;
+    private final int en;
 
     Infringement(Date d, Route r, TravelPoint tp, int en) {
         this.d = d;
@@ -27,6 +27,7 @@ public class Infringement {
 
     @Override
     public String toString() {
-        return UserAccountManager.getInstance().getUserAccountById(en).toString();
+        return EmployeeAccountManager.getInstance().getEmployeeById(en).toString();
+        
     }
 }

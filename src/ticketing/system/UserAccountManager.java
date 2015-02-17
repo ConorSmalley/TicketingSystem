@@ -63,7 +63,9 @@ public class UserAccountManager implements Serializable {
 
     public UserAccount getUserAccountById(int Id) {
         for (UserAccount u : userAccounts) {
+            System.out.println("here");
             if (u.getId() == Id) {
+                System.out.println("here");
                 return u;
             }
         }
