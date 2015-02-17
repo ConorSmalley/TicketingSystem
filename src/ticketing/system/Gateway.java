@@ -13,7 +13,7 @@ public abstract class Gateway{
     private static int nextId = 0;
     protected PaymentHub paymentHub;
     
-    public Gateway(DigitalReader reader, PaymentHub paymenthub){
+    public Gateway(DigitalReader reader, PaymentHub paymentHub){
         this.reader = reader;
         this.id = ++nextId;
         this.paymentHub = paymentHub;
