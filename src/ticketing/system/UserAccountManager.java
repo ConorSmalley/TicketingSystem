@@ -30,7 +30,11 @@ public class UserAccountManager implements Serializable {
     }
 
     public static int getNumberOfUsers() {
-        return userAccounts.size();
+        if (usrAccMgr == null) {
+            return 0;
+        } else {
+            return userAccounts.size();
+        }
     }
 
     public void addUserAccount(UserAccount u) {
@@ -63,7 +67,9 @@ public class UserAccountManager implements Serializable {
 
     public UserAccount getUserAccountById(int Id) {
         for (UserAccount u : userAccounts) {
+            System.out.println("here");
             if (u.getId() == Id) {
+                System.out.println("here");
                 return u;
             }
         }
