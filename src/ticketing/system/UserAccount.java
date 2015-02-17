@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import static ticketing.system.TransactionType.Card;
 
 /**
  *
@@ -146,9 +147,19 @@ public class UserAccount implements Serializable {
         //logic to calculate a ticket price not determined or implemented.
         //should be calculable due to ticket.start and ticket.end
         //using these to determine the route traveled possibly
-        //next discounts may be applied      
+        //next discounts may be applied     
         
+        //Best design owuld be:
+        //this method passes ticket endpoint, ticket startpoint and this accounts passes (for discounts) to a class which handles travel costs
+        //the cost calculator returns a price for travel based on the cheapest travel using passes given
+        //the charge is applied to the account and transaction added to this accounts transaciton list
         
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //PLACEHOLDER CODE:
+        double thisTravelCost = 0;
+        
+        thisTravelCost = 5.0;
+        transactionList.addtransaction(new Transaction(Card, thisTravelCost, new Date()));
+        //naive about implementation of balance and availible balance
+        balance -=thisTravelCost;
     }
 }
