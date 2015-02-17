@@ -14,11 +14,13 @@ public class EntryGate extends Gateway {
     
     public EntryGate(DigitalReader reader, PaymentHub paymenthub){
         super(reader, paymenthub);
+        System.out.println(paymentHub);
     }
  
     @Override
     public void handleToken(int tokenId){
-        if (super.getPaymentHub().canUserTravel(tokenId)){
+        System.out.println(paymentHub);
+        if (paymentHub.canUserTravel(tokenId)){
             super.openGate();
         }
     }
