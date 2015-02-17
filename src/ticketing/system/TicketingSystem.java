@@ -15,7 +15,6 @@ public class TicketingSystem extends javax.swing.JFrame {
     Route r;
     SystemSupervisor s;
     Employee e;
-
     public void loadData() {
         s = new SystemSupervisor("Mr Boss", 1);
         a = new Area("Sheffield");
@@ -28,6 +27,7 @@ public class TicketingSystem extends javax.swing.JFrame {
         EmployeeAccountManager.getInstance().addEmployee(e);
         e = new Employee("Curtis", 2, "password2");
         EmployeeAccountManager.getInstance().addEmployee(e);
+        System.out.println(EmployeeAccountManager.getInstance().getEmployeeById(1).toString());
     }
 
     public TicketingSystem() {

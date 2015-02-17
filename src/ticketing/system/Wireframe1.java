@@ -395,11 +395,6 @@ public class Wireframe1 extends javax.swing.JFrame {
                 System.out.println(i);
             }
         }
-//        try {
-//            Serialize();
-//        } catch (IOException ex) {
-//            Logger.getLogger(Wireframe1.class.getName()).log(Level.SEVERE, null, ex);
-//        }
     }//GEN-LAST:event_formWindowClosing
 
     private void jButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoginActionPerformed
@@ -460,6 +455,8 @@ public class Wireframe1 extends javax.swing.JFrame {
         jPanelLogInfringement.setVisible(false);
         jButtonLogOut.setEnabled(false);
         jLabelActiveUser.setText("No Active User");
+
+
     }//GEN-LAST:event_jButtonLogOutActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -470,8 +467,11 @@ public class Wireframe1 extends javax.swing.JFrame {
 //            System.out.println(date); // Sat Jan 02 00:00:00 GMT 2010
             currentArea.logInfringement(date, currentRoute, null, currentEmployee.getId());
         } catch (ParseException ex) {
+            System.out.println("Fucked upp");
             Logger.getLogger(Wireframe1.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
