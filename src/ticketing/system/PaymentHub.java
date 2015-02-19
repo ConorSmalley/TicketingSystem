@@ -73,6 +73,8 @@ class PaymentHub {
     }
 
     private boolean canUserAffordPayment(UserAccount user) {
+        System.out.println(user);
+        System.out.println(getParentTravelPoint());
         return user.canAccountBeDebited(getParentTravelPoint().getPrice());
     }
 
