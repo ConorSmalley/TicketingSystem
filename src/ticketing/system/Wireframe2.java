@@ -337,13 +337,9 @@ public class Wireframe2 extends javax.swing.JFrame {
             wp.changeLine2("");
             wp.changeLine3("");
             wp.changeLine4("We hope you have a safe and enjoyable trip");
+        } else {
+            System.out.println("User can't travel");
         }
-        buttonPressed = true;
-        jButtonLogin.setText("Return");
-        wp.changeLine1("Your MegaRider Pass Has Been Accepted");
-        wp.changeLine2("");
-        wp.changeLine3("");
-        wp.changeLine4("We hope you have a safe and enjoyable trip");
     }//GEN-LAST:event_jButtonDTActionPerformed
 
     private void jButtonBuyDTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuyDTActionPerformed

@@ -35,6 +35,7 @@ public class UserAccount implements Serializable {
         tokens = new ArrayList();
         id = idCount++;
         balance = 0;
+        transactionList = new TransactionList();
     }
 
     public Person getPersonData() {
