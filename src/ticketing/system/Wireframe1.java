@@ -29,6 +29,7 @@ public class Wireframe1 extends javax.swing.JFrame {
     Route currentRoute = null;
     Area currentArea = null;
     Employee currentEmployee;
+    TravelPoint currentTravelPoint;
 
     public Wireframe1(SystemSupervisor s) {
         this.s = s;
@@ -81,11 +82,14 @@ public class Wireframe1 extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jEditorPane1 = new javax.swing.JEditorPane();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         jPanelLogInfringement = new javax.swing.JPanel();
         jComboBoxInfringementRoutes = new javax.swing.JComboBox();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox();
+        jComboBoxBusStop = new javax.swing.JComboBox();
         jLabel5 = new javax.swing.JLabel();
         jTextFieldDate = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
@@ -258,6 +262,17 @@ public class Wireframe1 extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(jEditorPane1);
 
+        jButton2.setText("Return");
+
+        jButton3.setText("Log Infringement");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("Charge Fair");
+
         javax.swing.GroupLayout jPanelScanTicketLayout = new javax.swing.GroupLayout(jPanelScanTicket);
         jPanelScanTicket.setLayout(jPanelScanTicketLayout);
         jPanelScanTicketLayout.setHorizontalGroup(
@@ -265,12 +280,24 @@ public class Wireframe1 extends javax.swing.JFrame {
             .addGroup(jPanelScanTicketLayout.createSequentialGroup()
                 .addGroup(jPanelScanTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelScanTicketLayout.createSequentialGroup()
-                        .addGap(76, 76, 76)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanelScanTicketLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton3))
+                    .addGroup(jPanelScanTicketLayout.createSequentialGroup()
+                        .addGroup(jPanelScanTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelScanTicketLayout.createSequentialGroup()
+                                .addGap(76, 76, 76)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanelScanTicketLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelScanTicketLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButton4)
+                .addGap(80, 80, 80))
         );
         jPanelScanTicketLayout.setVerticalGroup(
             jPanelScanTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -279,7 +306,13 @@ public class Wireframe1 extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelScanTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2)
+                    .addComponent(jButton3))
+                .addContainerGap())
         );
 
         jComboBoxInfringementRoutes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -289,7 +322,7 @@ public class Wireframe1 extends javax.swing.JFrame {
 
         jLabel4.setText("Bus Stop");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxBusStop.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel5.setText("Date");
 
@@ -321,7 +354,7 @@ public class Wireframe1 extends javax.swing.JFrame {
                     .addComponent(jLabel6)
                     .addComponent(jTextFieldTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBoxBusStop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(121, 121, 121))
         );
         jPanelLogInfringementLayout.setVerticalGroup(
@@ -334,7 +367,7 @@ public class Wireframe1 extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jComboBoxBusStop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -390,11 +423,7 @@ public class Wireframe1 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        for (Area a : s.getAreas()) {
-            for (Infringement i : a.getInfringements()) {
-                System.out.println(i);
-            }
-        }
+
     }//GEN-LAST:event_formWindowClosing
 
     private void jButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoginActionPerformed
@@ -404,6 +433,7 @@ public class Wireframe1 extends javax.swing.JFrame {
                 && jTextFieldPassword.getText().equals(EmployeeAccountManager.getInstance().getEmployeeById(Integer.valueOf(jTextFieldEmployeeId.getText())).getPassword())) {
             currentEmployee = EmployeeAccountManager.getInstance().getEmployeeById(Integer.valueOf(jTextFieldEmployeeId.getText()));
             currentRoute = (Route) jComboBoxRoute.getSelectedItem();
+//            currentTravelPoint = currentRoute.getStart();
             for (Area a : s.getAreas()) {
                 if (a.getRoutes().contains(currentRoute)) {
                     currentArea = a;
@@ -465,7 +495,8 @@ public class Wireframe1 extends javax.swing.JFrame {
             DateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.ENGLISH);
             Date date = format.parse(jTextFieldDate.getText() + " " + jTextFieldTime.getText());
 //            System.out.println(date); // Sat Jan 02 00:00:00 GMT 2010
-            currentArea.logInfringement(date, currentRoute, null, currentEmployee.getId());
+            Route tempRoute =(Route) jComboBoxInfringementRoutes.getSelectedItem();
+            currentArea.logInfringement(date, tempRoute, (TravelPoint) jComboBoxBusStop.getSelectedItem(), currentEmployee.getId());
         } catch (ParseException ex) {
             System.out.println("Fucked upp");
             Logger.getLogger(Wireframe1.class.getName()).log(Level.SEVERE, null, ex);
@@ -473,6 +504,10 @@ public class Wireframe1 extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        currentArea.logInfringement(new Date(), currentRoute, currentTravelPoint, currentEmployee.getId());
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -527,6 +562,9 @@ public class Wireframe1 extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButtonAccount;
     private javax.swing.JButton jButtonEdit;
     private javax.swing.JButton jButtonFile;
@@ -537,7 +575,7 @@ public class Wireframe1 extends javax.swing.JFrame {
     private javax.swing.JButton jButtonScan;
     private javax.swing.JButton jButtonSettings;
     private javax.swing.JButton jButtonView;
-    private javax.swing.JComboBox jComboBox2;
+    private javax.swing.JComboBox jComboBoxBusStop;
     private javax.swing.JComboBox jComboBoxInfringementRoutes;
     private javax.swing.JComboBox jComboBoxRoute;
     private javax.swing.JEditorPane jEditorPane1;

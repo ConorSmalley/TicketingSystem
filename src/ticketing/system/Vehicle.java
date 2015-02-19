@@ -23,9 +23,9 @@ class Vehicle {
     Vehicle(Route route) {
         Id = ++vehicleId;
         paymentHub = new PaymentHub(this, 1);
-        this.gateway = new EntryGate(new DigitalReader(), paymentHub);
+        gateway = paymentHub.getGatewayId(0);
         assignedRoute = route;
-        currentTravelPoint = null;
+        currentTravelPoint = route.getStart();
     }
 
     public void setRoute(Route r) {

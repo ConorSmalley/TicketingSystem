@@ -71,11 +71,13 @@ class PaymentHub {
     }
 
     public void applyTicketToAcount(Ticket ticket, int token) {
-        UserAccount user = UserAccountManager.getUserAccountByTokenId(token);
+        UserAccount user = UserAccountManager.getInstance().getUserAccountByTokenId(token);
         user.setActiveTicket(ticket);
     }
 
     private boolean canUserAffordPayment(UserAccount user) {
+        System.out.println(user);
+        System.out.println(getParentTravelPoint());
         return user.canAccountBeDebited(getParentTravelPoint().getPrice());
     }
 
@@ -92,7 +94,7 @@ class PaymentHub {
 
     public boolean canUserLeave(int tokenId) {
         //Acquires a user and retrieves current ticket
-        UserAccount acct = (UserAccountManager.getUserAccountByTokenId(tokenId));
+        UserAccount acct = (UserAccountManager.getInstance().getUserAccountByTokenId(tokenId));
         Ticket ticket = acct.getActiveTicket();
         if (ticket == null) {
             return false;
@@ -120,5 +122,9 @@ class PaymentHub {
             
         }
 
+    }
+
+    public Gateway getGatewayId(int i) {
+        return gateways.get(i);
     }
 }

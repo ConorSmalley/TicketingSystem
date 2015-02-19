@@ -106,7 +106,7 @@ public class UserAccount implements Serializable {
     }
     @Override
     public String toString(){
-        return "Id: " + id + " Name: " + person.toString();
+        return "Id: " + id + " Name: " + person.toString() + "Balance: " + balance;
     }
     
     public boolean checkActivePasses(Route assignedRoute) {
