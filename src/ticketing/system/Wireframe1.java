@@ -316,6 +316,11 @@ public class Wireframe1 extends javax.swing.JFrame {
         );
 
         jComboBoxInfringementRoutes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxInfringementRoutes.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxInfringementRoutesItemStateChanged(evt);
+            }
+        });
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel3.setText("Route:");
@@ -433,7 +438,7 @@ public class Wireframe1 extends javax.swing.JFrame {
                 && jTextFieldPassword.getText().equals(EmployeeAccountManager.getInstance().getEmployeeById(Integer.valueOf(jTextFieldEmployeeId.getText())).getPassword())) {
             currentEmployee = EmployeeAccountManager.getInstance().getEmployeeById(Integer.valueOf(jTextFieldEmployeeId.getText()));
             currentRoute = (Route) jComboBoxRoute.getSelectedItem();
-//            currentTravelPoint = currentRoute.getStart();
+            currentTravelPoint = currentRoute.getStart();
             for (Area a : s.getAreas()) {
                 if (a.getRoutes().contains(currentRoute)) {
                     currentArea = a;
@@ -454,6 +459,10 @@ public class Wireframe1 extends javax.swing.JFrame {
 //                    System.out.println(r);
                     jComboBoxInfringementRoutes.addItem(r);
                 }
+            }
+            jComboBoxBusStop.removeAllItems();
+            for(TravelPoint tp : currentRoute.getTravelPoints()){
+                jComboBoxBusStop.addItem(tp);
             }
             jComboBoxInfringementRoutes.setSelectedItem(currentRoute);
         }
@@ -508,6 +517,14 @@ public class Wireframe1 extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         currentArea.logInfringement(new Date(), currentRoute, currentTravelPoint, currentEmployee.getId());
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jComboBoxInfringementRoutesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxInfringementRoutesItemStateChanged
+        // TODO add your handling code here:
+        jComboBoxBusStop.removeAllItems();
+        for(TravelPoint tp : ((Route) jComboBoxInfringementRoutes.getSelectedItem()).getTravelPoints()){
+            jComboBoxBusStop.addItem(tp);
+        }
+    }//GEN-LAST:event_jComboBoxInfringementRoutesItemStateChanged
 
     /**
      * @param args the command line arguments
