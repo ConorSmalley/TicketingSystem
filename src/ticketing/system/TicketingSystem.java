@@ -15,12 +15,19 @@ public class TicketingSystem extends javax.swing.JFrame {
     Route r;
     SystemSupervisor s;
     Employee e;
+    UserAccount u;
     public void loadData() {
         s = new SystemSupervisor("Mr Boss", 1);
         a = new Area("Sheffield");
         r = new Route(1, "52", "Woodhouse - Crookes", 5.0, 5, 0.5);
+        r.addTravelPoint(new TravelPoint("Woodhouse", r));
+        r.addTravelPoint(new TravelPoint("Darnall", r));
+        r.addTravelPoint(new TravelPoint("Crookes", r));
         a.addRoute(r);
         r = new Route(2, "X78", "Sheffield - Doncaster", 4.0, 7, 0.6);
+        r.addTravelPoint(new TravelPoint("Sheffield", r));
+        r.addTravelPoint(new TravelPoint("Meadowhall", r));
+        r.addTravelPoint(new TravelPoint("Doncaster", r));
         a.addRoute(r);
         s.addArea(a);
         e = new Employee("Conor", 1, "password1");
@@ -28,6 +35,11 @@ public class TicketingSystem extends javax.swing.JFrame {
         e = new Employee("Curtis", 2, "password2");
         EmployeeAccountManager.getInstance().addEmployee(e);
         System.out.println(EmployeeAccountManager.getInstance().getEmployeeById(1).toString());
+        u = new UserAccount();
+        u.addToken(new Token(0));
+        u.savePersonData(new Person("Andrew"));
+        u.updateBalance(3);
+        UserAccountManager.getInstance().addUserAccount(u);
     }
 
     public TicketingSystem() {

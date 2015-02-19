@@ -96,4 +96,8 @@ class Route {
     public String toString() {
         return routeNo + "," + name;
     }
+
+    public TravelPoint getStart() {
+        return travelPoints.get(0);
+    }
 }
