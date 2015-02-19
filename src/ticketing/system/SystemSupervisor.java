@@ -1,5 +1,3 @@
-/*
- */
 package ticketing.system;
 
 import java.util.ArrayList;
@@ -7,8 +5,8 @@ import java.util.Iterator;
 
 /**
  * A central database of much of the information supporting the system
- * Collections for areas and discounts are found here A reference to collection
- * classes for other entities can be found here
+ * Collections for areas and discounts are found here. A reference to collection
+ * classes for other entities can be found here. 
  */
 public class SystemSupervisor {
 

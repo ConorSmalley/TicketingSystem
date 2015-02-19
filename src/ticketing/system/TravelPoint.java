@@ -1,13 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ticketing.system;
 
 /**
- *
- * @author Conor
+ * A location which the system serves. Users may be charges from these locations,
+ * they may be logged as embarking on transport from them and leaving transport from them.
+ * TravelPoints also make up routes through which vehicles travel.
  */
 class TravelPoint {
     private Route route;

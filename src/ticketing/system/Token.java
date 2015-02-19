@@ -1,13 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ticketing.system;
 
 /**
- *
- * @author Conor
+ * A token is just a number which pertains to a user to identify them from a pass or ticket
  */
 public class Token{
     private int Id;
