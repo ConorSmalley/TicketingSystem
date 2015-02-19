@@ -51,17 +51,18 @@ public class Wireframe1 extends javax.swing.JFrame {
         jPanelLogInfringement.setVisible(false);
         jPanelScanTicket.setVisible(false);
         jComboBoxInfringementRoutes.addItemListener(new ItemListener() {
+            @Override
             public void itemStateChanged(ItemEvent arg0) {
-                System.out.println("called");
+//                System.out.println("called");
                 jComboBoxBusStop.removeAllItems();
                 if (((Route) jComboBoxInfringementRoutes.getSelectedItem()) == null) {
-                    System.out.println("null");
+//                    System.out.println("null");
                 } else {
-                    System.out.println("not null");
-                    System.out.println(((Route) jComboBoxInfringementRoutes.getSelectedItem()));
+//                    System.out.println("not null");
+//                    System.out.println(((Route) jComboBoxInfringementRoutes.getSelectedItem()));
                     for (TravelPoint tp : ((Route) jComboBoxInfringementRoutes.getSelectedItem()).getTravelPoints()) {
-                    jComboBoxBusStop.addItem(tp);
-                        System.out.println(tp);
+                        jComboBoxBusStop.addItem(tp);
+//                        System.out.println(tp);
                     }
                 }
             }
