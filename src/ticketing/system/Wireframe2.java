@@ -325,12 +325,19 @@ public class Wireframe2 extends javax.swing.JFrame {
     private void jButtonDTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDTActionPerformed
         // TODO add your handling code here:
         Vehicle vehicle = null;
-        for(Vehicle v : vehicles){
-            if(v.getRoute().equals(activeRoute)){
+        for (Vehicle v : vehicles) {
+            if (v.getRoute().equals(activeRoute)) {
                 vehicle = v;
             }
         }
-        vehicle.getGateway().handleToken(vehicle.getGateway().getReader().scanToken());
+        if (vehicle.getGateway().handleToken(vehicle.getGateway().getReader().scanToken())) {
+            buttonPressed = true;
+            jButtonLogin.setText("Return");
+            wp.changeLine1("Your MegaRider Pass Has Been Accepted");
+            wp.changeLine2("");
+            wp.changeLine3("");
+            wp.changeLine4("We hope you have a safe and enjoyable trip");
+        }
         buttonPressed = true;
         jButtonLogin.setText("Return");
         wp.changeLine1("Your MegaRider Pass Has Been Accepted");

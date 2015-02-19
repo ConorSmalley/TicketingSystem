@@ -19,7 +19,7 @@ public abstract class Gateway{
         this.paymentHub = paymentHub;
     }
     
-    public abstract void handleToken(int tokenId);
+    public abstract boolean handleToken(int tokenId);
     
     public int getId(){
         return this.id;
