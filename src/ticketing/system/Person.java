@@ -8,8 +8,8 @@ package ticketing.system;
 import java.io.Serializable;
 
 /**
- *
- * @author Conor
+ * A data class for a person to which a UserAccount pertains.
+ * Simply sets and gets personal data
  */
 public class Person implements Serializable {
 
