@@ -5,6 +5,10 @@
  */
 package ticketing.system;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -46,6 +50,22 @@ public class Wireframe1 extends javax.swing.JFrame {
         jButtonLog.setVisible(false);
         jPanelLogInfringement.setVisible(false);
         jPanelScanTicket.setVisible(false);
+        jComboBoxInfringementRoutes.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent arg0) {
+                System.out.println("called");
+                jComboBoxBusStop.removeAllItems();
+                if (((Route) jComboBoxInfringementRoutes.getSelectedItem()) == null) {
+                    System.out.println("null");
+                } else {
+                    System.out.println("not null");
+                    System.out.println(((Route) jComboBoxInfringementRoutes.getSelectedItem()));
+                    for (TravelPoint tp : ((Route) jComboBoxInfringementRoutes.getSelectedItem()).getTravelPoints()) {
+                    jComboBoxBusStop.addItem(tp);
+                        System.out.println(tp);
+                    }
+                }
+            }
+        });
     }
 
     /**
@@ -461,7 +481,7 @@ public class Wireframe1 extends javax.swing.JFrame {
                 }
             }
             jComboBoxBusStop.removeAllItems();
-            for(TravelPoint tp : currentRoute.getTravelPoints()){
+            for (TravelPoint tp : currentRoute.getTravelPoints()) {
                 jComboBoxBusStop.addItem(tp);
             }
             jComboBoxInfringementRoutes.setSelectedItem(currentRoute);
@@ -504,7 +524,7 @@ public class Wireframe1 extends javax.swing.JFrame {
             DateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.ENGLISH);
             Date date = format.parse(jTextFieldDate.getText() + " " + jTextFieldTime.getText());
 //            System.out.println(date); // Sat Jan 02 00:00:00 GMT 2010
-            Route tempRoute =(Route) jComboBoxInfringementRoutes.getSelectedItem();
+            Route tempRoute = (Route) jComboBoxInfringementRoutes.getSelectedItem();
             currentArea.logInfringement(date, tempRoute, (TravelPoint) jComboBoxBusStop.getSelectedItem(), currentEmployee.getId());
         } catch (ParseException ex) {
             System.out.println("Fucked upp");
@@ -520,10 +540,10 @@ public class Wireframe1 extends javax.swing.JFrame {
 
     private void jComboBoxInfringementRoutesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxInfringementRoutesItemStateChanged
         // TODO add your handling code here:
-        jComboBoxBusStop.removeAllItems();
-        for(TravelPoint tp : ((Route) jComboBoxInfringementRoutes.getSelectedItem()).getTravelPoints()){
-            jComboBoxBusStop.addItem(tp);
-        }
+//        jComboBoxBusStop.removeAllItems();
+//        for(TravelPoint tp : ((Route) jComboBoxInfringementRoutes.getSelectedItem()).getTravelPoints()){
+//            jComboBoxBusStop.addItem(tp);
+//        }
     }//GEN-LAST:event_jComboBoxInfringementRoutesItemStateChanged
 
     /**
