@@ -18,10 +18,12 @@ public class EntryGate extends Gateway {
     }
  
     @Override
-    public void handleToken(int tokenId){
+    public boolean handleToken(int tokenId){
         System.out.println(paymentHub);
         if (paymentHub.canUserTravel(tokenId)){
             super.openGate();
+            return true;
         }
+        return false;
     }
 }
