@@ -10,46 +10,50 @@ package ticketing.system;
  * @author Conor
  */
 class TravelPoint {
+
     private Route route;
     private int id;
     private String name;
     private String type;
     private PaymentHub paymenthub;
     public Area area;
-    
-    public TravelPoint(String name, Route route){
+
+    public TravelPoint(String name, Route route) {
         this.name = name;
         this.route = route;
     }
-    
-    public String getName(){
+
+    public String getName() {
         return name;
     }
-    
-    public void setName(String name){
+
+    public void setName(String name) {
         this.name = name;
     }
-    
-    public String getType(){
+
+    public String getType() {
         return type;
     }
-    
-    public double getPrice(){
-       return route.getPrice();
+
+    public double getPrice() {
+        return route.getPrice();
     }
-    
-    public void setType(String type){
+
+    public void setType(String type) {
         this.type = type;
     }
-    
-    public Area getArea(){
+
+    public Area getArea() {
         return area;
     }
-    
-    public void setArea(Area areaIn){
+
+    public void setArea(Area areaIn) {
         area = areaIn;
     }
-    
-    
-    
+
+    @Override
+    public String toString() {
+        return name;
+    }
+
 }

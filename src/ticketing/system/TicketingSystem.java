@@ -34,7 +34,7 @@ public class TicketingSystem extends javax.swing.JFrame {
         EmployeeAccountManager.getInstance().addEmployee(e);
         e = new Employee("Curtis", 2, "password2");
         EmployeeAccountManager.getInstance().addEmployee(e);
-        System.out.println(EmployeeAccountManager.getInstance().getEmployeeById(1).toString());
+//        System.out.println(EmployeeAccountManager.getInstance().getEmployeeById(1).toString());
         u = new UserAccount();
         u.addToken(new Token(0));
         u.savePersonData(new Person("Andrew"));
