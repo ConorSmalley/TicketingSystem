@@ -34,7 +34,7 @@ public class Wireframe2 extends javax.swing.JFrame {
             for (Route r : a.getRoutes()) {
                 System.out.println(r);
                 jComboBoxRoute.addItem(r);
-                vehicles.add(new Vehicle(r, r.getStart()));
+                vehicles.add(new Vehicle(r));
             }
         }
 

@@ -20,12 +20,12 @@ class Vehicle {
     private TravelPoint currentTravelPoint;
     private static int vehicleId = 0;
     
-    Vehicle(Route route, TravelPoint start) {
+    Vehicle(Route route) {
         Id = ++vehicleId;
         paymentHub = new PaymentHub(this, 1);
         gateway = paymentHub.getGatewayId(0);
         assignedRoute = route;
-        currentTravelPoint = start;
+        currentTravelPoint = route.getStart();
     }
 
     public void setRoute(Route r) {
