@@ -18,7 +18,7 @@ public class Infringement {
         this.r = r;
         this.tp = tp;
         this.en = en;
-        System.out.println("Infringement created by: " + EmployeeAccountManager.getInstance().getEmployeeById(en).toString() + " on route " + r.toString());
+        System.out.println("Infringement created by: " + EmployeeAccountManager.getInstance().getEmployeeById(en).toString() + " on route " + r.toString() + " at travel point " + tp.getName());
     }
 
     @Override

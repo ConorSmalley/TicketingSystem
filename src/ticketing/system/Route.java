@@ -1,6 +1,7 @@
 package ticketing.system;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -100,5 +101,9 @@ class Route {
     
     public TravelPoint getNextTravelPoint(TravelPoint t){
         return travelPoints.get(travelPoints.indexOf(t)+1);
+    }
+
+    public List<Vehicle> getVehicles() {
+        return assignedVehicles;
     }
 }

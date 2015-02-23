@@ -42,24 +42,29 @@ class PaymentHub {
         boolean hasPass = false;
         UserAccount user = UserAccountManager.getInstance().getUserAccountByTokenId(tokenId);
         if (user == null) {
+            System.out.println("Null user in canUserTavel()");
             return false;
         } else {
             if (canUserAffordPayment(user)) {
                 ticket = new Ticket(new Date());
                 if (parentTravel != null) {
+                    System.out.println("On train");
                     ticket.setValidFrom(parentTravel);
                 }
                 if (parentVehicle != null) {
+                    System.out.println("On Bus");
                     ticket.setRoute(parentVehicle.getCurrentRoute());
                     ticket.setValidFrom(parentVehicle.getTravelPoint());
                     hasPass = user.checkActivePasses(parentVehicle.getCurrentRoute());
                 }
                 if (!hasPass) {
-                    purchaseTicket(user, ticket);
+                    System.out.println("User doesn't have pass");
+                    purchaseTicket(user);
                 }
                 user.setActiveTicket(ticket);
                 return true;
             } else {
+                System.out.println("User can't afford payment");
                 return false;
             }
         }
@@ -73,10 +78,11 @@ class PaymentHub {
     private boolean canUserAffordPayment(UserAccount user) {
         System.out.println(user);
         System.out.println(getParentTravelPoint());
+        System.out.println(getParentTravelPoint().getPrice());
         return user.canAccountBeDebited(getParentTravelPoint().getPrice());
     }
 
-    private void purchaseTicket(UserAccount user, Ticket ticket) {
+    private void purchaseTicket(UserAccount user) {
         Transaction transaction = new Transaction(Cash, getParentTravelPoint().getPrice(), new Date());
         user.makePayment(getParentTravelPoint().getPrice());
         user.addTransaction(transaction);

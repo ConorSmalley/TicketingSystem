@@ -23,22 +23,24 @@ public class TicketingSystem extends javax.swing.JFrame {
         r.addTravelPoint(new TravelPoint("Woodhouse", r));
         r.addTravelPoint(new TravelPoint("Darnall", r));
         r.addTravelPoint(new TravelPoint("Crookes", r));
+        r.addVehicle(new Vehicle(r));
         a.addRoute(r);
         r = new Route(2, "X78", "Sheffield - Doncaster", 4.0, 7, 0.6);
         r.addTravelPoint(new TravelPoint("Sheffield", r));
         r.addTravelPoint(new TravelPoint("Meadowhall", r));
         r.addTravelPoint(new TravelPoint("Doncaster", r));
+        r.addVehicle(new Vehicle(r));
         a.addRoute(r);
         s.addArea(a);
         e = new Employee("Conor", 1, "password1");
         EmployeeAccountManager.getInstance().addEmployee(e);
         e = new Employee("Curtis", 2, "password2");
         EmployeeAccountManager.getInstance().addEmployee(e);
-        System.out.println(EmployeeAccountManager.getInstance().getEmployeeById(1).toString());
+//        System.out.println(EmployeeAccountManager.getInstance().getEmployeeById(1).toString());
         u = new UserAccount();
         u.addToken(new Token(0));
         u.savePersonData(new Person("Andrew"));
-        u.updateBalance(3);
+        u.updateBalance(10);
         UserAccountManager.getInstance().addUserAccount(u);
     }
 
@@ -112,7 +114,7 @@ public class TicketingSystem extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        Wireframe3 wf = new Wireframe3();
+        Wireframe3 wf = new Wireframe3(UserAccountManager.getInstance().getUserAccountById(0));
         wf.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
