@@ -114,7 +114,7 @@ public class TicketingSystem extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        Wireframe3 wf = new Wireframe3();
+        Wireframe3 wf = new Wireframe3(UserAccountManager.getInstance().getUserAccountById(0));
         wf.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
