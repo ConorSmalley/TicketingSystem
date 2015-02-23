@@ -22,7 +22,7 @@ public class Wireframe2 extends javax.swing.JFrame {
     boolean buttonPressed = false;
     Wireframe2Passenger wp;
     List<Vehicle> vehicles;
-    Employee activeUser;
+    Employee activeEmployee;
     Route activeRoute;
 
     public Wireframe2(SystemSupervisor s) {
@@ -44,7 +44,7 @@ public class Wireframe2 extends javax.swing.JFrame {
         activeRoute = (Route) jComboBoxRoute.getSelectedItem();
         jLabelSignIn.setText("Ready for digital ticket");
         jButtonLogin.setText("Paper Tickets");
-        jLabelActiveUser.setText(activeUser.toString() + ", " + activeRoute.getRouteNo());
+        jLabelActiveUser.setText(activeEmployee.toString() + ", " + activeRoute.getRouteNo());
         jLabelEmployeeId.setVisible(false);
         jLabelPassword.setVisible(false);
         jLabelRoute.setVisible(false);
@@ -309,8 +309,8 @@ public class Wireframe2 extends javax.swing.JFrame {
             if (jTextFieldEmployeeId.getText().isEmpty() || jTextFieldPassword.getText().isEmpty()) {
                 // inset message here
             } else {
-                activeUser = EmployeeAccountManager.getInstance().getEmployeeById(Integer.valueOf(jTextFieldEmployeeId.getText()));
-                if (activeUser != null && jTextFieldPassword.getText().equals(activeUser.getPassword())) {
+                activeEmployee = EmployeeAccountManager.getInstance().getEmployeeById(Integer.valueOf(jTextFieldEmployeeId.getText()));
+                if (activeEmployee != null && jTextFieldPassword.getText().equals(activeEmployee.getPassword())) {
                     login();
                 } else {
                     //insert incorrect message here 
@@ -382,34 +382,26 @@ public class Wireframe2 extends javax.swing.JFrame {
             }
         }
         System.out.println(vehicle);
+        double temp = activeRoute.getPrice();
         if (jCheckBox1.isSelected()) {
-            double temp = activeRoute.getPrice();
             activeRoute.setPrice(temp / 2);
-            if (vehicle.getGateway().handleToken(vehicle.getGateway().getReader().scanToken())) {
-                buttonPressed = true;
-                jButtonLogin.setText("Return");
-                wp.changeLine1("Your MegaRider Pass Has Been Accepted");
-                wp.changeLine2("");
-                wp.changeLine3("");
-                wp.changeLine4("We hope you have a safe and enjoyable trip");
-            } else {
-                System.out.println("User can't travel");
-            }
+        }
+        if (vehicle.getGateway().handleToken(vehicle.getGateway().getReader().scanToken())) {
+            buttonPressed = true;
+            jButtonLogin.setText("Return");
+            wp.changeLine1("You have Purchase A Digital Ticket");
+            wp.changeLine3("Fare is £" + activeRoute.getPrice());
+            wp.changeLine2("Half Fare discount will be applied if you scan off within two stops");
+            wp.changeLine4("");
             activeRoute.setPrice(temp);
         } else {
-            if (vehicle.getGateway().handleToken(vehicle.getGateway().getReader().scanToken())) {
-                buttonPressed = true;
-                jButtonLogin.setText("Return");
-                wp.changeLine1("Would You Like To Purchase A Digital Ticket?");
-                wp.changeLine3("Fare is £3.00");
-                wp.changeLine2("Half Fare discount will be applied if you scan off within two stops");
-                wp.changeLine4("");
-            } else {
-                System.out.println("User can't travel");
-            }
+            System.out.println("User can't travel");
+            jButtonLogin.setText("Return");
+            wp.changeLine1("Insufficient funds to purchase a Digital Ticket");
+            wp.changeLine3("Fare is £" + activeRoute.getPrice());
+            wp.changeLine2("Please top up your account before proceeding");
+            wp.changeLine4("");
         }
-        jButtonLogin.setText("Return");
-
     }//GEN-LAST:event_jButtonBuyDTActionPerformed
 
     private void jTextFieldEmployeeIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldEmployeeIdActionPerformed
