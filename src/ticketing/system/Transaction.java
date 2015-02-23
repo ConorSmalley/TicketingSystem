@@ -3,8 +3,8 @@ package ticketing.system;
 import java.util.Date;
 
 /**
- * A record of a transaction of real money. May be a change of balance stored
- * for a user. Stores data and method of payment.
+ * A record of a transaction of real money.</br> May be a change of balance stored
+ * for a user. Stores data and method of payment.</br>
  */
 public class Transaction {
 

@@ -4,8 +4,8 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * A instances of a passPlan. Pertains to a user and retains its start date
- * to be used for determining the valid duration of a pass.
+ * A instances of a passPlan.</br> Pertains to a user and retains its start date
+ * to be used for determining the valid duration of a pass.</br>
  */
 public class Pass {
 

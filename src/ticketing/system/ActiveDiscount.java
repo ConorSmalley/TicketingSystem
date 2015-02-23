@@ -3,8 +3,8 @@ package ticketing.system;
 import java.util.Date;
 
 /**
- * Activate discounts are uses of Discounts.
- * UserAccounts may have active discounts applied to them
+ * Activate discounts are uses of Discounts.</br>
+ * UserAccounts may have active discounts applied to them.</br>
  * 
  */
 public class ActiveDiscount {

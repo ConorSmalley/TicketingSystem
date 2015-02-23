@@ -40,7 +40,7 @@ public class TicketingSystem extends javax.swing.JFrame {
         u = new UserAccount();
         u.addToken(new Token(0));
         u.savePersonData(new Person("Andrew"));
-        u.updateBalance(10);
+        u.setBalance(10);
         UserAccountManager.getInstance().addUserAccount(u);
     }
 

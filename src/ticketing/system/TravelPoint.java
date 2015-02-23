@@ -1,9 +1,9 @@
 package ticketing.system;
 
 /**
- * A location which the system serves. Users may be charges from these locations,
- * they may be logged as embarking on transport from them and leaving transport from them.
- * TravelPoints also make up routes through which vehicles travel.
+ * A location which the system serves.</br> Users may be charges from these locations,
+ * they may be logged as embarking on transport from them and leaving transport from them.</br>
+ * TravelPoints also make up routes through which vehicles travel.</br>
  */
 class TravelPoint {
 

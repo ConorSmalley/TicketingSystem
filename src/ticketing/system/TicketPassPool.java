@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A collection class to store all the tickets and passes active in the system.
+ * A collection class to store all the tickets and passes active in the system.</br>
  */
 
 public class TicketPassPool {
