@@ -34,10 +34,10 @@ public class Wireframe2 extends javax.swing.JFrame {
             for (Route r : a.getRoutes()) {
                 System.out.println(r);
                 jComboBoxRoute.addItem(r);
-                vehicles.add(new Vehicle(r));
+                System.out.println(r.getVehicles());
+                vehicles.addAll(r.getVehicles());
             }
         }
-
     }
 
     public void login() {
@@ -323,13 +323,14 @@ public class Wireframe2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonLoginActionPerformed
 
     private void jButtonDTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDTActionPerformed
-        // TODO add your handling code here:
+        System.out.println(activeRoute);
         Vehicle vehicle = null;
         for (Vehicle v : vehicles) {
             if (v.getRoute().equals(activeRoute)) {
                 vehicle = v;
             }
         }
+        System.out.println(vehicle);
         if (vehicle.getGateway().handleToken(vehicle.getGateway().getReader().scanToken())) {
             buttonPressed = true;
             jButtonLogin.setText("Return");
