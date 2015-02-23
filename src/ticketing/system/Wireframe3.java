@@ -14,8 +14,11 @@ public class Wireframe3 extends javax.swing.JFrame {
     /**
      * Creates new form Wireframe3
      */
-    public Wireframe3() {
+    private static UserAccount currentUser;
+
+    public Wireframe3(UserAccount currentUser) {
         initComponents();
+        this.currentUser = currentUser;
     }
 
     /**
@@ -493,8 +496,8 @@ public class Wireframe3 extends javax.swing.JFrame {
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
-        
-        Wireframe3Topup t = new Wireframe3Topup();
+
+        Wireframe3Topup t = new Wireframe3Topup(currentUser);
         t.setVisible(true);
     }//GEN-LAST:event_jButton8ActionPerformed
 
@@ -528,7 +531,7 @@ public class Wireframe3 extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Wireframe3().setVisible(true);
+                new Wireframe3(currentUser).setVisible(true);
             }
         });
     }
