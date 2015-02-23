@@ -105,6 +105,7 @@ public class Wireframe2 extends javax.swing.JFrame {
         jTextFieldPassword = new javax.swing.JTextField();
         jButtonDT = new javax.swing.JButton();
         jButtonBuyDT = new javax.swing.JButton();
+        jCheckBox1 = new javax.swing.JCheckBox();
 
         jToolBar1.setRollover(true);
 
@@ -197,7 +198,7 @@ public class Wireframe2 extends javax.swing.JFrame {
             }
         });
 
-        jButtonDT.setText("DT");
+        jButtonDT.setText("DigitalTicket");
         jButtonDT.setEnabled(false);
         jButtonDT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -205,12 +206,19 @@ public class Wireframe2 extends javax.swing.JFrame {
             }
         });
 
-        jButtonBuyDT.setText("Buy DT");
+        jButtonBuyDT.setText("Buy DigitalTicket");
         jButtonBuyDT.setToolTipText("");
         jButtonBuyDT.setEnabled(false);
         jButtonBuyDT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonBuyDTActionPerformed(evt);
+            }
+        });
+
+        jCheckBox1.setText("Half Price");
+        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox1ActionPerformed(evt);
             }
         });
 
@@ -231,14 +239,17 @@ public class Wireframe2 extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(33, 33, 33)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabelEmployeeId)
-                                            .addComponent(jLabelPassword)
-                                            .addComponent(jLabelRoute))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jComboBoxRoute, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jTextFieldPassword)
-                                            .addComponent(jTextFieldEmployeeId))))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jLabelEmployeeId)
+                                                    .addComponent(jLabelPassword)
+                                                    .addComponent(jLabelRoute))
+                                                .addGap(18, 18, 18)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addComponent(jComboBoxRoute, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(jTextFieldPassword)
+                                                    .addComponent(jTextFieldEmployeeId)))
+                                            .addComponent(jCheckBox1))))
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -252,7 +263,7 @@ public class Wireframe2 extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelActiveUser, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)))
+                        .addComponent(jLabelActiveUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -277,7 +288,9 @@ public class Wireframe2 extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabelRoute)
                             .addComponent(jComboBoxRoute, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jCheckBox1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButtonLogin)
                         .addGap(7, 7, 7)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -331,15 +344,31 @@ public class Wireframe2 extends javax.swing.JFrame {
             }
         }
         System.out.println(vehicle);
-        if (vehicle.getGateway().handleToken(vehicle.getGateway().getReader().scanToken())) {
-            buttonPressed = true;
-            jButtonLogin.setText("Return");
-            wp.changeLine1("Your MegaRider Pass Has Been Accepted");
-            wp.changeLine2("");
-            wp.changeLine3("");
-            wp.changeLine4("We hope you have a safe and enjoyable trip");
+        if (jCheckBox1.isSelected()) {
+            double temp = activeRoute.getPrice();
+            activeRoute.setPrice(temp / 2);
+            if (vehicle.getGateway().handleToken(vehicle.getGateway().getReader().scanToken())) {
+                buttonPressed = true;
+                jButtonLogin.setText("Return");
+                wp.changeLine1("Your MegaRider Pass Has Been Accepted");
+                wp.changeLine2("");
+                wp.changeLine3("");
+                wp.changeLine4("We hope you have a safe and enjoyable trip");
+            } else {
+                System.out.println("User can't travel");
+            }
+            activeRoute.setPrice(temp);
         } else {
-            System.out.println("User can't travel");
+            if (vehicle.getGateway().handleToken(vehicle.getGateway().getReader().scanToken())) {
+                buttonPressed = true;
+                jButtonLogin.setText("Return");
+                wp.changeLine1("Your MegaRider Pass Has Been Accepted");
+                wp.changeLine2("");
+                wp.changeLine3("");
+                wp.changeLine4("We hope you have a safe and enjoyable trip");
+            } else {
+                System.out.println("User can't travel");
+            }
         }
     }//GEN-LAST:event_jButtonDTActionPerformed
 
@@ -353,15 +382,31 @@ public class Wireframe2 extends javax.swing.JFrame {
             }
         }
         System.out.println(vehicle);
-        if (vehicle.getGateway().handleToken(vehicle.getGateway().getReader().scanToken())) {
-            buttonPressed = true;
-            jButtonLogin.setText("Return");
-            wp.changeLine1("Would You Like To Purchase A Digital Ticket?");
-            wp.changeLine3("Fare is £3.00");
-            wp.changeLine2("Half Fare discount will be applied if you scan off within two stops");
-            wp.changeLine4("");
+        if (jCheckBox1.isSelected()) {
+            double temp = activeRoute.getPrice();
+            activeRoute.setPrice(temp / 2);
+            if (vehicle.getGateway().handleToken(vehicle.getGateway().getReader().scanToken())) {
+                buttonPressed = true;
+                jButtonLogin.setText("Return");
+                wp.changeLine1("Your MegaRider Pass Has Been Accepted");
+                wp.changeLine2("");
+                wp.changeLine3("");
+                wp.changeLine4("We hope you have a safe and enjoyable trip");
+            } else {
+                System.out.println("User can't travel");
+            }
+            activeRoute.setPrice(temp);
         } else {
-            System.out.println("User can't travel");
+            if (vehicle.getGateway().handleToken(vehicle.getGateway().getReader().scanToken())) {
+                buttonPressed = true;
+                jButtonLogin.setText("Return");
+                wp.changeLine1("Would You Like To Purchase A Digital Ticket?");
+                wp.changeLine3("Fare is £3.00");
+                wp.changeLine2("Half Fare discount will be applied if you scan off within two stops");
+                wp.changeLine4("");
+            } else {
+                System.out.println("User can't travel");
+            }
         }
         jButtonLogin.setText("Return");
 
@@ -375,6 +420,10 @@ public class Wireframe2 extends javax.swing.JFrame {
         // TODO add your handling code here:
         logout();
     }//GEN-LAST:event_jButtonLogOutActionPerformed
+
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -423,6 +472,7 @@ public class Wireframe2 extends javax.swing.JFrame {
     private javax.swing.JButton jButtonLogin;
     private javax.swing.JButton jButtonSettings;
     private javax.swing.JButton jButtonView;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JComboBox jComboBoxRoute;
     private javax.swing.JLabel jLabelActiveUser;
     private javax.swing.JLabel jLabelEmployeeId;

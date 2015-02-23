@@ -24,7 +24,6 @@ class Vehicle {
         assignedRoute = route;
         currentTravelPoint = route.getStart();
     }
-
     public void setRoute(Route r) {
         assignedRoute = r;
     }
