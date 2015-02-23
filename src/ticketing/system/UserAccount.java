@@ -60,7 +60,7 @@ public class UserAccount implements Serializable {
     }
     
     public void updateBalance(double b){
-        balance += b;
+        balance = balance + b;
     }
 
     public void updateAvailableBalance(double b) {
@@ -142,7 +142,7 @@ public class UserAccount implements Serializable {
     }
 
     public boolean canAccountBeDebited(double price) {
-        return balance > price;
+        return balance >= price;
 
     }
 

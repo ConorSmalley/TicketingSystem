@@ -15,21 +15,11 @@ public class Wireframe3 extends javax.swing.JFrame {
      * Creates new form Wireframe3
      */
     private static UserAccount currentUser;
-    
+
     public Wireframe3(UserAccount currentUser) {
         initComponents();
         this.currentUser = currentUser;
-//        currentUser = new UserAccount();
-//        Person p = new Person("test");
-//        currentUser.savePersonData(p);
-//        currentUser.setBalance(3);
-        if (currentUser.canAccountBeDebited(2)) {
-            jLabelMessage.setText("You're minted");
-        } else {
-            jLabelMessage.setText("You're account is in debit, click to see more");
-        }
-        jLabel8.setText(String.valueOf(currentUser.getBalance()));
-        jLabel9.setText("WTF");
+        displayUser();
     }
 
     /**
@@ -508,7 +498,7 @@ public class Wireframe3 extends javax.swing.JFrame {
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
 
-        Wireframe3Topup t = new Wireframe3Topup(currentUser);
+        Wireframe3Topup t = new Wireframe3Topup(currentUser, this);
         t.setVisible(true);
 
     }//GEN-LAST:event_jButton8ActionPerformed
@@ -548,6 +538,15 @@ public class Wireframe3 extends javax.swing.JFrame {
         });
     }
 
+    public void displayUser() {
+        if (currentUser.canAccountBeDebited(2)) {
+            jLabelMessage.setText("You're minted");
+        } else {
+            jLabelMessage.setText("You're account is in debit, click to see more");
+        }
+        jLabel8.setText(String.valueOf(currentUser.getBalance()));
+        jLabel9.setText("WTF");
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
