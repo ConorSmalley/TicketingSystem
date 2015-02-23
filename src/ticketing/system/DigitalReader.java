@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 /**
  * Implements the scanToken method which allows getting of token ID given by a
- * travelling user when user detected is detected. 
+ * travelling user when user detected is detected.</br>
  */
 
 public class DigitalReader {

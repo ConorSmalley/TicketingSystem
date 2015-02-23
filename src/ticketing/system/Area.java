@@ -7,10 +7,10 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Management class for most of the data of the system not including user accounts.
- * Has methods for adding and removing objects to several collections.
- * Does not create or destroy any data, only passes.
- * Implements the serialization of system data.
+ * Management class for most of the data of the system not including user accounts.</br>
+ * Has methods for adding and removing objects to several collections.</br>
+ * Does not create or destroy any data, only passes.</br>
+ * Implements the serialization of system data.</br>
  */
 public class Area implements Serializable {
 

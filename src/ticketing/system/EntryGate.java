@@ -3,7 +3,7 @@ package ticketing.system;
 
 /**
  * An implementation of Gateway which specifically calls on a relevant
- * PaymentHub to set a start point for a users ticket.
+ * PaymentHub to set a start point for a users ticket.</br>
  * 
  */
 public class EntryGate extends Gateway {
