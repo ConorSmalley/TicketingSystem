@@ -3,9 +3,10 @@ package ticketing.system;
 import java.util.List;
 
 /**
- * Software which manages a real world vehicle. Each vehicle has a paymentHub
- * and gateway which. Vehicles also record the route they're travelling on.
- * Also stores the current location of a vehicles to be used to properly charge a user's ticket.
+ * -Software which manages a real world vehicle -Each vehicle has a paymentHub
+ * and gateway which -Vehicles also record the route they're travelling on
+ * -Also stores the current location of a vehicles to be used to properly charge a user's ticket.
+ * 
  */
 class Vehicle {
 

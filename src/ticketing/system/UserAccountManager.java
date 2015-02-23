@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A storage class for holding user accounts.
- * Also managements addition and removal of user accounts from system.
+ * A storage class for holding user accounts
+ * -Also managements addition and removal of user accounts from system.
  */
 public class UserAccountManager implements Serializable {
 
