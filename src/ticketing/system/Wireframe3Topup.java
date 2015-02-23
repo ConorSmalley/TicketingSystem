@@ -21,7 +21,7 @@ public class Wireframe3Topup extends javax.swing.JFrame {
         Wireframe3Topup.currentUser = currentUser;
         Wireframe3Topup.wf3 = wf3;
         jLabel8.setText(String.valueOf(currentUser.getBalance()));
-        jLabel9.setText("WTF");
+        jLabel9.setText("+-+");
     }
 
     /**

@@ -545,7 +545,7 @@ public class Wireframe3 extends javax.swing.JFrame {
             jLabelMessage.setText("You're account is in debit, click to see more");
         }
         jLabel8.setText(String.valueOf(currentUser.getBalance()));
-        jLabel9.setText("WTF");
+        jLabel9.setText("+-+");
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
