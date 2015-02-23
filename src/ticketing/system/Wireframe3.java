@@ -15,10 +15,21 @@ public class Wireframe3 extends javax.swing.JFrame {
      * Creates new form Wireframe3
      */
     private static UserAccount currentUser;
-
+    
     public Wireframe3(UserAccount currentUser) {
         initComponents();
         this.currentUser = currentUser;
+//        currentUser = new UserAccount();
+//        Person p = new Person("test");
+//        currentUser.savePersonData(p);
+//        currentUser.updateBalance(3);
+        if (currentUser.canAccountBeDebited(2)) {
+            jLabelMessage.setText("You're minted");
+        } else {
+            jLabelMessage.setText("You're account is in debit, click to see more");
+        }
+        jLabel8.setText(String.valueOf(currentUser.getBalance()));
+        jLabel9.setText("WTF");
     }
 
     /**
@@ -32,7 +43,7 @@ public class Wireframe3 extends javax.swing.JFrame {
 
         jFrame1 = new javax.swing.JFrame();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jLabelMessage = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
@@ -85,9 +96,9 @@ public class Wireframe3 extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel1.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Your account is in debit, click to see more ");
+        jLabelMessage.setForeground(new java.awt.Color(255, 0, 0));
+        jLabelMessage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelMessage.setText("Your account is in debit, click to see more ");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -95,14 +106,14 @@ public class Wireframe3 extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabelMessage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(jLabelMessage)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -499,6 +510,7 @@ public class Wireframe3 extends javax.swing.JFrame {
 
         Wireframe3Topup t = new Wireframe3Topup(currentUser);
         t.setVisible(true);
+
     }//GEN-LAST:event_jButton8ActionPerformed
 
     /**
@@ -546,7 +558,6 @@ public class Wireframe3 extends javax.swing.JFrame {
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JFrame jFrame1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -555,6 +566,7 @@ public class Wireframe3 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabelMessage;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
