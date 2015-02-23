@@ -1,35 +1,41 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ticketing.system;
 
 import java.util.List;
 
 /**
- *
- * @author Conor
+ * Software which manages a real world vehicle. Each vehicle has a paymentHub
+ * and gateway which. Vehicles also record the route they're travelling on.
+ * Also stores the current location of a vehicles to be used to properly charge a user's ticket.
  */
 class Vehicle {
 
     private int Id;
-    private List<Gateway> gates;
+    private Gateway gateway;
     private Route assignedRoute;
     private PaymentHub paymentHub;
     private TravelPoint currentTravelPoint;
     private static int vehicleId = 0;
-    Vehicle() {
+    
+    Vehicle(Route route) {
         Id = ++vehicleId;
-        gates = null;
-        assignedRoute = null;
-        currentTravelPoint = null;
+        paymentHub = new PaymentHub(this, 1);
+        gateway = paymentHub.getGatewayId(0);
+        assignedRoute = route;
+        currentTravelPoint = route.getStart();
     }
 
     public void setRoute(Route r) {
         assignedRoute = r;
     }
+    
+    public Route getRoute(){
+        return assignedRoute;
+    }
 
+    public Gateway getGateway(){
+        return gateway;
+    }
+    
     public Route getCurrentRoute() {
         return assignedRoute;
     }

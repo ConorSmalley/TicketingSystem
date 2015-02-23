@@ -5,6 +5,9 @@
  */
 package ticketing.system;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author Conor
@@ -18,18 +21,59 @@ public class Wireframe2 extends javax.swing.JFrame {
     boolean loggedIn = false;
     boolean buttonPressed = false;
     Wireframe2Passenger wp;
-    
+    List<Vehicle> vehicles;
+    Employee activeUser;
+    Route activeRoute;
+
     public Wireframe2(SystemSupervisor s) {
+        this.vehicles = new ArrayList();
         initComponents();
         jComboBoxRoute.removeAllItems();
-        this.s = s;
+        Wireframe2.s = s;
         for (Area a : s.getAreas()) {
             for (Route r : a.getRoutes()) {
                 System.out.println(r);
                 jComboBoxRoute.addItem(r);
+                System.out.println(r.getVehicles());
+                vehicles.addAll(r.getVehicles());
             }
         }
-        
+    }
+
+    public void login() {
+        activeRoute = (Route) jComboBoxRoute.getSelectedItem();
+        jLabelSignIn.setText("Ready for digital ticket");
+        jButtonLogin.setText("Paper Tickets");
+        jLabelActiveUser.setText(activeUser.toString() + ", " + activeRoute.getRouteNo());
+        jLabelEmployeeId.setVisible(false);
+        jLabelPassword.setVisible(false);
+        jLabelRoute.setVisible(false);
+        jTextFieldEmployeeId.setVisible(false);
+        jTextFieldPassword.setVisible(false);
+        jComboBoxRoute.setVisible(false);
+        loggedIn = true;
+        wp = new Wireframe2Passenger();
+        wp.setVisible(true);
+        jButtonDT.setEnabled(true);
+        jButtonBuyDT.setEnabled(true);
+        jButtonLogOut.setEnabled(true);
+    }
+
+    public void logout() {
+        wp.setVisible(false);
+        jLabelActiveUser.setText("No Active User");
+        jLabelEmployeeId.setVisible(true);
+        jLabelPassword.setVisible(true);
+        jLabelRoute.setVisible(true);
+        jTextFieldEmployeeId.setVisible(true);
+        jTextFieldPassword.setVisible(true);
+        jComboBoxRoute.setVisible(true);
+        jButtonDT.setEnabled(false);
+        jButtonBuyDT.setEnabled(false);
+        jButtonLogOut.setEnabled(false);
+        loggedIn = false;
+        jLabelSignIn.setText("Sign in");
+        jButtonLogin.setText("Confirm");
     }
 
     /**
@@ -95,6 +139,11 @@ public class Wireframe2 extends javax.swing.JFrame {
 
         jButtonLogOut.setText("Log Out");
         jButtonLogOut.setEnabled(false);
+        jButtonLogOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLogOutActionPerformed(evt);
+            }
+        });
 
         jButtonAccount.setText("Account");
 
@@ -141,6 +190,12 @@ public class Wireframe2 extends javax.swing.JFrame {
 
         jLabelSignIn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelSignIn.setText("Sign In");
+
+        jTextFieldEmployeeId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldEmployeeIdActionPerformed(evt);
+            }
+        });
 
         jButtonDT.setText("DT");
         jButtonDT.setEnabled(false);
@@ -238,22 +293,16 @@ public class Wireframe2 extends javax.swing.JFrame {
     private void jButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoginActionPerformed
         // TODO add your handling code here:
         if (!loggedIn) {
-            jLabelSignIn.setText("Ready for digital ticket");
-            jButtonLogin.setText("Paper Tickets");
-//            jLabelActiveUser.setText(jTextFieldEmployeeId.getText() + ", " + jComboBoxRoute.getSelectedItem().toString());
-            jLabelActiveUser.setText(jTextFieldEmployeeId.getText() + ", " + ((Route) jComboBoxRoute.getSelectedItem()).getRouteNo());
-            jLabelEmployeeId.setVisible(false);
-            jLabelPassword.setVisible(false);
-            jLabelRoute.setVisible(false);
-            jTextFieldEmployeeId.setVisible(false);
-            jTextFieldPassword.setVisible(false);
-            jComboBoxRoute.setVisible(false);
-            loggedIn = true;
-            wp = new Wireframe2Passenger();
-            wp.setVisible(true);
-            jButtonDT.setEnabled(true);
-            jButtonBuyDT.setEnabled(true);
-            jButtonLogOut.setEnabled(true);
+            if (jTextFieldEmployeeId.getText().isEmpty() || jTextFieldPassword.getText().isEmpty()) {
+                // inset message here
+            } else {
+                activeUser = EmployeeAccountManager.getInstance().getEmployeeById(Integer.valueOf(jTextFieldEmployeeId.getText()));
+                if (activeUser != null && jTextFieldPassword.getText().equals(activeUser.getPassword())) {
+                    login();
+                } else {
+                    //insert incorrect message here 
+                }
+            }
         } else {
             if (buttonPressed) {
                 jButtonLogin.setText("Paper Tickets");
@@ -274,24 +323,58 @@ public class Wireframe2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonLoginActionPerformed
 
     private void jButtonDTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDTActionPerformed
-        // TODO add your handling code here:
-        buttonPressed = true;
-        jButtonLogin.setText("Return");
-        wp.changeLine1("Your MegaRider Pass Has Been Accepted");
-        wp.changeLine2("");
-        wp.changeLine3("");
-        wp.changeLine4("We hope you have a safe and enjoyable trip");
+        System.out.println(activeRoute);
+        Vehicle vehicle = null;
+        for (Vehicle v : vehicles) {
+            if (v.getRoute().equals(activeRoute)) {
+                vehicle = v;
+            }
+        }
+        System.out.println(vehicle);
+        if (vehicle.getGateway().handleToken(vehicle.getGateway().getReader().scanToken())) {
+            buttonPressed = true;
+            jButtonLogin.setText("Return");
+            wp.changeLine1("Your MegaRider Pass Has Been Accepted");
+            wp.changeLine2("");
+            wp.changeLine3("");
+            wp.changeLine4("We hope you have a safe and enjoyable trip");
+        } else {
+            System.out.println("User can't travel");
+        }
     }//GEN-LAST:event_jButtonDTActionPerformed
 
     private void jButtonBuyDTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuyDTActionPerformed
         // TODO add your handling code here:
-        buttonPressed = true;
+        System.out.println(activeRoute);
+        Vehicle vehicle = null;
+        for (Vehicle v : vehicles) {
+            if (v.getRoute().equals(activeRoute)) {
+                vehicle = v;
+            }
+        }
+        System.out.println(vehicle);
+        if (vehicle.getGateway().handleToken(vehicle.getGateway().getReader().scanToken())) {
+            buttonPressed = true;
+            jButtonLogin.setText("Return");
+            wp.changeLine1("Would You Like To Purchase A Digital Ticket?");
+            wp.changeLine3("Fare is £3.00");
+            wp.changeLine2("Half Fare discount will be applied if you scan off within two stops");
+            wp.changeLine4("");
+        } else {
+            System.out.println("User can't travel");
+        }
         jButtonLogin.setText("Return");
-        wp.changeLine1("Would You Like To Purchase A Digital Ticket?");
-        wp.changeLine3("Fare is £3.00");
-        wp.changeLine2("Half Fare discount will be applied if you scan off within two stops");
-        wp.changeLine4("");
+
     }//GEN-LAST:event_jButtonBuyDTActionPerformed
+
+    private void jTextFieldEmployeeIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldEmployeeIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldEmployeeIdActionPerformed
+
+    private void jButtonLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLogOutActionPerformed
+        // TODO add your handling code here:
+        logout();
+    }//GEN-LAST:event_jButtonLogOutActionPerformed
 
     /**
      * @param args the command line arguments

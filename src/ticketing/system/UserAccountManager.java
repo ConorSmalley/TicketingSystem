@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ticketing.system;
 
 import java.io.Serializable;
@@ -10,8 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
- * @author Conor
+ * A storage class for holding user accounts.
+ * Also managements addition and removal of user accounts from system.
  */
 public class UserAccountManager implements Serializable {
 
@@ -30,7 +25,11 @@ public class UserAccountManager implements Serializable {
     }
 
     public static int getNumberOfUsers() {
-        return userAccounts.size();
+        if (usrAccMgr == null) {
+            return 0;
+        } else {
+            return userAccounts.size();
+        }
     }
 
     public void addUserAccount(UserAccount u) {
@@ -49,7 +48,7 @@ public class UserAccountManager implements Serializable {
         }
     }
 
-    public static UserAccount getUserAccountByTokenId(int tokenId) {
+    public UserAccount getUserAccountByTokenId(int tokenId) {
 
         for (UserAccount u : userAccounts) {
             for (Token to : u.getTokens()) {
@@ -63,7 +62,9 @@ public class UserAccountManager implements Serializable {
 
     public UserAccount getUserAccountById(int Id) {
         for (UserAccount u : userAccounts) {
+            System.out.println("here");
             if (u.getId() == Id) {
+                System.out.println("here");
                 return u;
             }
         }

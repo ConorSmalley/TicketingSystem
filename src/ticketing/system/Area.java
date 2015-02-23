@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package ticketing.system;
 
 import java.io.Serializable;
@@ -11,8 +7,10 @@ import java.util.Date;
 import java.util.List;
 
 /**
- *
- * @author Conor
+ * Management class for most of the data of the system not including user accounts.
+ * Has methods for adding and removing objects to several collections.
+ * Does not create or destroy any data, only passes.
+ * Implements the serialization of system data.
  */
 public class Area implements Serializable {
 
@@ -114,5 +112,14 @@ public class Area implements Serializable {
 
     public List<Route> getRoutes() {
         return routes;
+    }
+
+    @Override
+    public String toString() {
+        return name;
+    }
+
+    public List<Infringement> getInfringements() {
+        return infringements;
     }
 }

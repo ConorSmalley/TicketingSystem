@@ -1,16 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ticketing.system;
 
 import java.util.Date;
 import java.util.List;
 
 /**
- *
- * @author Conor
+ * A instances of a passPlan. Pertains to a user and retains its start date
+ * to be used for determining the valid duration of a pass.
  */
 public class Pass {
 

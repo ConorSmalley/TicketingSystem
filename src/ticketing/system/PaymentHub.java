@@ -1,155 +1,130 @@
-<<<<<<< HEAD
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ticketing.system;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import static ticketing.system.TransactionType.*;
 
 /**
- *
- * @author Conor
+ * Present for vehicles and gateways to allow or prevent user travel. Is the
+ * software which is delegated to by gates through which users travel. Handles
+ * logic to determine whether users can travel through gates. Does not make
+ * changes to users account balance but does call methods which charge the users
+ * account for travel if applicable.
  */
 class PaymentHub {
+
+    private Area area;     //this is the area location
     private TravelPoint parentTravel = null;
     private Vehicle parentVehicle = null;
     private int numGateways;
     private List<Gateway> gateways;
-    
-    public PaymentHub(Object parent, int numGateways){
-        if(parent.getClass() == TravelPoint.class)
+
+    public PaymentHub(Object parent, int numGateways) {
+        if (parent.getClass() == TravelPoint.class) {
             this.parentTravel = (TravelPoint) parent;
-        if(parent.getClass() == Vehicle.class)
+        }
+        if (parent.getClass() == Vehicle.class) {
             this.parentVehicle = (Vehicle) parent;
+        }
         gateways = new ArrayList();
         this.numGateways = numGateways;
-        for(int i = 0; i < numGateways; i++)
-            gateways.set(i, new EntryGate(new DigitalReader(), this));
+        for (int i = 0; i < numGateways; i++) {
+            gateways.add(new EntryGate(new DigitalReader(), this));
+        }
     }
 
     public boolean canUserTravel(int tokenId) {
         Ticket ticket;
-        Transaction transaction;
-        boolean hasPass = false;
-        UserAccount user = UserAccountManager.getUserAccountByTokenId(tokenId);
-        if (user == null)
+        UserAccount user;
+        boolean hasPass;
+        try {
+            user = UserAccountManager.getInstance().getUserAccountByTokenId(tokenId);
+            hasPass = user.checkActivePasses(getParentTravelPoint().getRoute());
+        } catch (Exception e) {
+            System.out.println("Null user in canUserTavel()");
             return false;
-        else{
-            if (canUserAffordPayment(user)){
-                ticket = new Ticket(new Date());
-                if(parentTravel != null){
-                    ticket.setValidFrom(parentTravel);
-                }
-                if(parentVehicle != null){
-                    ticket.setRoute(parentVehicle.getCurrentRoute());
-                    ticket.setValidFrom(parentVehicle.getTravelPoint());
-                    hasPass = user.checkActivePasses(parentVehicle.getCurrentRoute());
-                }
-                if (!hasPass){
-                    purchaseTicket(user, ticket);
-                }
+        }
+        ticket = new Ticket(new Date());
+        if (parentTravel != null) {
+            System.out.println("On train");
+            ticket.setValidFrom(parentTravel);
+        }
+        if (parentVehicle != null) {
+            System.out.println("On Bus");
+            ticket.setRoute(parentVehicle.getCurrentRoute());
+            ticket.setValidFrom(parentVehicle.getTravelPoint());
+        }
+        if (!hasPass) {
+            if (canUserAffordPayment(user)) {
+                purchaseTicket(user);
                 user.setActiveTicket(ticket);
                 return true;
-            } else 
+            } else {
+                System.out.println("User can't afford payment and doesn't have pass");
                 return false;
+            }
+        } else {
+            user.setActiveTicket(ticket);
+            return true;
         }
     }
-    
-    public void applyTicketToAcount(Ticket ticket, int token){
-        UserAccount user = UserAccountManager.getUserAccountByTokenId(token);
+
+    public void applyTicketToAcount(Ticket ticket, int token) {
+        UserAccount user = UserAccountManager.getInstance().getUserAccountByTokenId(token);
         user.setActiveTicket(ticket);
     }
 
     private boolean canUserAffordPayment(UserAccount user) {
-        return  user.canAccountBeDebited(getParentTravelPoint().getPrice());
+        System.out.println(user);
+        System.out.println(getParentTravelPoint());
+        System.out.println(getParentTravelPoint().getPrice());
+        return user.canAccountBeDebited(getParentTravelPoint().getPrice());
     }
 
-    private void purchaseTicket(UserAccount user, Ticket ticket) {
+    private void purchaseTicket(UserAccount user) {
         Transaction transaction = new Transaction(Cash, getParentTravelPoint().getPrice(), new Date());
         user.makePayment(getParentTravelPoint().getPrice());
         user.addTransaction(transaction);
     }
-    
-    private TravelPoint getParentTravelPoint(){
-        return parentTravel != null? parentTravel:
-            parentVehicle.getTravelPoint();
-    }
-}
-=======
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package ticketing.system;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
-/**
- *
- * @author Conor
- */
-class PaymentHub {
-    private TravelPoint parent;
-    private int numGateways;
-    private List<Gateway> gateways;
-    
-    public PaymentHub(TravelPoint parent, int numGateways){
-        this.parent = parent;
-        gateways = new ArrayList();
-        this.numGateways = numGateways;
-        for(int i = 0; i < numGateways; i++)
-            gateways.set(i, new EntryGate(new DigitalReader(), this));
-    }
-
-    public boolean canUserTravel(int tokenId) {
-        Ticket ticket;
-        UserAccount user = UserAccountManager.getUserAccountByToken(tokenId);
-        if (user == null)
-            return false;
-        else{
-            if (canUserAffordPayment(user)){
-                ticket = new Ticket(new Date());
-                ticket.setValidFrom(parent);
-                user.setActiveTicket(ticket);
-                return true;
-            } else 
-                return false;
-        }
-    }
-    
-    public void applyTicketToAcount(Ticket ticket, int token){
-        UserAccount user = UserAccountManager.getUserAccountByToken(token);
-        user.setActiveTicket(ticket);
-    }
-
-    public boolean canUserAffordPayment(UserAccount user) {
-        return user.canAccountBeDebited(parent.getPrice());
+    private TravelPoint getParentTravelPoint() {
+        return parentTravel != null ? parentTravel
+                : parentVehicle.getTravelPoint();
     }
 
     public boolean canUserLeave(int tokenId) {
-         //Acquires a user and retrieves current ticket
-        UserAccount acct = (UserAccountManager.getUserAccountByToken(tokenId));
+        //Acquires a user and retrieves current ticket
+        UserAccount acct = (UserAccountManager.getInstance().getUserAccountByTokenId(tokenId));
         Ticket ticket = acct.getActiveTicket();
-        if (ticket == null)
-        {return false;}
-        ticket.setEndPoint(parent);
+        if (ticket == null) {
+            return false;
+        }
+        ticket.setEndPoint(getParentTravelPoint());
+        startAutomatedPayment(acct);
         return true;
     }
 
-    void sartAutomatedPayment() {
-        //List<Route> relevantRoutes;
-        //parent.getArea().getRoutes()
-        
-        
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void setArea(Area a) {
+        area = a;
+    }
+
+    void startAutomatedPayment(UserAccount acct) {
+        List<Route> relevantRoutes = area.getRoutes();     //temp routes
+        for (Iterator<Route> it = relevantRoutes.iterator(); it.hasNext();) {
+
+            if (acct.checkActivePasses(it.next())) //implement
+            {
+                acct.clearActiveTicket();               //implement
+                break;
+            }
+
+        }
+
+    }
+
+    public Gateway getGatewayId(int i) {
+        return gateways.get(i);
     }
 }
->>>>>>> d626b7d66d745d036aea8c15559cd397b1b3a410

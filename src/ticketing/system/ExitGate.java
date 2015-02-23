@@ -1,35 +1,25 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package ticketing.system;
 
 /**
- *
- * @author Conor
+ * An implementation of Gateway which specifically calls on a relevant
+ * PaymentHub to set the endpoint of a users tickets journey which may also
+ * charge user for their journey
  */
-public class ExitGate extends Gateway{
-    
-    public ExitGate(DigitalReader reader, PaymentHub paymentHub){
+public class ExitGate extends Gateway {
+
+    public ExitGate(DigitalReader reader, PaymentHub paymentHub) {
         super(reader, paymentHub);
     }
 
     @Override
-    public void handleToken(int tokenId) {
-        if (super.paymentHub.canUserLeave(tokenId))
-        {
-        //call GUI success
-        super.openGate();
-
+    public boolean handleToken(int tokenId) {
+        if (super.paymentHub.canUserLeave(tokenId)) {
+            //call GUI success
+            super.openGate();
+            return true;
         }
-        
-        super.paymentHub.sartAutomatedPayment();
-        
-        
-               
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.    
+        return false;
     }
-    
-    
+
 }

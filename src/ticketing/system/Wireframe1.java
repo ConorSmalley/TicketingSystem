@@ -5,11 +5,20 @@
  */
 package ticketing.system;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -21,24 +30,19 @@ public class Wireframe1 extends javax.swing.JFrame {
 
     UserAccountManager uam;
     private static SystemSupervisor s;
+    Route currentRoute = null;
+    Area currentArea = null;
+    Employee currentEmployee;
+    TravelPoint currentTravelPoint;
 
     public Wireframe1(SystemSupervisor s) {
         this.s = s;
-//        uam = UserAccountManager.getInstance();
-//        try {
-//            Deserialize();
-//        } catch (IOException ex) {
-//            Logger.getLogger(Wireframe1.class.getName()).log(Level.SEVERE, null, ex);
-//        } catch (ClassNotFoundException ex) {
-//            Logger.getLogger(Wireframe1.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-
         initComponents();
         jComboBoxRoute.removeAllItems();
         this.s = s;
         for (Area a : s.getAreas()) {
             for (Route r : a.getRoutes()) {
-                System.out.println(r);
+//                System.out.println(r);
                 jComboBoxRoute.addItem(r);
             }
         }
@@ -46,15 +50,23 @@ public class Wireframe1 extends javax.swing.JFrame {
         jButtonLog.setVisible(false);
         jPanelLogInfringement.setVisible(false);
         jPanelScanTicket.setVisible(false);
-//        UserAccount ua = new UserAccount();
-//        ua.savePersonData(new Person("Conor"));
-//        uam.addUserAccount(ua);
-//        try {
-//            Serialize();
-//        } catch (IOException ex) {
-//            Logger.getLogger(Wireframe1.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        System.out.println(uam);
+        jComboBoxInfringementRoutes.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent arg0) {
+//                System.out.println("called");
+                jComboBoxBusStop.removeAllItems();
+                if (((Route) jComboBoxInfringementRoutes.getSelectedItem()) == null) {
+//                    System.out.println("null");
+                } else {
+//                    System.out.println("not null");
+//                    System.out.println(((Route) jComboBoxInfringementRoutes.getSelectedItem()));
+                    for (TravelPoint tp : ((Route) jComboBoxInfringementRoutes.getSelectedItem()).getTravelPoints()) {
+                        jComboBoxBusStop.addItem(tp);
+//                        System.out.println(tp);
+                    }
+                }
+            }
+        });
     }
 
     /**
@@ -83,7 +95,7 @@ public class Wireframe1 extends javax.swing.JFrame {
         jComboBoxRoute = new javax.swing.JComboBox();
         jLabelRoute = new javax.swing.JLabel();
         jLabelPassword = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        jTextFieldPassword = new javax.swing.JTextField();
         jTextFieldEmployeeId = new javax.swing.JTextField();
         jLabelEmployeeID = new javax.swing.JLabel();
         jLabelSignIn = new javax.swing.JLabel();
@@ -91,9 +103,21 @@ public class Wireframe1 extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jEditorPane1 = new javax.swing.JEditorPane();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         jPanelLogInfringement = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        jComboBoxInfringementRoutes = new javax.swing.JComboBox();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jComboBoxBusStop = new javax.swing.JComboBox();
+        jLabel5 = new javax.swing.JLabel();
+        jTextFieldDate = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jTextFieldTime = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -135,13 +159,14 @@ public class Wireframe1 extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonSettings, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonLogOut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButtonLog, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jButtonScan, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonSettings, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonLog, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonScan, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -226,7 +251,7 @@ public class Wireframe1 extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanelSignInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jComboBoxRoute, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jTextField2)
+                                    .addComponent(jTextFieldPassword)
                                     .addComponent(jTextFieldEmployeeId, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -243,7 +268,7 @@ public class Wireframe1 extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanelSignInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelPassword)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanelSignInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelRoute)
@@ -258,18 +283,42 @@ public class Wireframe1 extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(jEditorPane1);
 
+        jButton2.setText("Return");
+
+        jButton3.setText("Log Infringement");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("Charge Fair");
+
         javax.swing.GroupLayout jPanelScanTicketLayout = new javax.swing.GroupLayout(jPanelScanTicket);
         jPanelScanTicket.setLayout(jPanelScanTicketLayout);
         jPanelScanTicketLayout.setHorizontalGroup(
             jPanelScanTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelScanTicketLayout.createSequentialGroup()
-                .addGap(76, 76, 76)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanelScanTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelScanTicketLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton3))
+                    .addGroup(jPanelScanTicketLayout.createSequentialGroup()
+                        .addGroup(jPanelScanTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelScanTicketLayout.createSequentialGroup()
+                                .addGap(76, 76, 76)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanelScanTicketLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanelScanTicketLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelScanTicketLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButton4)
+                .addGap(80, 80, 80))
         );
         jPanelScanTicketLayout.setVerticalGroup(
             jPanelScanTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -278,11 +327,43 @@ public class Wireframe1 extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelScanTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2)
+                    .addComponent(jButton3))
+                .addContainerGap())
         );
 
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Infringement");
+        jComboBoxInfringementRoutes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxInfringementRoutes.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxInfringementRoutesItemStateChanged(evt);
+            }
+        });
+
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel3.setText("Route:");
+
+        jLabel4.setText("Bus Stop");
+
+        jComboBoxBusStop.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel5.setText("Date");
+
+        jTextFieldDate.setText("jTextField1");
+
+        jLabel6.setText("Time");
+
+        jTextFieldTime.setText("jTextField2");
+
+        jButton1.setText("Confirm");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelLogInfringementLayout = new javax.swing.GroupLayout(jPanelLogInfringement);
         jPanelLogInfringement.setLayout(jPanelLogInfringementLayout);
@@ -290,15 +371,40 @@ public class Wireframe1 extends javax.swing.JFrame {
             jPanelLogInfringementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelLogInfringementLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGroup(jPanelLogInfringementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxInfringementRoutes, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5)
+                    .addComponent(jTextFieldDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6)
+                    .addComponent(jTextFieldTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1)
+                    .addComponent(jComboBoxBusStop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(121, 121, 121))
         );
         jPanelLogInfringementLayout.setVerticalGroup(
             jPanelLogInfringementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelLogInfringementLayout.createSequentialGroup()
-                .addGap(109, 109, 109)
-                .addComponent(jLabel2)
-                .addContainerGap(173, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jComboBoxInfringementRoutes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jComboBoxBusStop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextFieldDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextFieldTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -318,8 +424,7 @@ public class Wireframe1 extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanelScanTicket, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanelLogInfringement, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jPanelLogInfringement, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -344,26 +449,48 @@ public class Wireframe1 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        try {
-            Serialize();
-        } catch (IOException ex) {
-            Logger.getLogger(Wireframe1.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
     }//GEN-LAST:event_formWindowClosing
 
     private void jButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoginActionPerformed
         // TODO add your handling code here:
-//            jLabelActiveUser.setText(jTextFieldEmployeeId.getText() + ", " + jComboBoxRoute.getSelectedItem().toString());
-        jLabelActiveUser.setText(jTextFieldEmployeeId.getText() + ", " + ((Route) jComboBoxRoute.getSelectedItem()).getRouteNo());
-        jButtonScan.setVisible(true);
-        jButtonLog.setVisible(true);
-        jPanelSignIn.setVisible(false);
-        jButtonLogOut.setEnabled(true);
+        if ((jTextFieldEmployeeId.getText().equals("") ? false
+                : EmployeeAccountManager.getInstance().getEmployeeById(Integer.valueOf(jTextFieldEmployeeId.getText())) != null)
+                && jTextFieldPassword.getText().equals(EmployeeAccountManager.getInstance().getEmployeeById(Integer.valueOf(jTextFieldEmployeeId.getText())).getPassword())) {
+            currentEmployee = EmployeeAccountManager.getInstance().getEmployeeById(Integer.valueOf(jTextFieldEmployeeId.getText()));
+            currentRoute = (Route) jComboBoxRoute.getSelectedItem();
+            currentTravelPoint = currentRoute.getStart();
+            for (Area a : s.getAreas()) {
+                if (a.getRoutes().contains(currentRoute)) {
+                    currentArea = a;
+                }
+            }
+            jLabelActiveUser.setText(jTextFieldEmployeeId.getText() + ", " + currentRoute.getRouteNo());
+
+            jButtonScan.setVisible(true);
+            jButtonLog.setVisible(true);
+            jPanelSignIn.setVisible(false);
+            jButtonLogOut.setEnabled(true);
+            System.out.println(EmployeeAccountManager.getInstance().getEmployeeById(Integer.valueOf(jTextFieldEmployeeId.getText())));
+            jTextFieldEmployeeId.setText("");
+            jTextFieldPassword.setText("");
+            jComboBoxInfringementRoutes.removeAllItems();
+            for (Area a : s.getAreas()) {
+                for (Route r : a.getRoutes()) {
+//                    System.out.println(r);
+                    jComboBoxInfringementRoutes.addItem(r);
+                }
+            }
+            jComboBoxBusStop.removeAllItems();
+            for (TravelPoint tp : currentRoute.getTravelPoints()) {
+                jComboBoxBusStop.addItem(tp);
+            }
+            jComboBoxInfringementRoutes.setSelectedItem(currentRoute);
+        }
     }//GEN-LAST:event_jButtonLoginActionPerformed
 
     private void jButtonScanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonScanActionPerformed
         // TODO add your handling code here:
-//        jPanelSignIn.setVisible(false);
         jPanelScanTicket.setVisible(true);
         jPanelLogInfringement.setVisible(false);
     }//GEN-LAST:event_jButtonScanActionPerformed
@@ -372,6 +499,11 @@ public class Wireframe1 extends javax.swing.JFrame {
         // TODO add your handling code here:
         jPanelScanTicket.setVisible(false);
         jPanelLogInfringement.setVisible(true);
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        DateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
+        Date date = new Date();
+        jTextFieldDate.setText(dateFormat.format(date));
+        jTextFieldTime.setText(timeFormat.format(date));
     }//GEN-LAST:event_jButtonLogActionPerformed
 
     private void jButtonLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLogOutActionPerformed
@@ -383,7 +515,37 @@ public class Wireframe1 extends javax.swing.JFrame {
         jPanelLogInfringement.setVisible(false);
         jButtonLogOut.setEnabled(false);
         jLabelActiveUser.setText("No Active User");
+
+
     }//GEN-LAST:event_jButtonLogOutActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            // TODO add your handling code here:
+            DateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.ENGLISH);
+            Date date = format.parse(jTextFieldDate.getText() + " " + jTextFieldTime.getText());
+//            System.out.println(date); // Sat Jan 02 00:00:00 GMT 2010
+            Route tempRoute = (Route) jComboBoxInfringementRoutes.getSelectedItem();
+            currentArea.logInfringement(date, tempRoute, (TravelPoint) jComboBoxBusStop.getSelectedItem(), currentEmployee.getId());
+        } catch (ParseException ex) {
+            System.out.println("Fucked upp");
+            Logger.getLogger(Wireframe1.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        currentArea.logInfringement(new Date(), currentRoute, currentTravelPoint, currentEmployee.getId());
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jComboBoxInfringementRoutesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxInfringementRoutesItemStateChanged
+        // TODO add your handling code here:
+//        jComboBoxBusStop.removeAllItems();
+//        for(TravelPoint tp : ((Route) jComboBoxInfringementRoutes.getSelectedItem()).getTravelPoints()){
+//            jComboBoxBusStop.addItem(tp);
+//        }
+    }//GEN-LAST:event_jComboBoxInfringementRoutesItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -437,6 +599,10 @@ public class Wireframe1 extends javax.swing.JFrame {
         in.close();
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButtonAccount;
     private javax.swing.JButton jButtonEdit;
     private javax.swing.JButton jButtonFile;
@@ -447,10 +613,15 @@ public class Wireframe1 extends javax.swing.JFrame {
     private javax.swing.JButton jButtonScan;
     private javax.swing.JButton jButtonSettings;
     private javax.swing.JButton jButtonView;
+    private javax.swing.JComboBox jComboBoxBusStop;
+    private javax.swing.JComboBox jComboBoxInfringementRoutes;
     private javax.swing.JComboBox jComboBoxRoute;
     private javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabelActiveUser;
     private javax.swing.JLabel jLabelEmployeeID;
     private javax.swing.JLabel jLabelPassword;
@@ -461,8 +632,10 @@ public class Wireframe1 extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelScanTicket;
     private javax.swing.JPanel jPanelSignIn;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextFieldDate;
     private javax.swing.JTextField jTextFieldEmployeeId;
+    private javax.swing.JTextField jTextFieldPassword;
+    private javax.swing.JTextField jTextFieldTime;
     private javax.swing.JToolBar jToolBar1;
     // End of variables declaration//GEN-END:variables
 }

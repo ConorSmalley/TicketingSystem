@@ -14,3 +14,5 @@ This is a log of where we have had to differ from the class diagram, storyboards
 *   In Gateway instance variable paymentHub added.
 *   Token change to be a base class for Ticket and Pass classes. TicketPassPool therefore will be change to TokenPool.
 *   UserAccountManager class change to a singleton class.
+*   startAutomatedPayment now passed an account and called from within canUserLeave in the event of a valid ticket
+

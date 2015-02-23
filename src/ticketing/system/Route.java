@@ -1,16 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ticketing.system;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
- *
- * @author Conor
+ * A collection of locations through which a vehicle travels.
+ * Also records the standard price for a route before any discounts.
+ * Also defines a price for part-route journeys before discounts.
+ * 
  */
 class Route {
 
@@ -95,5 +93,17 @@ class Route {
     @Override
     public String toString() {
         return routeNo + "," + name;
+    }
+
+    public TravelPoint getStart() {
+        return travelPoints.get(0);
+    }
+    
+    public TravelPoint getNextTravelPoint(TravelPoint t){
+        return travelPoints.get(travelPoints.indexOf(t)+1);
+    }
+
+    public List<Vehicle> getVehicles() {
+        return assignedVehicles;
     }
 }

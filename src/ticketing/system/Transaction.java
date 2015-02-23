@@ -1,15 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ticketing.system;
 
 import java.util.Date;
 
 /**
- *
- * @author Conor
+ * A record of a transaction of real money. May be a change of balance stored
+ * for a user. Stores data and method of payment.
  */
 public class Transaction {
 
