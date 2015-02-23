@@ -7,14 +7,12 @@ import java.util.List;
 import static ticketing.system.TransactionType.*;
 
 /**
- * Present for vehicles and gateways to allow or prevent user travel.
- * Is the software which is delegated to by gates through which users travel.
- * Handles logic to determine whether users can travel through gates.
- * Does not make changes to users account balance but does call methods which
- * charge the users account for travel if applicable.
+ * Present for vehicles and gateways to allow or prevent user travel. Is the
+ * software which is delegated to by gates through which users travel. Handles
+ * logic to determine whether users can travel through gates. Does not make
+ * changes to users account balance but does call methods which charge the users
+ * account for travel if applicable.
  */
-
-
 class PaymentHub {
 
     private Area area;     //this is the area location
@@ -39,34 +37,37 @@ class PaymentHub {
 
     public boolean canUserTravel(int tokenId) {
         Ticket ticket;
-        boolean hasPass = false;
-        UserAccount user = UserAccountManager.getInstance().getUserAccountByTokenId(tokenId);
-        if (user == null) {
+        UserAccount user;
+        boolean hasPass;
+        try {
+            user = UserAccountManager.getInstance().getUserAccountByTokenId(tokenId);
+            hasPass = user.checkActivePasses(getParentTravelPoint().getRoute());
+        } catch (Exception e) {
             System.out.println("Null user in canUserTavel()");
             return false;
-        } else {
+        }
+        ticket = new Ticket(new Date());
+        if (parentTravel != null) {
+            System.out.println("On train");
+            ticket.setValidFrom(parentTravel);
+        }
+        if (parentVehicle != null) {
+            System.out.println("On Bus");
+            ticket.setRoute(parentVehicle.getCurrentRoute());
+            ticket.setValidFrom(parentVehicle.getTravelPoint());
+        }
+        if (!hasPass) {
             if (canUserAffordPayment(user)) {
-                ticket = new Ticket(new Date());
-                if (parentTravel != null) {
-                    System.out.println("On train");
-                    ticket.setValidFrom(parentTravel);
-                }
-                if (parentVehicle != null) {
-                    System.out.println("On Bus");
-                    ticket.setRoute(parentVehicle.getCurrentRoute());
-                    ticket.setValidFrom(parentVehicle.getTravelPoint());
-                    hasPass = user.checkActivePasses(parentVehicle.getCurrentRoute());
-                }
-                if (!hasPass) {
-                    System.out.println("User doesn't have pass");
-                    purchaseTicket(user);
-                }
+                purchaseTicket(user);
                 user.setActiveTicket(ticket);
                 return true;
             } else {
-                System.out.println("User can't afford payment");
+                System.out.println("User can't afford payment and doesn't have pass");
                 return false;
             }
+        } else {
+            user.setActiveTicket(ticket);
+            return true;
         }
     }
 
@@ -104,23 +105,21 @@ class PaymentHub {
         startAutomatedPayment(acct);
         return true;
     }
-    
-    public void setArea(Area a)
-    {
+
+    public void setArea(Area a) {
         area = a;
     }
 
     void startAutomatedPayment(UserAccount acct) {
         List<Route> relevantRoutes = area.getRoutes();     //temp routes
         for (Iterator<Route> it = relevantRoutes.iterator(); it.hasNext();) {
-            
-            if (acct.checkActivePasses( it.next() ) )   //implement
+
+            if (acct.checkActivePasses(it.next())) //implement
             {
                 acct.clearActiveTicket();               //implement
                 break;
             }
-              
-            
+
         }
 
     }

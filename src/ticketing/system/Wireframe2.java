@@ -345,12 +345,26 @@ public class Wireframe2 extends javax.swing.JFrame {
 
     private void jButtonBuyDTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuyDTActionPerformed
         // TODO add your handling code here:
-        buttonPressed = true;
+        System.out.println(activeRoute);
+        Vehicle vehicle = null;
+        for (Vehicle v : vehicles) {
+            if (v.getRoute().equals(activeRoute)) {
+                vehicle = v;
+            }
+        }
+        System.out.println(vehicle);
+        if (vehicle.getGateway().handleToken(vehicle.getGateway().getReader().scanToken())) {
+            buttonPressed = true;
+            jButtonLogin.setText("Return");
+            wp.changeLine1("Would You Like To Purchase A Digital Ticket?");
+            wp.changeLine3("Fare is £3.00");
+            wp.changeLine2("Half Fare discount will be applied if you scan off within two stops");
+            wp.changeLine4("");
+        } else {
+            System.out.println("User can't travel");
+        }
         jButtonLogin.setText("Return");
-        wp.changeLine1("Would You Like To Purchase A Digital Ticket?");
-        wp.changeLine3("Fare is £3.00");
-        wp.changeLine2("Half Fare discount will be applied if you scan off within two stops");
-        wp.changeLine4("");
+
     }//GEN-LAST:event_jButtonBuyDTActionPerformed
 
     private void jTextFieldEmployeeIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldEmployeeIdActionPerformed

@@ -42,6 +42,10 @@ class TravelPoint {
     public Area getArea() {
         return area;
     }
+    
+    public Route getRoute(){
+        return route;
+    }
 
     public void setArea(Area areaIn) {
         area = areaIn;
