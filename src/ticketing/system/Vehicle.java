@@ -1,15 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ticketing.system;
 
 import java.util.List;
 
 /**
- *
- * @author Conor
+ * Software which manages a real world vehicle. Each vehicle has a paymentHub
+ * and gateway which. Vehicles also record the route they're travelling on.
+ * Also stores the current location of a vehicles to be used to properly charge a user's ticket.
  */
 class Vehicle {
 

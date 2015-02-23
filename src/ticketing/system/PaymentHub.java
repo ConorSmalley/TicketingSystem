@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ticketing.system;
 
 import java.util.ArrayList;
@@ -12,8 +7,11 @@ import java.util.List;
 import static ticketing.system.TransactionType.*;
 
 /**
- *
- * @author Conor
+ * Present for vehicles and gateways to allow or prevent user travel.
+ * Is the software which is delegated to by gates through which users travel.
+ * Handles logic to determine whether users can travel through gates.
+ * Does not make changes to users account balance but does call methods which
+ * charge the users account for travel if applicable.
  */
 
 

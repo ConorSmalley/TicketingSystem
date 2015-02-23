@@ -4,14 +4,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
- *
- * @author Conor
+ * Definition of what a plan will give a user free access to when travelling.
+ * Is not an instance of a user's pass. Each pass will have a pass plan.
+ * Defines a plan's price. Defines duration of a pass.  
  */
 public class PassPlan {
 

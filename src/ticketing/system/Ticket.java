@@ -1,15 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ticketing.system;
 
 import java.util.Date;
 
 /**
- *
- * @author Conor
+ * A ticket which may be actively updated which a start and end point.
+ * The data of route, start and endpoint of this ticket will be used to charge
+ * A user for travel when the tickets usage ends in the even of ticket being 
+ * purchased by a registered system user. 
  */
 public class Ticket {
     private int id;

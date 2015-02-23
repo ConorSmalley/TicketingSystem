@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ticketing.system;
 
 import java.io.Serializable;
@@ -12,8 +7,10 @@ import java.util.List;
 import static ticketing.system.TransactionType.Card;
 
 /**
- *
- * @author Conor
+ * An account which pertains to a real person. This account stores the balance
+ * a person has available to spend on travel.
+ * Stored also are: Passes which the user has active; Tokens which can be used to identify a user;
+ * A reference to a storage class for transations the user has made; The one ticket which is currently active.
  */
 public class UserAccount implements Serializable {
 

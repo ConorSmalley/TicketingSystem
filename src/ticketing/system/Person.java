@@ -1,15 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ticketing.system;
 
 import java.io.Serializable;
 
 /**
- *
- * @author Conor
+ * A data class for a person to which a UserAccount pertains.
+ * Simply sets and gets personal data
  */
 public class Person implements Serializable {
 

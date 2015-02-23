@@ -1,13 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package ticketing.system;
 
 /**
- *
- * @author Conor
+ * An implementation of Gateway which specifically calls on a relevant
+ * PaymentHub to set the endpoint of a users tickets journey which may also
+ * charge user for their journey
  */
 public class ExitGate extends Gateway {
 

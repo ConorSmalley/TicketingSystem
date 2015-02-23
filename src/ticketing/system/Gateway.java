@@ -3,8 +3,8 @@ package ticketing.system;
 import java.util.ArrayList;
 
 /**
- *
- * @author Andrew
+ * An abstract to be derived from as an implementation of a specialised gateway.
+ * ensure gateways have a relevant paymentHub and token reader 
  */
 public abstract class Gateway{
     private int id;
