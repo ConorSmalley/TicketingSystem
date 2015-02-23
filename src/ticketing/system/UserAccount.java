@@ -56,8 +56,12 @@ public class UserAccount implements Serializable {
         person = p;
     }
 
-    public void updateBalance(double b) {
+    public void setBalance(double b) {
         balance = b;
+    }
+    
+    public void updateBalance(double b){
+        balance += b;
     }
 
     public void updateAvailableBalance(double b) {
