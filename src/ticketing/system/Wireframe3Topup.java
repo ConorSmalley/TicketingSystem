@@ -15,9 +15,13 @@ public class Wireframe3Topup extends javax.swing.JFrame {
      * Creates new form Wireframe3Topup2
      */
     private static UserAccount currentUser;
-    public Wireframe3Topup(UserAccount currentUser) {
+    private static Wireframe3 wf3;
+    public Wireframe3Topup(UserAccount currentUser, Wireframe3 wf3) {
         initComponents();
-        this.currentUser = currentUser;
+        Wireframe3Topup.currentUser = currentUser;
+        Wireframe3Topup.wf3 = wf3;
+        jLabel8.setText(String.valueOf(currentUser.getBalance()));
+        jLabel9.setText("WTF");
     }
 
     /**
@@ -129,7 +133,15 @@ public class Wireframe3Topup extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        currentUser.setBalance(WIDTH);
+        if (!"".equals(jTextField1.getText())) {
+//            currentUser.updateBalance(Integer.getInteger(jTextField1.getText()));
+            currentUser.updateBalance(Double.valueOf(jTextField1.getText()));
+            System.out.println(currentUser);
+            jLabel8.setText(String.valueOf(currentUser.getBalance()));
+            wf3.displayUser();
+        } else {
+
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -163,7 +175,7 @@ public class Wireframe3Topup extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Wireframe3Topup(currentUser).setVisible(true);
+                new Wireframe3Topup(currentUser,wf3).setVisible(true);
             }
         });
     }
