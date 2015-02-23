@@ -3,10 +3,10 @@ package ticketing.system;
 import java.util.Date;
 
 /**
- * A ticket which may be actively updated which a start and end point.
- * The data of route, start and endpoint of this ticket will be used to charge
+ * A ticket which may be actively updated which a start and end point.</br>
+ * The data of route, start and endpoint of this ticket will be used to charge.</br>
  * A user for travel when the tickets usage ends in the even of ticket being 
- * purchased by a registered system user. 
+ * purchased by a registered system user. </br>
  */
 public class Ticket {
     private int id;

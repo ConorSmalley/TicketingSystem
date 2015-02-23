@@ -3,8 +3,8 @@ package ticketing.system;
 import java.util.ArrayList;
 
 /**
- * An abstract to be derived from as an implementation of a specialised gateway.
- * ensure gateways have a relevant paymentHub and token reader 
+ * An abstract to be derived from as an implementation of a specialised gateway.</br>
+ * Constructors ensure gateways have a relevant paymentHub and token reader. </br>
  */
 public abstract class Gateway{
     private int id;

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A collection class for employees. Also handles management of employees. 
+ * A collection class for employees. Also handles management of employees. </br>
  */
 public class EmployeeAccountManager {
 

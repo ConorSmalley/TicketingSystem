@@ -5,9 +5,9 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * A collection of locations through which a vehicle travels.
- * Also records the standard price for a route before any discounts.
- * Also defines a price for part-route journeys before discounts.
+ * A collection of locations through which a vehicle travels.</br>
+ * Also records the standard price for a route before any discounts.</br>
+ * Also defines a price for part-route journeys before discounts.</br>
  * 
  */
 class Route {

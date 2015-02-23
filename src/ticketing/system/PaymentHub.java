@@ -7,11 +7,11 @@ import java.util.List;
 import static ticketing.system.TransactionType.*;
 
 /**
- * Present for vehicles and gateways to allow or prevent user travel.
- * Is the software which is delegated to by gates through which users travel.
- * Handles logic to determine whether users can travel through gates.
+ * Present for vehicles and gateways to allow or prevent user travel.</br>
+ * Is the software which is delegated to by gates through which users travel.</br>
+ * Handles logic to determine whether users can travel through gates.</br>
  * Does not make changes to users account balance but does call methods which
- * charge the users account for travel if applicable.
+ * charge the users account for travel if applicable.</br>
  */
 
 
