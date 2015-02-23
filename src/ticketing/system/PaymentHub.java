@@ -48,10 +48,11 @@ class PaymentHub {
             if (canUserAffordPayment(user)) {
                 ticket = new Ticket(new Date());
                 if (parentTravel != null) {
+                    System.out.println("On train");
                     ticket.setValidFrom(parentTravel);
                 }
                 if (parentVehicle != null) {
-                    System.out.println("User has psss");
+                    System.out.println("On Bus");
                     ticket.setRoute(parentVehicle.getCurrentRoute());
                     ticket.setValidFrom(parentVehicle.getTravelPoint());
                     hasPass = user.checkActivePasses(parentVehicle.getCurrentRoute());

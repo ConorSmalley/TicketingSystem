@@ -23,11 +23,13 @@ public class TicketingSystem extends javax.swing.JFrame {
         r.addTravelPoint(new TravelPoint("Woodhouse", r));
         r.addTravelPoint(new TravelPoint("Darnall", r));
         r.addTravelPoint(new TravelPoint("Crookes", r));
+        r.addVehicle(new Vehicle(r));
         a.addRoute(r);
         r = new Route(2, "X78", "Sheffield - Doncaster", 4.0, 7, 0.6);
         r.addTravelPoint(new TravelPoint("Sheffield", r));
         r.addTravelPoint(new TravelPoint("Meadowhall", r));
         r.addTravelPoint(new TravelPoint("Doncaster", r));
+        r.addVehicle(new Vehicle(r));
         a.addRoute(r);
         s.addArea(a);
         e = new Employee("Conor", 1, "password1");
