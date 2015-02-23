@@ -22,7 +22,7 @@ public class Wireframe3 extends javax.swing.JFrame {
 //        currentUser = new UserAccount();
 //        Person p = new Person("test");
 //        currentUser.savePersonData(p);
-//        currentUser.updateBalance(3);
+//        currentUser.setBalance(3);
         if (currentUser.canAccountBeDebited(2)) {
             jLabelMessage.setText("You're minted");
         } else {
