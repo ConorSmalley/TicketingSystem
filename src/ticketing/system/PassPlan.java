@@ -5,9 +5,9 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Definition of what a plan will give a user free access to when travelling.</br>
- * Is not an instance of a user's pass. Each pass will have a pass plan.</br>
- * Defines a plan's price. Defines duration of a pass.</br>
+ * Definition of what a plan will give a user free access to when travelling.<p>
+ * Is not an instance of a user's pass.<p> Each pass will have a pass plan.<p>
+ * Defines a plan's price.<p> Defines duration of a pass.
  */
 public class PassPlan {
 

@@ -4,8 +4,8 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Makes use of a passPlan which determines which routes have been prepaid for. </br> Pertains to a user and retains its start date
- * to be used for determining the valid duration of a pass.</br>
+ * Makes use of a passPlan which determines which routes have been prepaid for.<p> Pertains to a user and retains its start date
+ * to be used for determining the valid duration of a pass.
  */
 public class Pass {
 

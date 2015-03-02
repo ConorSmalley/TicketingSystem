@@ -4,10 +4,10 @@ package ticketing.system;
 import java.io.Serializable;
 
 /**
-* Discounts are definitions for the reduction in the costs of travelling.</br>
-* Discounts are added and removed by the administration of the system.</br>
+* Discounts are definitions for the reduction in the costs of travelling.<p>
+* Discounts are added and removed by the administration of the system.<p>
 * When applied, they are referred to through ActiveDiscount`s
-*  after the active date has been validated, to get the discount percentage</br>
+*  after the active date has been validated, to get the discount percentage.
  */
 public class Discount implements Serializable {
     private int id;
