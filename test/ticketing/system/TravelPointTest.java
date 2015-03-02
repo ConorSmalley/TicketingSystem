@@ -77,8 +77,6 @@ public class TravelPointTest {
         double expResult = PRICE;
         double result = tp.getPrice();
         assertEquals(expResult, result, 0.0);
-        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
     }
 
     /**
@@ -91,8 +89,6 @@ public class TravelPointTest {
         String expResult = TYPE;
         String result = tp.getType();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
     }
 
     /**
@@ -104,8 +100,6 @@ public class TravelPointTest {
         String result = tp.getType();
         String expResult = TYPE;
         assertSame(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
     }
 
     /**
@@ -117,8 +111,6 @@ public class TravelPointTest {
         Route expResult = r;
         Route result = tp.getRoute();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
     }
 
     /**
@@ -131,8 +123,6 @@ public class TravelPointTest {
         tp.setArea(a);
         Area result = tp.getArea();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
     }
 
     /**
@@ -144,7 +134,5 @@ public class TravelPointTest {
         Area expResult = a;
         Area result = tp.getArea();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
     }
 }
