@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.Date;
 
 /**
- * Control of a handheld device. Needs to be logged into by an employee.</br>
- * Retains a reference to a user customer until their interaction has been handled.</br>
- * Records its current route and approaching locations.</br>
- * Scans travelling users travel tokens and alerts Employee of their validity.</br>
+ * Control of a handheld device.<p> Needs to be logged into by an employee.<p>
+ * Retains a reference to a user customer until their interaction has been handled.<p>
+ * Records its current route and approaching locations.<p>
+ * Scans travelling users travel tokens and alerts Employee of their validity.
  */
 public class InspectionDevice {
 

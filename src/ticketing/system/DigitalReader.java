@@ -6,7 +6,7 @@ import javax.swing.JOptionPane;
 
 /**
  * Implements the scanToken method which allows return of a token ID, given by a
- * travelling user, when a token is detected.</br>
+ * travelling user, when a token is detected.
  */
 public class DigitalReader {
 

@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * A storage class for transactions.</br>
+ * A storage class for transactions.
  */
 public class TransactionList {
 

@@ -4,7 +4,7 @@ import java.util.Date;
 
 /**
  * A data object for recording invalid uses of passes or tickets which have
- * made their way back into the system after becoming invalid.</br>
+ * made their way back into the system after becoming invalid.
  */
 public class Infringement {
 

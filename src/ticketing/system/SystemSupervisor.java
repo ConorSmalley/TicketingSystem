@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
- * A central database of much of the information supporting the system.</br>
- * Collections for areas and discounts are found here.</br>
- * A reference to collection classes for other entities can be found here. </br>
+ * A central database of much of the information supporting the system.<p>
+ * Collections for areas and discounts are found here.<p>
+ * A reference to collection classes for other entities can be found here. 
  */
 public class SystemSupervisor {
 
