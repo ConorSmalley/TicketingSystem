@@ -171,5 +171,6 @@ public class UserAccount implements Serializable {
         transactionList.addtransaction(new Transaction(Card, thisTravelCost, new Date()));
         //naive about implementation of balance and availible balance
         balance -= thisTravelCost;
+        activeTicket = null;
     }
 }

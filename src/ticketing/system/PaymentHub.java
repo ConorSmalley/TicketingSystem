@@ -112,19 +112,30 @@ class PaymentHub {
 
     void startAutomatedPayment(UserAccount acct) {
         List<Route> relevantRoutes = area.getRoutes();     //temp routes
-        for (Iterator<Route> it = relevantRoutes.iterator(); it.hasNext();) {
-
-            if (acct.checkActivePasses(it.next())) //implement
-            {
-                acct.clearActiveTicket();               //implement
-                break;
+//        for (Iterator<Route> it = relevantRoutes.iterator(); it.hasNext();) {
+//
+//            if (acct.checkActivePasses(it.next())) //implement
+//            {
+//                acct.clearActiveTicket();               //implement
+//                break;
+//            }
+//
+//        }
+        for(Route r : area.getRoutes()){
+            for (TravelPoint tp : r.getTravelPoints()){
+                if(acct.checkActiveTicket(r, tp)){
+                    acct.clearActiveTicket();
+                }
             }
-
         }
 
     }
 
-    public Gateway getGatewayId(int i) {
+    public Gateway getGatewayById(int i) {
         return gateways.get(i);
+    }
+
+    public Area getArea() {
+        return area;
     }
 }
