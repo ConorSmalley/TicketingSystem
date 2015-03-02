@@ -20,7 +20,7 @@ class Vehicle {
     Vehicle(Route route) {
         Id = ++vehicleId;
         paymentHub = new PaymentHub(this, 1);
-        gateway = paymentHub.getGatewayId(0);
+        gateway = paymentHub.getGatewayById(0);
         assignedRoute = route;
         currentTravelPoint = route.getStart();
     }
