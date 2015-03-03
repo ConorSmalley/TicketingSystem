@@ -114,7 +114,7 @@ class PaymentHub {
         List<Route> relevantRoutes = area.getRoutes();     //temp routes
         for (Iterator<Route> it = relevantRoutes.iterator(); it.hasNext();) {
 
-            if (acct.checkActivePasses(it.next())) //implement
+            if (acct.checkActivePasses(it.next()))      //implement
             {
                 acct.clearActiveTicket();               //implement
                 break;

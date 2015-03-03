@@ -166,10 +166,11 @@ public class UserAccount implements Serializable {
         //the charge is applied to the account and transaction added to this accounts transaciton list
         //PLACEHOLDER CODE:
         double thisTravelCost = 0;
-
+        
         thisTravelCost = 5.0;
         transactionList.addtransaction(new Transaction(Card, thisTravelCost, new Date()));
         //naive about implementation of balance and availible balance
         balance -= thisTravelCost;
+        
     }
 }
