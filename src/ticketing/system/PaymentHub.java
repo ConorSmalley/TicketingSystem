@@ -112,24 +112,24 @@ class PaymentHub {
 
     void startAutomatedPayment(UserAccount acct) {
         List<Route> relevantRoutes = area.getRoutes();     //temp routes
+        //tested, iterator methods works for purpose of function. No idea what the nested for stuff did but would always cause nullpointers.
+        for (Iterator<Route> it = relevantRoutes.iterator(); it.hasNext();) {
 
-//        for (Iterator<Route> it = relevantRoutes.iterator(); it.hasNext();) {
-//
-//            if (acct.checkActivePasses(it.next())) //implement
-//            {
-//                acct.clearActiveTicket();               //implement
-//                break;
-//            }
-//
-//        }
-        for(Route r : area.getRoutes()){
-            for (TravelPoint tp : r.getTravelPoints()){
-                if(acct.checkActiveTicket(r, tp)){
-                    acct.clearActiveTicket();
-                }
-
+            if (acct.checkActivePasses(it.next())) //implement
+            {
+                acct.clearActiveTicket();               //implement
+                break;
             }
+
         }
+//        for(Route r : area.getRoutes()){
+//            for (TravelPoint tp : r.getTravelPoints()){
+//                if(acct.checkActiveTicket(r, tp)){
+//                    acct.clearActiveTicket();
+//                }
+//
+//            }
+//        }
 
     }
 
