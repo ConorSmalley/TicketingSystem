@@ -155,4 +155,8 @@ public class UserAccountManager implements Serializable {
         }
         return sb.toString();
     }
+
+    List<UserAccount> getAllUsers() {
+        return userAccounts;
+    }
 }
