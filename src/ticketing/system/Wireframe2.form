@@ -63,7 +63,7 @@
                                           <Component id="jButtonLogin" min="-2" max="-2" attributes="0"/>
                                           <Component id="jButtonBuyDT" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="0" pref="1" max="32767" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
