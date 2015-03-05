@@ -65,10 +65,14 @@ public class UserAccountManager implements Serializable {
      * @param   id the integer ID of a UserAccount to remove from the system.
      */
     public void deleteUserAccountById(int id) {
+        UserAccount tmp = null;
         for (UserAccount u : userAccounts) {
             if (u.getId() == id) {
-                userAccounts.remove(u);
+                tmp = u;
             }
+        }
+        if(tmp != null){
+            deleteUserAccount(tmp);
         }
     }
 
@@ -150,5 +154,9 @@ public class UserAccountManager implements Serializable {
             sb.append(ua).append('\n');
         }
         return sb.toString();
+    }
+
+    List<UserAccount> getAllUsers() {
+        return userAccounts;
     }
 }

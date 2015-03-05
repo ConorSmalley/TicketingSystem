@@ -5,6 +5,7 @@
  */
 package ticketing.system;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -29,7 +30,6 @@ public class UserAccountManagerTest {
     @BeforeClass
     public static void setUpClass() {
         andrew.savePersonData(new Person("Andrew"));
-        instance.addUserAccount(andrew);
     }
     
     @AfterClass
@@ -43,6 +43,7 @@ public class UserAccountManagerTest {
     
     @After
     public void tearDown() {
+        instance.deleteUserAccount(andrew);
     }
 
     /**
@@ -55,7 +56,7 @@ public class UserAccountManagerTest {
         UserAccountManager result = UserAccountManager.getInstance();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
     /**
@@ -68,7 +69,7 @@ public class UserAccountManagerTest {
         int result = instance.getNumberOfUsers();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
     /**
@@ -81,7 +82,7 @@ public class UserAccountManagerTest {
         u.savePersonData(new Person("Curtis"));
         instance.addUserAccount(u);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
     /**
@@ -93,7 +94,7 @@ public class UserAccountManagerTest {
         UserAccount u = andrew;
         instance.deleteUserAccount(u);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
     /**
@@ -104,8 +105,11 @@ public class UserAccountManagerTest {
         System.out.println("deleteUserAccountById");
         int id = 0;
         instance.deleteUserAccountById(id);
+        UserAccount expResult = null;
+        UserAccount result = instance.getUserAccountById(id);
+        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        // fail("The test case is a prototype.");
     }
 
     /**
@@ -119,7 +123,7 @@ public class UserAccountManagerTest {
         UserAccount result = instance.getUserAccountByTokenId(tokenId);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
     /**
@@ -133,7 +137,7 @@ public class UserAccountManagerTest {
         UserAccount result = instance.getUserAccountById(Id);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
     /**
@@ -142,50 +146,13 @@ public class UserAccountManagerTest {
     @Test
     public void testGetUserAccountsByName() {
         System.out.println("getUserAccountsByName");
-        String name = "";
-        List<UserAccount> expResult = null;
+        String name = "Andrew";
+        List<UserAccount> expResult = new ArrayList();
+        expResult.add(andrew);
         List<UserAccount> result = instance.getUserAccountsByName(name);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of deactivateInvalidDiscounts method, of class UserAccountManager.
-     */
-    @Test
-    public void testDeactivateInvalidDiscounts() {
-        System.out.println("deactivateInvalidDiscounts");
-        UserAccountManager instance = null;
-        instance.deactivateInvalidDiscounts();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of deactivateInvalidPasses method, of class UserAccountManager.
-     */
-    @Test
-    public void testDeactivateInvalidPasses() {
-        System.out.println("deactivateInvalidPasses");
-        UserAccountManager instance = null;
-        instance.deactivateInvalidPasses();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of toString method, of class UserAccountManager.
-     */
-    @Test
-    public void testToString() {
-        System.out.println("toString");
-        UserAccountManager instance = null;
-        String expResult = "";
-        String result = instance.toString();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
     
 }
