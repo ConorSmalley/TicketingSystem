@@ -10,13 +10,13 @@ package ticketing.system;
  * @author Conor
  */
 public class TicketingSystem extends javax.swing.JFrame {
-
+    
     Area a;
     Route r;
     SystemSupervisor s;
     Employee e;
     UserAccount u;
-
+    
     public void loadData() {
         s = new SystemSupervisor("Mr Boss", 1);
         a = new Area("Sheffield");
@@ -49,11 +49,14 @@ public class TicketingSystem extends javax.swing.JFrame {
         u.setBalance(12);
         UserAccountManager.getInstance().addUserAccount(u);
     }
-
+    
     public TicketingSystem() {
         initComponents();
         loadData();
-//        for(UserAccount u : UserAccountManager.getInstance().getAllUsers)
+        jComboBox1.removeAllItems();
+        for (UserAccount u : UserAccountManager.getInstance().getAllUsers()) {
+            jComboBox1.addItem(u);
+        }
     }
 
     /**
@@ -68,9 +71,13 @@ public class TicketingSystem extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+<<<<<<< HEAD
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList();
         jButton4 = new javax.swing.JButton();
+=======
+        jComboBox1 = new javax.swing.JComboBox();
+>>>>>>> e6e51aa8730da83fa27ef6d48b72375db797180b
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -95,12 +102,7 @@ public class TicketingSystem extends javax.swing.JFrame {
             }
         });
 
-        jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(jList1);
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jButton4.setText("Exit Gate Example");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -115,6 +117,7 @@ public class TicketingSystem extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+<<<<<<< HEAD
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -122,12 +125,25 @@ public class TicketingSystem extends javax.swing.JFrame {
                     .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+=======
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 173, Short.MAX_VALUE)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton2)
+                            .addComponent(jButton3))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+>>>>>>> e6e51aa8730da83fa27ef6d48b72375db797180b
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+<<<<<<< HEAD
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
@@ -140,6 +156,16 @@ public class TicketingSystem extends javax.swing.JFrame {
                         .addComponent(jButton4)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+=======
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton3)
+                .addContainerGap(195, Short.MAX_VALUE))
+>>>>>>> e6e51aa8730da83fa27ef6d48b72375db797180b
         );
 
         pack();
@@ -147,7 +173,7 @@ public class TicketingSystem extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        Wireframe3 wf = new Wireframe3(UserAccountManager.getInstance().getUserAccountById(0));
+        Wireframe3 wf = new Wireframe3((UserAccount) jComboBox1.getSelectedItem());
         wf.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -210,8 +236,12 @@ public class TicketingSystem extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+<<<<<<< HEAD
     private javax.swing.JButton jButton4;
     private javax.swing.JList jList1;
     private javax.swing.JScrollPane jScrollPane1;
+=======
+    private javax.swing.JComboBox jComboBox1;
+>>>>>>> e6e51aa8730da83fa27ef6d48b72375db797180b
     // End of variables declaration//GEN-END:variables
 }
