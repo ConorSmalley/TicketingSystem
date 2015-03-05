@@ -6,6 +6,8 @@
 
 package ticketing.system;
 
+import ticketing.system.*;
+
 /**
  *
  * @author B2045995
@@ -15,11 +17,8 @@ public class ExitGatewayUI extends javax.swing.JFrame {
     
     private static SystemSupervisor supervisor;
     private static UserAccountManager accountManager;
+    
     private DigitalReader digitalReader = new DigitalReader();
-    private Route thisRoute = new Route(1,"Who","cares",2,3,4);
-    private TravelPoint thisPoint = new TravelPoint("Somewhere", thisRoute);
-    public PaymentHub relevantPaymentHub = new PaymentHub(thisPoint, 1);
-    private ExitGate gateway = new ExitGate(digitalReader, relevantPaymentHub);    //gets the first area
     
     
     /**
@@ -29,8 +28,6 @@ public class ExitGatewayUI extends javax.swing.JFrame {
     public ExitGatewayUI(SystemSupervisor sIn, UserAccountManager managerIn) {
         supervisor = sIn;
         accountManager = managerIn;
-        relevantPaymentHub.setArea(supervisor.getAreas().get(0));
-        
         initComponents();
     }
 
@@ -100,16 +97,14 @@ public class ExitGatewayUI extends javax.swing.JFrame {
                 
                 if (thisUser != null)
                 {
-                    if (gateway.handleToken(TokenId))
-                    {
                     thisUser.clearActiveTicket();
       
-                   System.out.println( thisUser.getPersonData().getName() + " - Thank you for traveling");
-                    }
-                    else
-                    System.out.println("No ticket found for: " + thisUser.getPersonData().getName() );
+                   System.out.println( thisUser.getPersonData().getName() );       
                 }       
-} else {
+
+
+
+        } else {
 
         }          
     }//GEN-LAST:event_AcceptTokenButtonActionPerformed
