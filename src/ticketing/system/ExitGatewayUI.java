@@ -48,8 +48,6 @@ public class ExitGatewayUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         AcceptTokenButton = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         jScrollPane1.setViewportView(TokenIdInput);
 
         jLabel1.setText("Your token ID");
