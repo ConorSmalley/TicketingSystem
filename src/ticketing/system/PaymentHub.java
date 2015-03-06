@@ -122,6 +122,7 @@ class PaymentHub {
             }
 
         }
+
 //        for(Route r : area.getRoutes()){
 //            for (TravelPoint tp : r.getTravelPoints()){
 //                if(acct.checkActiveTicket(r, tp)){
@@ -130,7 +131,6 @@ class PaymentHub {
 //
 //            }
 //        }
-
     }
 
     public Gateway getGatewayById(int i) {
