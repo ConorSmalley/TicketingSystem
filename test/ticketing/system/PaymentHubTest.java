@@ -21,6 +21,7 @@ public class PaymentHubTest {
     
     private static UserAccountManager usrAccMgr = UserAccountManager.getInstance();
     private UserAccount user;
+    Ticket ticket;
     
     public PaymentHubTest() {
     }
@@ -44,7 +45,7 @@ public class PaymentHubTest {
         area.addRoute(r);
         TravelPoint tp = new TravelPoint("Hilsborough", r);
         TravelPoint tp2 = new TravelPoint("Sheffield" , r);
-        Ticket ticket = new Ticket(123, r, new Date(), tp, tp2);
+         ticket = new Ticket(123, r, new Date(), tp, tp2);
         user.setActiveTicket(ticket);
         usrAccMgr.addUserAccount(user);
     }
@@ -136,6 +137,7 @@ public class PaymentHubTest {
     public void testStartAutomatedPayment() {
         System.out.println("startAutomatedPayment");
         UserAccount acct = usrAccMgr.getUserAccountById(0);
+        acct.setActiveTicket(ticket);
         Area area = new Area("Sheffield");
         Route r = new Route(0, "60" ,"Shefield - Hilsborough", 5, 2, 0.5);
         area.addRoute(r);
@@ -143,7 +145,7 @@ public class PaymentHubTest {
         PaymentHub instance = new PaymentHub(tp, 1);
         instance.setArea(area);
         instance.startAutomatedPayment(acct);
-        Ticket expResult = null;
+        Ticket expResult = ticket;
         Ticket result = acct.getActiveTicket();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
