@@ -48,6 +48,9 @@ public class TicketingSystem extends javax.swing.JFrame {
         u.savePersonData(new Person("Bob"));
         u.setBalance(12);
         UserAccountManager.getInstance().addUserAccount(u);
+        u.savePersonData(new Person("James"));
+        u.setBalance(8);
+        UserAccountManager.getInstance().addUserAccount(u);
     }
     
     public TicketingSystem() {
