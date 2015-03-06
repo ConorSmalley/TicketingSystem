@@ -5,6 +5,9 @@
  */
 package ticketing.system;
 
+import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Conor
@@ -16,6 +19,7 @@ public class Wireframe3Topup extends javax.swing.JFrame {
      */
     private static UserAccount currentUser;
     private static Wireframe3 wf3;
+
     public Wireframe3Topup(UserAccount currentUser, Wireframe3 wf3) {
         initComponents();
         Wireframe3Topup.currentUser = currentUser;
@@ -59,6 +63,14 @@ public class Wireframe3Topup extends javax.swing.JFrame {
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
+            }
+        });
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField1KeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField1KeyTyped(evt);
             }
         });
 
@@ -140,10 +152,16 @@ public class Wireframe3Topup extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (!"".equals(jTextField1.getText())) {
 //            currentUser.updateBalance(Integer.getInteger(jTextField1.getText()));
-            currentUser.updateBalance(Double.valueOf(jTextField1.getText()));
-            System.out.println(currentUser);
-            jLabel8.setText(String.valueOf(currentUser.getBalance()));
-            wf3.displayUser();
+            double topUp = Double.valueOf(jTextField1.getText());
+
+            if (topUp % 0.01 != 0 && topUp < 5.00) {
+                JOptionPane.showMessageDialog(rootPane, "please enter a value of £5.00 or above.");
+            } else {
+                currentUser.updateBalance(topUp);
+                System.out.println(currentUser);
+                jLabel8.setText(String.valueOf(currentUser.getBalance()));
+                wf3.displayUser();
+            }
         } else {
 
         }
@@ -152,6 +170,21 @@ public class Wireframe3Topup extends javax.swing.JFrame {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+        // TODO add your handling code here:
+        if(!(Character.isDigit(evt.getKeyChar()) || evt.getKeyChar()=='.')){
+            evt.consume();
+        }
+        if (Pattern.matches("\\d+\\.\\d{2}?", jTextField1.getText())) {
+            
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField1KeyTyped
+
+    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1KeyReleased
 
     /**
      * @param args the command line arguments
@@ -184,7 +217,7 @@ public class Wireframe3Topup extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Wireframe3Topup(currentUser,wf3).setVisible(true);
+                new Wireframe3Topup(currentUser, wf3).setVisible(true);
             }
         });
     }
