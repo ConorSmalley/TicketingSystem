@@ -3,7 +3,7 @@ package ticketing.system;
 
 /**
  * Holds login data for an employee who may operate a device which is able 
- * to charge traveling users for embarking and tickets.</br>
+ * to charge travelling users for embarking and tickets.
  */
 public class Employee {
 
