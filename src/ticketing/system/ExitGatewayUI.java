@@ -6,6 +6,8 @@
 
 package ticketing.system;
 
+import java.util.List;
+
 /**
  *
  * @author B2045995
@@ -16,7 +18,7 @@ public class ExitGatewayUI extends javax.swing.JFrame {
     private static SystemSupervisor supervisor;
     private static UserAccountManager accountManager;
     private DigitalReader digitalReader = new DigitalReader();
-    private Route thisRoute = new Route(1,"Who","cares",2,3,4);
+    private Route thisRoute;
     private TravelPoint thisPoint = new TravelPoint("Somewhere", thisRoute);
     public PaymentHub relevantPaymentHub = new PaymentHub(thisPoint, 1);
     private ExitGate gateway = new ExitGate(digitalReader, relevantPaymentHub);    //gets the first area
@@ -27,11 +29,15 @@ public class ExitGatewayUI extends javax.swing.JFrame {
      */
     
     public ExitGatewayUI(SystemSupervisor sIn, UserAccountManager managerIn) {
+        initComponents();
+        
         supervisor = sIn;
         accountManager = managerIn;
+        List<Area> theseAreas = supervisor.getAreas(); 
+        thisRoute = theseAreas.get(0).getRoutes().get(0);   //choosing theroute which this gateway is for should be done here
+        jLabel2.setText(thisRoute.getName());
         relevantPaymentHub.setArea(supervisor.getAreas().get(0));
         
-        initComponents();
     }
 
     /**
@@ -47,6 +53,7 @@ public class ExitGatewayUI extends javax.swing.JFrame {
         TokenIdInput = new javax.swing.JTextPane();
         jLabel1 = new javax.swing.JLabel();
         AcceptTokenButton = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         jScrollPane1.setViewportView(TokenIdInput);
 
@@ -59,18 +66,22 @@ public class ExitGatewayUI extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setText("jLabel2");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(AcceptTokenButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(56, 56, 56)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(AcceptTokenButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel1)
+                            .addGap(56, 56, 56)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel2))
                 .addContainerGap(145, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -82,7 +93,9 @@ public class ExitGatewayUI extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(AcceptTokenButton)
-                .addContainerGap(226, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addContainerGap(194, Short.MAX_VALUE))
         );
 
         pack();
@@ -152,6 +165,7 @@ public class ExitGatewayUI extends javax.swing.JFrame {
     private javax.swing.JButton AcceptTokenButton;
     private javax.swing.JTextPane TokenIdInput;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
