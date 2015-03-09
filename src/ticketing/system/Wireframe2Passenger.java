@@ -11,16 +11,29 @@ package ticketing.system;
  */
 public class Wireframe2Passenger extends javax.swing.JFrame {
 
+    private static Route activeRoute;
+    private static TravelPoint currentStop;
+    
     /**
      * Creates new form Wireframe2Passenger
      */
-    public Wireframe2Passenger() {
+    public Wireframe2Passenger(TravelPoint currentStop) {
         initComponents();
         jLabelLine1.setText("Please Scan Your Digital Ticket");
         jLabelLine2.setText("Line ticket bar code up with camera to scan, or alternativly hold digital ticket near device");
         jLabelLine3.setText("");
         jLabelLine4.setText("");
         hidePaperTicket();
+        this.currentStop = currentStop;
+        this.activeRoute = currentStop.getRoute();
+        jComboBoxCurrentStop.removeAllItems();
+        jComboBoxEndStop.removeAllItems();
+        jComboBoxCurrentStop.addItem(currentStop);
+        for(TravelPoint t : activeRoute.getTravelPoints()){
+            if(t != currentStop){
+                jComboBoxEndStop.addItem(t);
+            }
+        }
     }
 
     /**
@@ -209,7 +222,7 @@ public class Wireframe2Passenger extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Wireframe2Passenger().setVisible(true);
+                new Wireframe2Passenger(currentStop).setVisible(true);
             }
         });
 
