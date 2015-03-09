@@ -52,7 +52,7 @@ public class Wireframe2 extends javax.swing.JFrame {
         jTextFieldPassword.setVisible(false);
         jComboBoxRoute.setVisible(false);
         loggedIn = true;
-        wp = new Wireframe2Passenger();
+        wp = new Wireframe2Passenger(activeRoute.getStart());
         wp.setVisible(true);
         jButtonDT.setEnabled(true);
         jButtonBuyDT.setEnabled(true);
