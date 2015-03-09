@@ -154,7 +154,7 @@ public class Wireframe3Topup extends javax.swing.JFrame {
 //            currentUser.updateBalance(Integer.getInteger(jTextField1.getText()));
             double topUp = Double.valueOf(jTextField1.getText());
 
-            if (topUp % 0.01 != 0 && topUp < 5.00) {
+            if (topUp < 5.00) {
                 JOptionPane.showMessageDialog(rootPane, "please enter a value of £5.00 or above.");
             } else {
                 currentUser.updateBalance(topUp);
@@ -173,11 +173,11 @@ public class Wireframe3Topup extends javax.swing.JFrame {
 
     private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
         // TODO add your handling code here:
-        if(!(Character.isDigit(evt.getKeyChar()) || evt.getKeyChar()=='.')){
+        if (!(Character.isDigit(evt.getKeyChar()) || evt.getKeyChar() == '.')) {
             evt.consume();
         }
         if (Pattern.matches("\\d+\\.\\d{2}?", jTextField1.getText())) {
-            
+
             evt.consume();
         }
     }//GEN-LAST:event_jTextField1KeyTyped
