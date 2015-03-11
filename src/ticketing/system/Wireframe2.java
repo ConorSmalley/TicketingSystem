@@ -36,6 +36,7 @@ public class Wireframe2 extends javax.swing.JFrame {
                 jComboBoxRoute.addItem(r);
                 System.out.println(r.getVehicles());
                 vehicles.addAll(r.getVehicles());
+                jCheckBox1.setVisible(false);
             }
         }
     }
@@ -57,6 +58,8 @@ public class Wireframe2 extends javax.swing.JFrame {
         jButtonDT.setEnabled(true);
         jButtonBuyDT.setEnabled(true);
         jButtonLogOut.setEnabled(true);
+        jCheckBox1.setVisible(true);
+        jCheckBox1.setSelected(false);
     }
 
     public void logout() {
@@ -74,6 +77,7 @@ public class Wireframe2 extends javax.swing.JFrame {
         loggedIn = false;
         jLabelSignIn.setText("Sign in");
         jButtonLogin.setText("Confirm");
+        jCheckBox1.setVisible(false);
     }
 
     /**
@@ -139,7 +143,7 @@ public class Wireframe2 extends javax.swing.JFrame {
         jLabelActiveUser.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabelActiveUser.setText("No Active User");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
 
         jButtonLogOut.setText("Log Out");
         jButtonLogOut.setEnabled(false);
