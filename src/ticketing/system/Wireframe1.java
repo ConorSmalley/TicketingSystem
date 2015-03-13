@@ -21,6 +21,7 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import static ticketing.system.TransactionType.Cash;
 
 /**
  *
@@ -28,7 +29,7 @@ import java.util.logging.Logger;
  */
 public class Wireframe1 extends javax.swing.JFrame {
 
-    UserAccountManager uam;
+
     private static SystemSupervisor s;
     Route currentRoute = null;
     Area currentArea = null;
@@ -327,8 +328,18 @@ public class Wireframe1 extends javax.swing.JFrame {
         });
 
         jButtonDigitalTicket.setText("Digital Ticket");
+        jButtonDigitalTicket.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDigitalTicketActionPerformed(evt);
+            }
+        });
 
         jButtonPaperTicket.setText("Paper Ticket");
+        jButtonPaperTicket.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPaperTicketActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelScanTicketLayout = new javax.swing.GroupLayout(jPanelScanTicket);
         jPanelScanTicket.setLayout(jPanelScanTicketLayout);
@@ -370,7 +381,7 @@ public class Wireframe1 extends javax.swing.JFrame {
             .addGroup(jPanelScanTicketLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButtonReturn)
@@ -611,17 +622,15 @@ public class Wireframe1 extends javax.swing.JFrame {
             jButtonDigitalTicket.setVisible(false);
             jButtonDigitalTicket.setEnabled(false);
 
-        } else {//No valid ticket or pass found}
+        } else {
             jEditorPane1.setText("X");
+            jLabel1.setText("No valid ticket or pass found");
             jButtonPaperTicket.setVisible(true);
             jButtonPaperTicket.setEnabled(true);
             jButtonDigitalTicket.setVisible(true);
             jButtonDigitalTicket.setEnabled(true);
             jButtonReturn.setVisible(false);
             jButtonReturn.setEnabled(false);
-            
-            
-
     }//GEN-LAST:event_jButton4ActionPerformed
 
     }
@@ -636,6 +645,33 @@ public class Wireframe1 extends javax.swing.JFrame {
         jButtonDigitalTicket.setVisible(true);
         jButtonDigitalTicket.setEnabled(true);
     }//GEN-LAST:event_jButtonReturnActionPerformed
+
+    private void jButtonPaperTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPaperTicketActionPerformed
+        jEditorPane1.setText(""); //empty this text when complete
+        jLabel1.setText("Ready for ticket");
+        jButtonReturn.setVisible(false);
+        jButtonReturn.setEnabled(false);
+    }//GEN-LAST:event_jButtonPaperTicketActionPerformed
+
+    private void jButtonDigitalTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDigitalTicketActionPerformed
+        int theUser = device.getReader().scanToken();
+        UserAccount currentUser = UserAccountManager.getInstance().getUserAccountById(theUser);
+        if (currentUser != null)
+        {
+        currentUser.makePayment(5);         //generically given 5
+        Ticket ticket = new Ticket(321, currentRoute, new Date(),
+        currentRoute.getStart(),
+        currentRoute.getTravelPoints().get(currentRoute.getTravelPoints().size()-1));       
+        currentUser.setActiveTicket(ticket);  //
+        currentUser.addTransaction(new Transaction(Cash, -5, new Date()));
+       
+        jEditorPane1.setText(""); //empty this text when complete
+        jLabel1.setText("Ready for ticket");
+        jButtonReturn.setVisible(false);
+        jButtonReturn.setEnabled(false);    
+    
+        }
+    }//GEN-LAST:event_jButtonDigitalTicketActionPerformed
 
     /**
      * @param args the command line arguments
@@ -678,14 +714,14 @@ public class Wireframe1 extends javax.swing.JFrame {
     private void Serialize() throws IOException {
         FileOutputStream out = new FileOutputStream("data.ser");
         ObjectOutputStream oos = new ObjectOutputStream(out);
-        oos.writeObject(uam);
+        oos.writeObject(UserAccountManager.getInstance());
         out.close();
     }
 
     private void Deserialize() throws IOException, ClassNotFoundException {
         FileInputStream in = new FileInputStream("data.ser");
         ObjectInputStream ois = new ObjectInputStream(in);
-        uam = (UserAccountManager) ois.readObject();
+        UserAccountManager uam = (UserAccountManager) ois.readObject();
         in.close();
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
