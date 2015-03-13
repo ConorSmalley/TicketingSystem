@@ -26,4 +26,17 @@ public class Transaction {
     void setId(int id) {
         this.id = id;
     }
+    
+    public TransactionType getType(){
+        return type;
+    }
+    
+    public double getAmount(){
+        return Amount;
+    }
+            
+    public Date getDatePurschased(){
+        return datePurchased;
+    }
+    
 }

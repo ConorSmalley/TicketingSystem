@@ -7,6 +7,9 @@ package ticketing.system;
 
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
+import static ticketing.system.TransactionType.*;
+import java.util.Date;
+
 
 /**
  *
@@ -25,7 +28,7 @@ public class Wireframe3Topup extends javax.swing.JFrame {
         Wireframe3Topup.currentUser = currentUser;
         Wireframe3Topup.wf3 = wf3;
         jLabel8.setText(String.valueOf(currentUser.getBalance()));
-        jLabel9.setText("+-+");
+        jLabel9.setText(String.format("%.2f", currentUser.getBalance() - 2.5));
     }
 
     /**
@@ -160,7 +163,10 @@ public class Wireframe3Topup extends javax.swing.JFrame {
                 currentUser.updateBalance(topUp);
                 System.out.println(currentUser);
                 jLabel8.setText(String.valueOf(currentUser.getBalance()));
+                currentUser.addTransaction(new Transaction(Card, - Double.valueOf(jTextField1.getText()), new Date()));
+                
                 wf3.displayUser();
+                wf3.updateTransactionList();
             }
         } else {
 
