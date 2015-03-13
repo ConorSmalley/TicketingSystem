@@ -28,7 +28,7 @@ import java.util.logging.Logger;
  */
 public class Wireframe1 extends javax.swing.JFrame {
 
-    UserAccountManager uam;
+
     private static SystemSupervisor s;
     Route currentRoute = null;
     Area currentArea = null;
@@ -327,8 +327,18 @@ public class Wireframe1 extends javax.swing.JFrame {
         });
 
         jButtonDigitalTicket.setText("Digital Ticket");
+        jButtonDigitalTicket.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDigitalTicketActionPerformed(evt);
+            }
+        });
 
         jButtonPaperTicket.setText("Paper Ticket");
+        jButtonPaperTicket.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPaperTicketActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelScanTicketLayout = new javax.swing.GroupLayout(jPanelScanTicket);
         jPanelScanTicket.setLayout(jPanelScanTicketLayout);
@@ -619,9 +629,6 @@ public class Wireframe1 extends javax.swing.JFrame {
             jButtonDigitalTicket.setEnabled(true);
             jButtonReturn.setVisible(false);
             jButtonReturn.setEnabled(false);
-            
-            
-
     }//GEN-LAST:event_jButton4ActionPerformed
 
     }
@@ -636,6 +643,16 @@ public class Wireframe1 extends javax.swing.JFrame {
         jButtonDigitalTicket.setVisible(true);
         jButtonDigitalTicket.setEnabled(true);
     }//GEN-LAST:event_jButtonReturnActionPerformed
+
+    private void jButtonPaperTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPaperTicketActionPerformed
+        
+    }//GEN-LAST:event_jButtonPaperTicketActionPerformed
+
+    private void jButtonDigitalTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDigitalTicketActionPerformed
+        int theUser = device.getReader().scanToken();
+        UserAccount currentUser = UserAccountManager.getInstance().getUserAccountById(theUser);
+        
+    }//GEN-LAST:event_jButtonDigitalTicketActionPerformed
 
     /**
      * @param args the command line arguments
@@ -678,14 +695,14 @@ public class Wireframe1 extends javax.swing.JFrame {
     private void Serialize() throws IOException {
         FileOutputStream out = new FileOutputStream("data.ser");
         ObjectOutputStream oos = new ObjectOutputStream(out);
-        oos.writeObject(uam);
+        oos.writeObject(UserAccountManager.getInstance());
         out.close();
     }
 
     private void Deserialize() throws IOException, ClassNotFoundException {
         FileInputStream in = new FileInputStream("data.ser");
         ObjectInputStream ois = new ObjectInputStream(in);
-        uam = (UserAccountManager) ois.readObject();
+        UserAccountManager uam = (UserAccountManager) ois.readObject();
         in.close();
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
