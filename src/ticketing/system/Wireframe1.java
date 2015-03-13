@@ -34,12 +34,28 @@ public class Wireframe1 extends javax.swing.JFrame {
     Area currentArea = null;
     Employee currentEmployee;
     TravelPoint currentTravelPoint;
+    InspectionDevice device;
 
     public Wireframe1(SystemSupervisor s) {
         this.s = s;
         initComponents();
         jComboBoxRoute.removeAllItems();
         this.s = s;
+        //initialisation of inspection device and it's member variable objects
+        DigitalReader reader = new DigitalReader();
+        device = new InspectionDevice(reader);
+        device.setAssignedRoute(currentRoute);
+        device.setCurrentEmployee(currentEmployee);
+        //used in checking ticket validity      //device.setCurrentUserAccount(null);
+        device.setNextStop(currentTravelPoint);
+
+        jButtonReturn.setVisible(false);
+        jButtonReturn.setEnabled(false);
+        jButtonPaperTicket.setVisible(false);
+        jButtonPaperTicket.setEnabled(false);
+        jButtonDigitalTicket.setVisible(false);
+        jButtonDigitalTicket.setEnabled(false);
+
         for (Area a : s.getAreas()) {
             for (Route r : a.getRoutes()) {
 //                System.out.println(r);
@@ -106,6 +122,9 @@ public class Wireframe1 extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jButtonReturn = new javax.swing.JButton();
+        jButtonDigitalTicket = new javax.swing.JButton();
+        jButtonPaperTicket = new javax.swing.JButton();
         jPanelLogInfringement = new javax.swing.JPanel();
         jComboBoxInfringementRoutes = new javax.swing.JComboBox();
         jLabel3 = new javax.swing.JLabel();
@@ -281,6 +300,7 @@ public class Wireframe1 extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Ready For Ticket");
 
+        jEditorPane1.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         jScrollPane1.setViewportView(jEditorPane1);
 
         jButton2.setText("Return");
@@ -292,7 +312,23 @@ public class Wireframe1 extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setText("Charge Fair");
+        jButton4.setText("Scan Token");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jButtonReturn.setText("Return");
+        jButtonReturn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonReturnActionPerformed(evt);
+            }
+        });
+
+        jButtonDigitalTicket.setText("Digital Ticket");
+
+        jButtonPaperTicket.setText("Paper Ticket");
 
         javax.swing.GroupLayout jPanelScanTicketLayout = new javax.swing.GroupLayout(jPanelScanTicket);
         jPanelScanTicket.setLayout(jPanelScanTicketLayout);
@@ -313,12 +349,21 @@ public class Wireframe1 extends javax.swing.JFrame {
                             .addGroup(jPanelScanTicketLayout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 14, Short.MAX_VALUE)))
+                .addContainerGap(24, Short.MAX_VALUE))
+            .addGroup(jPanelScanTicketLayout.createSequentialGroup()
+                .addGroup(jPanelScanTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelScanTicketLayout.createSequentialGroup()
+                        .addGap(82, 82, 82)
+                        .addGroup(jPanelScanTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton4)
+                            .addComponent(jButtonReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanelScanTicketLayout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(jButtonDigitalTicket)
+                        .addGap(12, 12, 12)
+                        .addComponent(jButtonPaperTicket)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelScanTicketLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton4)
-                .addGap(80, 80, 80))
         );
         jPanelScanTicketLayout.setVerticalGroup(
             jPanelScanTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -327,9 +372,15 @@ public class Wireframe1 extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonReturn)
+                .addGap(4, 4, 4)
+                .addGroup(jPanelScanTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonPaperTicket)
+                    .addComponent(jButtonDigitalTicket))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanelScanTicketLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(jButton3))
@@ -547,6 +598,45 @@ public class Wireframe1 extends javax.swing.JFrame {
 //        }
     }//GEN-LAST:event_jComboBoxInfringementRoutesItemStateChanged
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        //currentRoute
+        //device.getReader().scanToken();   this is called within inspect token
+        if (device.inspectToken()) {//Travel approved (generic)
+            jEditorPane1.setText(">"); //empty this text when complete
+            jLabel1.setText("Ticket succesfully scanned!");
+            jButtonReturn.setVisible(true);
+            jButtonReturn.setEnabled(true);
+            jButtonPaperTicket.setVisible(false);
+            jButtonPaperTicket.setEnabled(false);
+            jButtonDigitalTicket.setVisible(false);
+            jButtonDigitalTicket.setEnabled(false);
+
+        } else {//No valid ticket or pass found}
+            jEditorPane1.setText("X");
+            jButtonPaperTicket.setVisible(true);
+            jButtonPaperTicket.setEnabled(true);
+            jButtonDigitalTicket.setVisible(true);
+            jButtonDigitalTicket.setEnabled(true);
+            jButtonReturn.setVisible(false);
+            jButtonReturn.setEnabled(false);
+            
+            
+
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    }
+
+    private void jButtonReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReturnActionPerformed
+        jEditorPane1.setText(""); //empty this text when complete
+        jLabel1.setText("Ready for ticket");
+        jButtonReturn.setVisible(false);
+        jButtonReturn.setEnabled(false);
+        jButtonPaperTicket.setVisible(true);
+        jButtonPaperTicket.setEnabled(true);
+        jButtonDigitalTicket.setVisible(true);
+        jButtonDigitalTicket.setEnabled(true);
+    }//GEN-LAST:event_jButtonReturnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -604,12 +694,15 @@ public class Wireframe1 extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButtonAccount;
+    private javax.swing.JButton jButtonDigitalTicket;
     private javax.swing.JButton jButtonEdit;
     private javax.swing.JButton jButtonFile;
     private javax.swing.JButton jButtonHelp;
     private javax.swing.JButton jButtonLog;
     private javax.swing.JButton jButtonLogOut;
     private javax.swing.JButton jButtonLogin;
+    private javax.swing.JButton jButtonPaperTicket;
+    private javax.swing.JButton jButtonReturn;
     private javax.swing.JButton jButtonScan;
     private javax.swing.JButton jButtonSettings;
     private javax.swing.JButton jButtonView;

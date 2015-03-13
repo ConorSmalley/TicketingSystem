@@ -14,7 +14,35 @@ public class InspectionDevice {
     private int Id;
     private UserAccount currentUserAccount;
     private Employee currentEmployee;   //via GUI
+
+    public DigitalReader getReader() {
+        return reader;
+    }
     private TravelPoint nextStop;   //via GUI
+
+    public void setId(int Id) {
+        this.Id = Id;
+    }
+
+    public void setCurrentEmployee(Employee currentEmployee) {
+        this.currentEmployee = currentEmployee;
+    }
+
+    public void setNextStop(TravelPoint nextStop) {
+        this.nextStop = nextStop;
+    }
+
+    public void setAssignedRoute(Route assignedRoute) {
+        this.assignedRoute = assignedRoute;
+    }
+
+    public void setReader(DigitalReader reader) {
+        this.reader = reader;
+    }
+
+    public void setInspecGUI(GUI inspecGUI) {
+        this.inspecGUI = inspecGUI;
+    }
     private Route assignedRoute;    //via GUI
     private DigitalReader reader;
     private GUI inspecGUI;
@@ -22,6 +50,11 @@ public class InspectionDevice {
     // untested
     public void activateScanning() {
         reader.initialize();
+    }
+    
+    public InspectionDevice(DigitalReader readerIn)
+    {
+        reader = readerIn;
     }
 
     //incomplete untested
