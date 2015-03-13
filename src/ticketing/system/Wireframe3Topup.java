@@ -167,6 +167,7 @@ public class Wireframe3Topup extends javax.swing.JFrame {
                 
                 wf3.displayUser();
                 wf3.updateTransactionList();
+                this.setVisible(false);
             }
         } else {
 
