@@ -138,7 +138,9 @@ public class UserAccount implements Serializable {
     }
 
     boolean checkActiveTicket(Route assignedRoute, TravelPoint nextStop) {
+        if (activeTicket != null)
         return activeTicket.isValidTicket(assignedRoute, nextStop);
+        else return false;
     }
 
     public boolean canAccountBeDebited(double price) {
