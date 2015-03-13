@@ -30,6 +30,7 @@ public class TravelPointTest {
 
     @BeforeClass
     public static void setUpClass() {
+        tp.setArea(a);
     }
 
     @AfterClass
@@ -38,6 +39,7 @@ public class TravelPointTest {
 
     @Before
     public void setUp() {
+        tp.setArea(a);
     }
 
     @After
@@ -119,8 +121,8 @@ public class TravelPointTest {
     @Test
     public void testSetArea() {
         System.out.println("setArea");
-        Area expResult = a;
-        tp.setArea(a);
+        Area expResult = new Area("test");
+        tp.setArea(expResult);
         Area result = tp.getArea();
         assertEquals(expResult, result);
     }
