@@ -5,6 +5,7 @@
  */
 package ticketing.system;
 
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -143,7 +144,7 @@ public class Wireframe2 extends javax.swing.JFrame {
         jLabelActiveUser.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabelActiveUser.setText("No Active User");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jButtonLogOut.setText("Log Out");
         jButtonLogOut.setEnabled(false);
@@ -181,7 +182,7 @@ public class Wireframe2 extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jButtonLogin.setText("Confirm");
+        jButtonLogin.setText("Login");
         jButtonLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonLoginActionPerformed(evt);
@@ -202,6 +203,20 @@ public class Wireframe2 extends javax.swing.JFrame {
         jTextFieldEmployeeId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldEmployeeIdActionPerformed(evt);
+            }
+        });
+        jTextFieldEmployeeId.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldEmployeeIdKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldEmployeeIdKeyTyped(evt);
+            }
+        });
+
+        jTextFieldPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldPasswordKeyReleased(evt);
             }
         });
 
@@ -350,32 +365,22 @@ public class Wireframe2 extends javax.swing.JFrame {
             }
         }
         System.out.println(vehicle);
+        double temp = activeRoute.getPrice();
         if (jCheckBox1.isSelected()) {
-            double temp = activeRoute.getPrice();
             activeRoute.setPrice(temp / 2);
-            if (vehicle.getGateway().handleToken(vehicle.getGateway().getReader().scanToken())) {
-                buttonPressed = true;
-                jButtonLogin.setText("Return");
-                wp.changeLine1("Your MegaRider Pass Has Been Accepted");
-                wp.changeLine2("");
-                wp.changeLine3("");
-                wp.changeLine4("We hope you have a safe and enjoyable trip");
-            } else {
-                System.out.println("User can't travel");
-            }
-            activeRoute.setPrice(temp);
-        } else {
-            if (vehicle.getGateway().handleToken(vehicle.getGateway().getReader().scanToken())) {
-                buttonPressed = true;
-                jButtonLogin.setText("Return");
-                wp.changeLine1("Your MegaRider Pass Has Been Accepted");
-                wp.changeLine2("");
-                wp.changeLine3("");
-                wp.changeLine4("We hope you have a safe and enjoyable trip");
-            } else {
-                System.out.println("User can't travel");
-            }
         }
+        if (vehicle.getGateway().handleToken(vehicle.getGateway().getReader().scanToken())) {
+            buttonPressed = true;
+            jButtonLogin.setText("Back");
+            wp.changeLine1("Your MegaRider Pass Has Been Accepted");
+            wp.changeLine2("");
+            wp.changeLine3("");
+            wp.changeLine4("We hope you have a safe and enjoyable trip");
+        } else {
+            System.out.println("User can't travel");
+        }
+        activeRoute.setPrice(temp);
+        
     }//GEN-LAST:event_jButtonDTActionPerformed
 
     private void jButtonBuyDTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuyDTActionPerformed
@@ -394,7 +399,7 @@ public class Wireframe2 extends javax.swing.JFrame {
         }
         if (vehicle.getGateway().handleToken(vehicle.getGateway().getReader().scanToken())) {
             buttonPressed = true;
-            jButtonLogin.setText("Return");
+            jButtonLogin.setText("Back");
             wp.changeLine1("You have Purchase A Digital Ticket");
             wp.changeLine3("Fare is £" + activeRoute.getPrice());
             wp.changeLine2("Half Fare discount will be applied if you scan off within two stops");
@@ -402,7 +407,7 @@ public class Wireframe2 extends javax.swing.JFrame {
             activeRoute.setPrice(temp);
         } else {
             System.out.println("User can't travel");
-            jButtonLogin.setText("Return");
+            jButtonLogin.setText("Back");
             wp.changeLine1("Insufficient funds to purchase a Digital Ticket");
             wp.changeLine3("Fare is £" + activeRoute.getPrice());
             wp.changeLine2("Please top up your account before proceeding");
@@ -422,6 +427,31 @@ public class Wireframe2 extends javax.swing.JFrame {
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox1ActionPerformed
+
+    private void jTextFieldEmployeeIdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldEmployeeIdKeyReleased
+        // TODO add your handling code here:
+        if (enterKeyPressed(evt)) {
+            jTextFieldPassword.requestFocus();
+        }
+    }//GEN-LAST:event_jTextFieldEmployeeIdKeyReleased
+
+    private void jTextFieldEmployeeIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldEmployeeIdKeyTyped
+        // TODO add your handling code here:
+        if (enterKeyPressed(evt)) {
+            jTextFieldPassword.requestFocus();
+        }
+    }//GEN-LAST:event_jTextFieldEmployeeIdKeyTyped
+
+    private void jTextFieldPasswordKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldPasswordKeyReleased
+        // TODO add your handling code here:
+        if (enterKeyPressed(evt)) {
+            jButtonLogin.doClick();
+        }
+    }//GEN-LAST:event_jTextFieldPasswordKeyReleased
+
+    private Boolean enterKeyPressed(java.awt.event.KeyEvent evt) {
+        return evt.getKeyCode() == KeyEvent.VK_ENTER;
+    }
 
     /**
      * @param args the command line arguments
