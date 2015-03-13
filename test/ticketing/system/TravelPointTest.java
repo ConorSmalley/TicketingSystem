@@ -40,6 +40,7 @@ public class TravelPointTest {
     public void setUp() {
         tp.setArea(a);
         tp.setType(TYPE);
+        tp.setName(NAME);
     }
 
     @After
