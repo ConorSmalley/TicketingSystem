@@ -175,4 +175,10 @@ public class UserAccount implements Serializable {
         activeTicket = null;
 
     }
+    
+    public TransactionList getTransactionList()
+    {
+    return transactionList;
+    }
+    
 }
