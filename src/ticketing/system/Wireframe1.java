@@ -21,6 +21,7 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import static ticketing.system.TransactionType.Cash;
 
 /**
  *
@@ -380,7 +381,7 @@ public class Wireframe1 extends javax.swing.JFrame {
             .addGroup(jPanelScanTicketLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButtonReturn)
@@ -621,8 +622,9 @@ public class Wireframe1 extends javax.swing.JFrame {
             jButtonDigitalTicket.setVisible(false);
             jButtonDigitalTicket.setEnabled(false);
 
-        } else {//No valid ticket or pass found}
+        } else {
             jEditorPane1.setText("X");
+            jLabel1.setText("No valid ticket or pass found");
             jButtonPaperTicket.setVisible(true);
             jButtonPaperTicket.setEnabled(true);
             jButtonDigitalTicket.setVisible(true);
@@ -645,13 +647,30 @@ public class Wireframe1 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonReturnActionPerformed
 
     private void jButtonPaperTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPaperTicketActionPerformed
-        
+        jEditorPane1.setText(""); //empty this text when complete
+        jLabel1.setText("Ready for ticket");
+        jButtonReturn.setVisible(false);
+        jButtonReturn.setEnabled(false);
     }//GEN-LAST:event_jButtonPaperTicketActionPerformed
 
     private void jButtonDigitalTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDigitalTicketActionPerformed
         int theUser = device.getReader().scanToken();
         UserAccount currentUser = UserAccountManager.getInstance().getUserAccountById(theUser);
-        
+        if (currentUser != null)
+        {
+        currentUser.makePayment(5);         //generically given 5
+        Ticket ticket = new Ticket(321, currentRoute, new Date(),
+        currentRoute.getStart(),
+        currentRoute.getTravelPoints().get(currentRoute.getTravelPoints().size()-1));       
+        currentUser.setActiveTicket(ticket);  //
+        currentUser.addTransaction(new Transaction(Cash, -5, new Date()));
+       
+        jEditorPane1.setText(""); //empty this text when complete
+        jLabel1.setText("Ready for ticket");
+        jButtonReturn.setVisible(false);
+        jButtonReturn.setEnabled(false);    
+    
+        }
     }//GEN-LAST:event_jButtonDigitalTicketActionPerformed
 
     /**
