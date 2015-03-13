@@ -30,7 +30,6 @@ public class TravelPointTest {
 
     @BeforeClass
     public static void setUpClass() {
-        tp.setArea(a);
     }
 
     @AfterClass
@@ -40,6 +39,7 @@ public class TravelPointTest {
     @Before
     public void setUp() {
         tp.setArea(a);
+        tp.setType(TYPE);
     }
 
     @After
